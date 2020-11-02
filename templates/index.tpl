@@ -12,7 +12,11 @@
         </header>
         <body>
             <h1>Home</h1>
+            <section>
+                <a href="./register">S'enregistrer</a>
+                <a href="./login">Se Connecter</a>
 
+            </section>
         </body>
         <footer>
             <p>Nino BELIC & Hugo BENAB DEL K</p>
