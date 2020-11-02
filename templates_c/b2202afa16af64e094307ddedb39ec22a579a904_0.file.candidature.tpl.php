@@ -1,4 +1,27 @@
-<!DOCTYPE html>
+<?php
+/* Smarty version 3.1.36, created on 2020-11-02 19:18:42
+  from 'C:\laragon\www\projet-festival\templates\candidature.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.36',
+  'unifunc' => 'content_5fa05b92b15306_56138554',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'b2202afa16af64e094307ddedb39ec22a579a904' => 
+    array (
+      0 => 'C:\\laragon\\www\\projet-festival\\templates\\candidature.tpl',
+      1 => 1604344721,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_5fa05b92b15306_56138554 (Smarty_Internal_Template $_smarty_tpl) {
+?><!DOCTYPE html>
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,31 +38,12 @@
             <h1>Candidature</h1>
             <section>
 
-            {*
-            Clés:
-                nom_groupe
-                id_departement
-                id_scene
-                id_representant
-                id_style
-
-            A saisir:
-                annee_creation
-                presentation
-                experience
-                site_web
-                soundcloud
-                youtube
-                statut_assoc
-                is_sacem
-                have_producteur
-                membres
-            *}
-            
+                        
                 <form action="./candidature" method="POST">
                     <div>
                         <label for="annee_creation">Année de Création</label>
-                        <input name="annee_creation" type="number" value="{$old_form['annee_creation']}"> 
+                        <input name="annee_creation" type="number" value="<?php echo $_smarty_tpl->tpl_vars['old_form']->value['annee_creation'];?>
+"> 
                     </div>
                     <div>
                         <label for="presentation">Présentation</label>
@@ -73,15 +77,15 @@
                         <label for="have_producteur">Producteur</label>
                         <input name="have_producteur" type="checkbox">
                     </div>
-                    <div> {*Préciser orthographe à suivre ? Vérification ?*}
-                        <label for="membres">Membres</label>
+                    <div>                         <label for="membres">Membres</label>
                         <textarea name="membres"></textarea>
                     </div>
                     <input type="submit" value="Envoyer">
 
                 </form>
                 <a class="cancel" href="./">Annuler</a>
-                <p>{$erreurs}</p>
+                <p><?php echo $_smarty_tpl->tpl_vars['erreurs']->value;?>
+</p>
 
             </section>
         </body>
@@ -95,4 +99,5 @@
 
 
 
-</html>
+</html><?php }
+}
