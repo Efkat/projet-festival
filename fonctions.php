@@ -47,3 +47,19 @@ Flight::route("/login", function (){
 Flight::route("/details", function (){
     Flight::render('templates/details.tpl', array('ligne'=>null));
 });
+
+
+
+/**
+ * Name = "profil_consulter"
+ */
+Flight::route("/p_consulter", function (){
+    Flight::render('templates/p_consulter.tpl', array(null));
+});
+
+/**
+ * Name = "profil_edit"
+ */
+Flight::route("/p_edit", function (){
+    Flight::render('templates/p_edit.tpl', array(null));
+});
