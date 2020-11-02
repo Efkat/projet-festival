@@ -16,7 +16,7 @@ Flight::route('/', function (){
  * Name = "liste"
  */
 Flight::route('/liste', function (){
-    Flight::render('templates/liste.tpl', array(null));
+    Flight::render('templates/liste.tpl', array('lignes'=>null));
 });
 
 /**
@@ -30,5 +30,20 @@ Flight::route("/profil", function (){
  * Name = "register"
  */
 Flight::route("/register", function (){
-    Flight::render('templates/register.tpl', array(null));
+    Flight::render('templates/register.tpl', array('erreurs'=>null,'old_form'=>null));
+});
+
+/**
+ * Name = "login"
+ */
+Flight::route("/login", function (){
+    Flight::render('templates/login.tpl', array('erreurs'=>null,'old_form'=>null));
+});
+
+
+/**
+ * Name = "details"
+ */
+Flight::route("/details", function (){
+    Flight::render('templates/details.tpl', array('ligne'=>null));
 });
