@@ -1,0 +1,26 @@
+*{
+    font-family: Carlito,Arial, Helvetica, sans-serif;
+}
+a{
+    display:block;
+    margin:10px 0;
+
+    text-decoration: unset;
+    color:rgb(11, 97, 167);
+}
+a:hover
+{
+    text-decoration: underline;
+    color:rgb(167, 11, 11);
+}
+
+
+label{
+    display:block;
+}
+div{
+    margin:20px;
+}
+.cancel{
+    margin:20px 0;
+}
