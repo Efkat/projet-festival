@@ -48,6 +48,13 @@ Flight::route("/details", function (){
     Flight::render('templates/details.tpl', array('ligne'=>null));
 });
 
+/**
+ * Name = "candidature"
+ */
+Flight::route("/candidature", function (){
+    Flight::render('templates/candidature.tpl', array('erreurs'=>null,'old_form'=>null));
+});
+
 
 
 /**
