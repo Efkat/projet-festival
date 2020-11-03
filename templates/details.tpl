@@ -6,11 +6,11 @@
         <link rel="stylesheet" type="text/css" href="./styles/style.css">
         <title>Détails</title>
     </head>
-    <main>
+    <body>
         <header>
             
         </header>
-        <body>
+        <main>
             <dl>
                 {*on passera la ligne => donc $ligne[i]*}
                 <dt>nom_groupe</dt>
@@ -61,13 +61,13 @@
             </dl>
             
 
-        </body>
+        </main>
         <footer>
             <p>Nino BELIC & Hugo BENAB DEL K</p>
 
         </footer>
 
-    </main>
+    </body>
 
 
 

@@ -6,24 +6,24 @@
         <link rel="stylesheet" type="text/css" href="./styles/style.css">
         <title>Home</title>
     </head>
-    <main>
+    <body>
         <header>
             
         </header>
-        <body>
+        <main>
             <h1>Home</h1>
             <section>
                 <a href="./register">S'enregistrer</a>
                 <a href="./login">Se Connecter</a>
 
             </section>
-        </body>
+        </main>
         <footer>
             <p>Nino BELIC & Hugo BENAB DEL K</p>
 
         </footer>
 
-    </main>
+    </body>
 
 
 

@@ -6,12 +6,12 @@
         <link rel="stylesheet" type="text/css" href="./styles/style.css">
         <title>Candidature</title>
     </head>
-    <main>
+    <body>
         <header>
             
 
         </header>
-        <body>
+        <main>
             <h1>Candidature</h1>
             <section>
 
@@ -54,11 +54,11 @@
                         <input name="site_web" type="text">
                     </div>
                     <div>
-                        <label for="soundcloud">Soundcloud*</label>
+                        <label for="soundcloud">Soundcloud*</label> {*NULLABLE*}
                         <input name="soundcloud" type="text">
                     </div>
                     <div>
-                        <label for="youtube">Youtube*</label>
+                        <label for="youtube">Youtube*</label> {*NULLABLE*}
                         <input name="youtube" type="text">
                     </div>
                     <div>
@@ -84,13 +84,13 @@
                 <p>{$erreurs}</p>
 
             </section>
-        </body>
+        </main>
         <footer>
             <p>Nino BELIC & Hugo BENAB DEL K</p>
 
         </footer>
 
-    </main>
+    </body>
 
 
 

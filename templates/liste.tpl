@@ -6,12 +6,12 @@
         <link rel="stylesheet" type="text/css" href="./styles/style.css">
         <title>Liste</title>
     </head>
-    <main>
+    <body>
         <header>
             
 
         </header>
-        <body>
+        <main>
             <h1>Liste</h1>
             <section>
                 <table>
@@ -24,6 +24,7 @@
                             {*attention à la requête:
                             -soit [SELECT *]  => donc $ligne[i] avec i pas dans l'ordre
                             -soit [SELECT ..] => donc $ligne[i] i de 0 à 8   *}
+
                             <td>{$ligne[0]}</td> {*nom groupe*}
                             <td>{$ligne[1]}</td> {*nom departement*}
                             <td>{$ligne[2]}</td> {*adresse*}
@@ -36,13 +37,13 @@
                     {/foreach}
                 </table>
             </section>
-        </body>
+        </main>
         <footer>
             <p>Nino BELIC & Hugo BENAB DEL K</p>
 
         </footer>
 
-    </main>
+    </body>
 
 
 

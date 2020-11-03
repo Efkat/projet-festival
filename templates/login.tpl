@@ -6,12 +6,12 @@
         <link rel="stylesheet" type="text/css" href="./styles/style.css">
         <title>Login</title>
     </head>
-    <main>
+    <body>
         <header>
             
 
         </header>
-        <body>
+        <main>
             <h1>Se Connecter</h1>
             <section>
                 <form action="./login" method="POST">
@@ -29,13 +29,13 @@
                 <p>{$erreurs}</p>
 
             </section>
-        </body>
+        </main>
         <footer>
             <p>Nino BELIC & Hugo BENAB DEL K</p>
 
         </footer>
 
-    </main>
+    </body>
 
 
 
