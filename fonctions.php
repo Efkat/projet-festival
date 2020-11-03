@@ -29,9 +29,61 @@ Flight::route("/profil", function (){
 /**
  * Name = "register"
  */
-Flight::route("/register", function (){
-    Flight::render('templates/register.tpl', array('erreurs'=>null,'old_form'=>null));
+Flight::route('GET /register',function(){
+    Flight::render('templates/register.tpl',array('erreurs'=>null,'old_form'=>null));
 });
+
+Flight::route('POST /register',function(){
+    $db = Flight::db();
+    $erreurs="";
+
+    //sécurité
+    $nom  = htmlspecialchars(trim($_POST["nom"]));
+    $mail = htmlspecialchars(trim($_POST["email"]));;
+    $pswd = htmlspecialchars(trim($_POST["pswd"]));
+    
+
+
+    /*SUCCESSION DE IF => PERMET D'AFFICHER CHAQUE ERREUR */
+
+    //validité adresse mail
+    if(!filter_var($mail,FILTER_VALIDATE_EMAIL))
+        $erreurs.="<br/>Veuillez saisir une adresse mail correcte.";
+    
+    //tous les champs remplis
+    if(empty($nom) | empty($mail) | empty($pswd))
+        $erreurs.="<br/>Veuillez remplir tous les champs.";
+
+    //taille du mot de passe
+    if(strlen($pswd)<8)
+        $erreurs.="<br/>Mot de passe: 8 caractères minimum requis.";
+    
+
+    
+
+    //Vérification nom & mail pas dans la base
+    $existe_deja=$db->query("SELECT email,nom_user FROM Utilisateur WHERE email='$mail' OR nom_user='$nom';");
+    if($existe_deja->fetchAll()!=array())
+        $erreurs.="<br/>Compte existe déjà dans la base.";      
+
+
+    //si pas d'erreurs => succes
+    //sinon => affichage erreurs
+    if($erreurs=="")
+    {
+        $pswd=password_hash($pswd,PASSWORD_DEFAULT);
+        $requete=$db->prepare("INSERT INTO utilisateur (`id_user`,`nom_user`,`password`,`email`) VALUES (NULL,:nom,:pswd,:mail);");
+        $requete->execute(array(
+            ':nom'=>$nom,
+            ':pswd'=>$pswd,
+            ':mail'=>$mail
+        ));
+        Flight::render("templates/success.tpl",array(null));
+    } 
+    else Flight::render('templates/register.tpl',array('erreurs'=>$erreurs,'old_form'=>$_POST)); 
+ 
+});
+
 
 /**
  * Name = "login"
