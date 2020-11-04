@@ -38,44 +38,44 @@
             
                 <form action="./candidature" method="POST">
                     <div>
-                        <label for="annee_creation">Année de Création</label>
-                        <input name="annee_creation" type="number" value="{$old_form['annee_creation']}"> 
+                        <label for="annee_creation-input">Année de Création</label>
+                        <input id="annee_creation-input" name="annee_creation" type="number" value="{$old_form['annee_creation']}" required>
                     </div>
                     <div>
-                        <label for="presentation">Présentation</label>
-                        <textarea name="presentation"></textarea>
+                        <label for="presentation-input">Présentation</label>
+                        <textarea id="presentation-input" name="presentation" maxlength="500" required></textarea>
                     </div>
                     <div>
-                        <label for="experience">Expérience</label>
-                        <textarea name="experience"></textarea>
+                        <label for="experience-input">Expérience</label>
+                        <textarea id="experience-input" name="experience" maxlength="500" required></textarea>
                     </div>
                     <div>
-                        <label for="site_web">Site Web</label>
-                        <input name="site_web" type="text">
+                        <label for="site_web-input">Site Web</label>
+                        <input id="site_web-input" name="site_web" type="text" required>
                     </div>
                     <div>
-                        <label for="soundcloud">Soundcloud*</label> {*NULLABLE*}
-                        <input name="soundcloud" type="text">
+                        <label for="soundcloud-input">Soundcloud*</label> {*NULLABLE*}
+                        <input id="soundcloud-input" name="soundcloud" type="text">
                     </div>
                     <div>
-                        <label for="youtube">Youtube*</label> {*NULLABLE*}
-                        <input name="youtube" type="text">
+                        <label for="youtube-input">Youtube*</label> {*NULLABLE*}
+                        <input id="youtube-input" name="youtube" type="text">
                     </div>
                     <div>
-                        <label for="statut_assoc">Statut Association</label>
-                        <input name="statut_assoc" type="checkbox">
+                        <label for="statut_assoc-input">Statut Association</label>
+                        <input id="statut_assoc-input" name="statut_assoc" type="checkbox" required>
                     </div>
                     <div>
-                        <label for="is_sacem">Sacem</label>
-                        <input name="is_sacem" type="checkbox">
+                        <label for="is_sacem-input">Sacem</label>
+                        <input id="is_sacem-input" name="is_sacem" type="checkbox" required>
                     </div>
                     <div>
-                        <label for="have_producteur">Producteur</label>
-                        <input name="have_producteur" type="checkbox">
+                        <label for="have_producteur-input">Producteur</label>
+                        <input id="have_producteur-input" name="have_producteur" type="checkbox" required>
                     </div>
                     <div> {*Préciser orthographe à suivre ? Vérification ?*}
-                        <label for="membres">Membres</label>
-                        <textarea name="membres"></textarea>
+                        <label for="membres-input">Membres</label>
+                        <textarea id="membres-input" name="membres" maxlength="500"></textarea>
                     </div>
                     <input type="submit" value="Envoyer">
 
