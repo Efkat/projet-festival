@@ -120,7 +120,7 @@
                         <textarea id="membres-input" name="membres" maxlength="500"></textarea>
                     </div>
                     <div>
-                        <label for="techinique-input">Fiche technique</label>
+                        <label for="technique-input">Fiche technique</label>
                         <input type="file" id="technique-input" name="technique">
                     </div>
                     <div>

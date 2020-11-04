@@ -114,8 +114,14 @@ Flight::route("POST /candidature", function(){
     $db = Flight::db();
     $erreur = "";
     //Vérification si tous les champs nécessaires sont présents
-    if(!empty($_POST['annee_creation']) && !empty($_POST['presentation']) && !empty($_POST['experience']) && !empty($_POST['site_web']) && !empty($_POST['statut_assoc']) && !empty($_POST['is_sacem']) && !empty($_POST['have_producteur'])){
-        
+    if(!empty($_POST['nom_groupe']) && !empty($_POST['annee_creation']) && !empty($_POST['presentation']) && !empty($_POST['experience']) && !empty($_POST['site_web']) && !empty($_POST['statut_assoc']) && !empty($_POST['is_sacem']) && !empty($_POST['have_producteur']) && isset($_POST['departement'])&& isset($_POST['style']) && isset($_POST['scene']) && file_exists($_FILES['image1'])&& file_exists($_FILES['image2']) && file_exists($_FILES['piste1']) && file_exists($_FILES['piste2']) && file_exists($_FILES['piste3']) && !empty($_POST['membres'])){
+        //Vérifie le nom du groupe
+        if(strlen($_POST['nom_groupe'])){
+            $nomGroupe = htmlspecialchars(trim($_POST['nom_groupe']));
+        }else{
+            $erreur = "Le nom du groupe est trop long";
+        }
+
         //Vérifie l'année de création
         if(strlen($_POST['annee_creation']) == 4){
             $anneeCreation = htmlspecialchars($_POST['annee_creation']);
@@ -185,8 +191,27 @@ Flight::route("POST /candidature", function(){
         }else{
             $soundcloud = "";
         }
+
+        //Vérifie les images
+        if(($_FILES['image1']['type'] == "image/jpeg") || ($_FILES['image1']['type'] == "image/png")) && (($_FILES['image2']['type'] == "image/jpeg") || ($_FILES['image2']['type'] == "image/png")){
+            $nomImage1 = $nomGroupe + "_image1";
+            $nomImage2 = $nomGroupe + "_image2";
+            $_FILES['image1']['name'] = $nomImage1;
+            $_FILES['image2']['name'] = $nomImage2;
+        }else{
+            $erreur = "Le format des images n'est pas correct (jpeg ou png)"
+        }
+
+        //TODO : Vérifie les sons
+        if(){
+        }
     }else{
         $erreur = "Tout les champs nécessaires ne sont pas renseignées !";
+    }
+    if($erreur = ""){
+        //TODO : faire la requête et insert le candid + fichier
+    }else{
+        //TODO : rendre login.tpl + erreurs
     }
 });
 
