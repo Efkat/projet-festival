@@ -4,7 +4,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="./styles/style.css">
-        <title>Candidature</title>
+        <title>Candidature_Edit</title>
     </head>
     <body>
         <header>
@@ -12,7 +12,7 @@
 
         </header>
         <main>
-            <h1>Candidature</h1>
+            <h1>Editer Candidature</h1>
             <section>
             
                 <form action="./c_edit" method="POST" enctype="multipart/form-data">
@@ -23,7 +23,14 @@
                     <div>
                         <label for="departement-input">Département d'origine</label>
                         <select name="departement" id="departement-input">
-                            {*Faire un foreach pour afficher les options*}
+                            {foreach from=$nom_depts item=nom_dept}
+                                
+                                <option value="{$nom_dept}" 
+                                {if $nom_dept==$old_form['departement']} 
+                                    selected        {*à tester*}
+                                {/if}>{$nom_dept}</option>
+
+                            {/foreach}
                         </select>
                     </div>
                     <div>
@@ -99,7 +106,7 @@
                         <textarea id="membres-input" name="membres" maxlength="500"></textarea>
                     </div>
                     <div>
-                        <label for="techinique-input">Fiche technique</label>
+                        <label for="technique-input">Fiche technique</label>
                         <input type="file" id="technique-input" name="technique">
                     </div>
                     <div>

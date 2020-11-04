@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-11-02 19:18:42
+/* Smarty version 3.1.36, created on 2020-11-04 20:51:10
   from 'C:\laragon\www\projet-festival\templates\candidature.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fa05b92b15306_56138554',
+  'unifunc' => 'content_5fa3143e4e68c5_86790222',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b2202afa16af64e094307ddedb39ec22a579a904' => 
     array (
       0 => 'C:\\laragon\\www\\projet-festival\\templates\\candidature.tpl',
-      1 => 1604344721,
+      1 => 1604523069,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fa05b92b15306_56138554 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fa3143e4e68c5_86790222 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
     <head>
@@ -29,56 +29,105 @@ function content_5fa05b92b15306_56138554 (Smarty_Internal_Template $_smarty_tpl)
         <link rel="stylesheet" type="text/css" href="./styles/style.css">
         <title>Candidature</title>
     </head>
-    <main>
+    <body>
         <header>
             
 
         </header>
-        <body>
+        <main>
             <h1>Candidature</h1>
             <section>
 
                         
-                <form action="./candidature" method="POST">
+                <form action="./candidature" method="POST" enctype="multipart/form-data">
                     <div>
-                        <label for="annee_creation">Année de Création</label>
-                        <input name="annee_creation" type="number" value="<?php echo $_smarty_tpl->tpl_vars['old_form']->value['annee_creation'];?>
-"> 
+                        <label for="nom_groupe-input">Nom du groupe</label>
+                        <input id="nom_groupe-input" name="nom_groupe" type="text" value="<?php echo $_smarty_tpl->tpl_vars['old_form']->value['nom_groupe'];?>
+" required>
                     </div>
                     <div>
-                        <label for="presentation">Présentation</label>
-                        <textarea name="presentation"></textarea>
+                        <label for="departement-input">Département d'origine</label>
+                        <select name="departement" id="departement-input">
+                            
+                                                                                    
+                            
+                        </select>
                     </div>
                     <div>
-                        <label for="experience">Expérience</label>
-                        <textarea name="experience"></textarea>
+                        <label for="style-input">Style du groupe</label>
+                        <select name="style" id="style-input">
+                                                    </select>
                     </div>
                     <div>
-                        <label for="site_web">Site Web</label>
-                        <input name="site_web" type="text">
+                        <label for="scene-input">Scène du groupe</label>
+                        <select name="scene" id="scene-input">
+                                                    </select>
                     </div>
                     <div>
-                        <label for="soundcloud">Soundcloud*</label>
-                        <input name="soundcloud" type="text">
+                        <label for="image1-input">Photo du groupe n°1</label>
+                        <input type="file" id="image1-input" name="image1">
                     </div>
                     <div>
-                        <label for="youtube">Youtube*</label>
-                        <input name="youtube" type="text">
+                        <label for="image2-input">Photo du groupe n°2</label>
+                        <input type="file" id="image2-input" name="image2">
                     </div>
                     <div>
-                        <label for="statut_assoc">Statut Association</label>
-                        <input name="statut_assoc" type="checkbox">
+                        <label for="piste1-input">Piste MP3 n°1</label>
+                        <input name="piste1" id="piste1-input" type="file">
                     </div>
                     <div>
-                        <label for="is_sacem">Sacem</label>
-                        <input name="is_sacem" type="checkbox">
+                        <label for="piste2-input">Piste MP3 n°2</label>
+                        <input name="piste2" id="piste2-input" type="file">
                     </div>
                     <div>
-                        <label for="have_producteur">Producteur</label>
-                        <input name="have_producteur" type="checkbox">
+                        <label for="piste3-input">Piste MP3 n°3</label>
+                        <input name="piste3" id="piste3-input" type="file">
                     </div>
-                    <div>                         <label for="membres">Membres</label>
-                        <textarea name="membres"></textarea>
+                    <div>
+                        <label for="annee_creation-input">Année de Création</label>
+                        <input id="annee_creation-input" name="annee_creation" type="number" value="<?php echo $_smarty_tpl->tpl_vars['old_form']->value['annee_creation'];?>
+" required>
+                    </div>
+                    <div>
+                        <label for="presentation-input">Présentation</label>
+                        <textarea id="presentation-input" name="presentation" maxlength="500" required></textarea>
+                    </div>
+                    <div>
+                        <label for="experience-input">Expérience</label>
+                        <textarea id="experience-input" name="experience" maxlength="500" required></textarea>
+                    </div>
+                    <div>
+                        <label for="site_web-input">Site Web</label>
+                        <input id="site_web-input" name="site_web" type="text" required>
+                    </div>
+                    <div>
+                        <label for="soundcloud-input">Soundcloud*</label>                         <input id="soundcloud-input" name="soundcloud" type="text">
+                    </div>
+                    <div>
+                        <label for="youtube-input">Youtube*</label>                         <input id="youtube-input" name="youtube" type="text">
+                    </div>
+                    <div>
+                        <label for="statut_assoc-input">Statut Association</label>
+                        <input id="statut_assoc-input" name="statut_assoc" type="checkbox" required>
+                    </div>
+                    <div>
+                        <label for="is_sacem-input">Sacem</label>
+                        <input id="is_sacem-input" name="is_sacem" type="checkbox" required>
+                    </div>
+                    <div>
+                        <label for="have_producteur-input">Producteur</label>
+                        <input id="have_producteur-input" name="have_producteur" type="checkbox" required>
+                    </div>
+                    <div>                         <label for="membres-input">Membres</label>
+                        <textarea id="membres-input" name="membres" maxlength="500"></textarea>
+                    </div>
+                    <div>
+                        <label for="technique-input">Fiche technique</label>
+                        <input type="file" id="technique-input" name="technique">
+                    </div>
+                    <div>
+                        <label for="sacem-input">Document SACEM ou tracklist détaillée</label>
+                        <input type="file" id="sacem-input" name="sacem">
                     </div>
                     <input type="submit" value="Envoyer">
 
@@ -88,13 +137,13 @@ function content_5fa05b92b15306_56138554 (Smarty_Internal_Template $_smarty_tpl)
 </p>
 
             </section>
-        </body>
+        </main>
         <footer>
             <p>Nino BELIC & Hugo BENAB DEL K</p>
 
         </footer>
 
-    </main>
+    </body>
 
 
 
