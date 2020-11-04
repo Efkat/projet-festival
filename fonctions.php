@@ -59,6 +59,10 @@ Flight::route('POST /register',function(){
     if(strlen($pswd)<8)
         $erreurs.="<br/>Mot de passe: 8 caractères minimum requis.";
 
+    //taille de l'email
+    if(strlen($email) > 64)
+        $erreurs.="<br/>Email trop long";
+
     //Vérification nom & mail pas dans la base
     $existe_deja=$db->query("SELECT email,nom_user FROM Utilisateur WHERE email='$mail' OR nom_user='$nom';");
     if($existe_deja->fetchAll()!=array())
@@ -161,11 +165,28 @@ Flight::route("POST /candidature", function(){
             $erreur = "Vous n'indiquez pas la présence d'un producteur !";
         }
 
-        //Vérifie si les champs facultatifs sont renseignés
-        $youtube = (isset($_POST['youtube'])) ? $_POST['youtube'] : "";
-        $soundcloud = (isset($_POST['soundcloud'])) ? $_POST['soundcloud'] : "";
-
-
+        //Vérifie le site youtube si il est renseigné 
+        if(isset($_POST['youtube'])){
+            if(strlen($_POST['youtube']) >= 100){
+                $youtube = htmlspecialchars(trim($_POST['youtube']));
+            }else{
+                $erreur = "Le lien youtube est trop long";
+            }
+        }else{
+            $youtube = "";
+        }
+        //Vérifie le site soundcloud si il est renseigné
+        if(isset($_POST['soundcloud'])){
+            if(strlen($_POST['soundcloud']) >= 100){
+                $youtube = htmlspecialchars(trim($_POST['soundcloud']));
+            }else{
+                $erreur = "Le lien soundcloud est trop long";
+            }
+        }else{
+            $soundcloud = "";
+        }
+    }else{
+        $erreur = "Tout les champs nécessaires ne sont pas renseignées !";
     }
 });
 
