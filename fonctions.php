@@ -215,16 +215,27 @@ Flight::route("POST /candidature", function(){
     }
 });
 
+
+
+
+
+
+
 /**
  * Name = "profil_consulter"
  */
-Flight::route("/p_consulter", function (){
-    Flight::render('templates/p_consulter.tpl', array(null));
+Flight::route("/c_consulter", function (){
+    Flight::render('templates/c_consulter.tpl', array('name'=>null,'lignes'=>null));
 });
 
 /**
  * Name = "profil_edit"
  */
-Flight::route("/p_edit", function (){
-    Flight::render('templates/p_edit.tpl', array(null));
+Flight::route("/c_edit", function (){
+    $db=Flight::db();
+    $nom_depts=$db->query("SELECT departement FROM departement;");
+    $nom_depts=$nom_depts->fetchAll(PDO::FETCH_COLUMN);
+    print_r($nom_depts);
+    
+    Flight::render('templates/c_edit.tpl', array('erreurs'=>null,'old_form'=>null,'name'=>null,'lignes'=>null,'nom_depts'=>$nom_depts));
 });
