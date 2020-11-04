@@ -2,74 +2,109 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="./styles/style.css">
-        <title>Détails</title>
+        <meta charset="UTF-8">
+        <title>Details</title>
+
     </head>
     <body>
         <header>
-            
-        </header>
+
+        
+        </header> 
         <main>
-            <dl>
-                {*on passera la ligne => donc $ligne[i]*}
-                <dt>nom_groupe</dt>
-                <dd>{$ligne[0]}</dd> 
+            <h1>Détails</h1>
+            <section>
 
-                <dt>id_departement</dt>
-                <dd>{$ligne[1]}</dd>
+                {*Vérification Admin*}
+                {if $name==admin}
+                    <h3>
+                        <section>
+                            <dl>
+                                <dt>Nom Groupe</dt>
+                                <dd>{$ligne[0]}</dd>
 
-                <dt>id_scene</dt>
-                <dd>{$ligne[2]}</dd>
+                                <dt>Département</dt>
+                                <dd>{$ligne[1]}</dd>
 
-                <dt>id_representant</dt>
-                <dd>{$ligne[3]}</dd>
+                                <dt>Style</dt>
+                                <dd>{$ligne[2]}</dd>
 
-                <dt>id_style</dt>
-                <dd>{$ligne[4]}</dd>
+                                <dt>Scène</dt>
+                                <dd>{$ligne[3]}</dd>
 
-                <dt>annee_creation</dt>
-                <dd>{$ligne[5]}</dd>
+                                <dt>Année de Création</dt>
+                                <dd>{$ligne[4]}</dd>
 
-                <dt>presentation</dt>
-                <dd>{$ligne[6]}</dd>
+                                <dt>Présentation</dt>
+                                <dd>{$ligne[5]}</dd>
 
-                <dt>experience</dt>
-                <dd>{$ligne[7]}</dd>
-                
-                <dt>site_web</dt>
-                <dd>{$ligne[8]}</dd>
+                                <dt>Expérience</dt>
+                                <dd>{$ligne[6]}</dd>
 
-                <dt>soundcloud</dt>
-                <dd>{$ligne[9]}</dd>
-                
-                <dt>youtube</dt>
-                <dd>{$ligne[10]}</dd>
+                                <dt>Site Web</dt>
+                                <dd>{$ligne[7]}</dd>
 
-                <dt>statut_assoc</dt>
-                <dd>{$ligne[11]}</dd>
-                
-                <dt>is_sacem</dt>
-                <dd>{$ligne[12]}</dd>
+                                <dt>Soundcloud</dt>
+                                <dd>{$ligne[8]}</dd>
 
-                <dt>have_producteur</dt>
-                <dd>{$ligne[13]}</dd>
+                                <dt>Youtube</dt>
+                                <dd>{$ligne[9]}</dd>
 
-                <dt>membres</dt>
-                <dd>{$ligne[14]}</dd>
+                                <dt>Statut Association</dt>
+                                <dd>{$ligne[10]}</dd>
 
-            </dl>
+                                <dt>Sacem</dt>
+                                <dd>{$ligne[11]}</dd>
+
+                                <dt>Producteur</dt>
+                                <dd>{$ligne[12]}</dd>
+
+                                <dt>Membres</dt>
+                                <dd>{$ligne[13]}</dd>
+
+                                <dt>Fiche Technique</dt>
+                                <dd>{$ligne[14]}</dd>
+
+                                <dt>Sacem</dt>
+                                <dd>{$ligne[15]}</dd>
+
+
+
+                                {*Files*}
+
+                                <dt>Image</dt>
+                                <dd>{$ligne[16]}</dd>
+
+                                <dt>Piste 1</dt>
+                                <dd>{$ligne[17]}</dd>
+
+                                <dt>Piste 2</dt>
+                                <dd>{$ligne[18]}</dd>
+
+                                <dt>Piste 3</dt>
+                                <dd>{$ligne[19]}</dd>
+
+                            </dl>
+                            
+
+                        </section>
+                    </h3>
+                    
+                    
+                    
+                {/if}
+
+
+            </section>
+
             
-
-        </main>
+        </main>   
         <footer>
-            <p>Nino BELIC & Hugo BENAB DEL K</p>
 
+            
         </footer>
 
     </body>
-
-
-
 
 </html>
