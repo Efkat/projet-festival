@@ -199,7 +199,7 @@ Flight::route("POST /candidature", function(){
             $_FILES['image1']['name'] = $nomImage1;
             $_FILES['image2']['name'] = $nomImage2;
         }else{
-            $erreur = "Le format des images n'est pas correct (jpeg ou png)"
+            $erreur = "Le format des images n'est pas correct (jpeg ou png)";
         }
 
         //TODO : Vérifie les sons
