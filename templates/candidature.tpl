@@ -36,7 +36,49 @@
                 membres
             *}
             
-                <form action="./candidature" method="POST">
+                <form action="./candidature" method="POST" enctype="multipart/form-data">
+                    <div>
+                        <label for="nom_groupe-input">Nom du groupe</label>
+                        <input id="nom_groupe-input" name="nom_groupe" type="text" required>
+                    </div>
+                    <div>
+                        <label for="departement-input">Département d'origine</label>
+                        <select name="departement" id="departement-input">
+                            {*Faire un foreach pour afficher les options*}
+                        </select>
+                    </div>
+                    <div>
+                        <label for="style-input">Style du groupe</label>
+                        <select name="style" id="style-input">
+                            {*Faire un foreach pour afficher les options*}
+                        </select>
+                    </div>
+                    <div>
+                        <label for="scene-input">Scène du groupe</label>
+                        <select name="scene" id="scene-input">
+                            {*Faire un foreach pour afficher les options*}
+                        </select>
+                    </div>
+                    <div>
+                        <label for="image1-input">Photo du groupe n°1</label>
+                        <input type="file" id="image1-input" name="image1">
+                    </div>
+                    <div>
+                        <label for="image2-input">Photo du groupe n°2</label>
+                        <input type="file" id="image2-input" name="image2">
+                    </div>
+                    <div>
+                        <label for="piste1-input">Piste MP3 n°1</label>
+                        <input name="piste1" id="piste1-input" type="file">
+                    </div>
+                    <div>
+                        <label for="piste2-input">Piste MP3 n°2</label>
+                        <input name="piste2" id="piste2-input" type="file">
+                    </div>
+                    <div>
+                        <label for="piste3-input">Piste MP3 n°3</label>
+                        <input name="piste3" id="piste3-input" type="file">
+                    </div>
                     <div>
                         <label for="annee_creation-input">Année de Création</label>
                         <input id="annee_creation-input" name="annee_creation" type="number" value="{$old_form['annee_creation']}" required>
@@ -76,6 +118,14 @@
                     <div> {*Préciser orthographe à suivre ? Vérification ?*}
                         <label for="membres-input">Membres</label>
                         <textarea id="membres-input" name="membres" maxlength="500"></textarea>
+                    </div>
+                    <div>
+                        <label for="techinique-input">Fiche technique</label>
+                        <input type="file" id="technique-input" name="technique">
+                    </div>
+                    <div>
+                        <label for="sacem-input">Document SACEM ou tracklist détaillée</label>
+                        <input type="file" id="sacem-input" name="sacem">
                     </div>
                     <input type="submit" value="Envoyer">
 
