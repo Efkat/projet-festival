@@ -84,11 +84,11 @@
                     </div>
                     <div>
                         <label for="presentation-input">Présentation</label>
-                        <textarea id="presentation-input" name="presentation" maxlength="500" required></textarea>
+                        <textarea id="presentation-input" name="presentation" maxlength="500" required>{$old_form['presentation']}</textarea>
                     </div>
                     <div>
                         <label for="experience-input">Expérience</label>
-                        <textarea id="experience-input" name="experience" maxlength="500" required></textarea>
+                        <textarea id="experience-input" name="experience" maxlength="500" required>{$old_form['experience']}</textarea>
                     </div>
                     <div>
                         <label for="site_web-input">Site Web</label>

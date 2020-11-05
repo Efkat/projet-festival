@@ -14,7 +14,7 @@
         <main>
             <h1>Candidature</h1>
             <section>
-            
+
             {*
             Clés:
                 nom_groupe
@@ -79,25 +79,27 @@
                         </select>
                         </select>
                     </div>
+
+
                     <div>
                         <label for="image1-input">Photo du groupe n°1</label>
-                        <input type="file" id="image1-input" name="image1" value=>
+                        <input type="file" id="image1-input" name="image1" value="{$old_form['image1']}">
                     </div>
                     <div>
                         <label for="image2-input">Photo du groupe n°2</label>
-                        <input type="file" id="image2-input" name="image2">
+                        <input type="file" id="image2-input" name="image2" value="{$old_form['image2']}">
                     </div>
                     <div>
                         <label for="piste1-input">Piste MP3 n°1</label>
-                        <input name="piste1" id="piste1-input" type="file">
+                        <input name="piste1" id="piste1-input" type="file" value="{$old_form['piste1']}">
                     </div>
                     <div>
                         <label for="piste2-input">Piste MP3 n°2</label>
-                        <input name="piste2" id="piste2-input" type="file">
+                        <input name="piste2" id="piste2-input" type="file" value="{$old_form['piste2']}">
                     </div>
                     <div>
                         <label for="piste3-input">Piste MP3 n°3</label>
-                        <input name="piste3" id="piste3-input" type="file">
+                        <input name="piste3" id="piste3-input" type="file" value="{$old_form['piste3']}">
                     </div>
                     <div>
                         <label for="annee_creation-input">Année de Création</label>
@@ -105,23 +107,23 @@
                     </div>
                     <div>
                         <label for="presentation-input">Présentation</label>
-                        <textarea id="presentation-input" name="presentation" maxlength="500" required></textarea>
+                        <textarea id="presentation-input" name="presentation" maxlength="500" required>{$old_form['presentation']}</textarea>
                     </div>
                     <div>
                         <label for="experience-input">Expérience</label>
-                        <textarea id="experience-input" name="experience" maxlength="500" required></textarea>
+                        <textarea id="experience-input" name="experience" maxlength="500" required>{$old_form['experience']}</textarea>
                     </div>
                     <div>
                         <label for="site_web-input">Site Web</label>
-                        <input id="site_web-input" name="site_web" type="text" required>
+                        <input id="site_web-input" name="site_web" type="text" required value="{$old_form['site_web']}">
                     </div>
                     <div>
                         <label for="soundcloud-input">Soundcloud*</label> {*NULLABLE*}
-                        <input id="soundcloud-input" name="soundcloud" type="text">
+                        <input id="soundcloud-input" name="soundcloud" type="text" value="{$old_form['text']}">
                     </div>
                     <div>
                         <label for="youtube-input">Youtube*</label> {*NULLABLE*}
-                        <input id="youtube-input" name="youtube" type="text">
+                        <input id="youtube-input" name="youtube" type="text" value="{$old_form['youtube']}">
                     </div>
                     <div>
                         <label for="statut_assoc-input">Statut Association</label>
