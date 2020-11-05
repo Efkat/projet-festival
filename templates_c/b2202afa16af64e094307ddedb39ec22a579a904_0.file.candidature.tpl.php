@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-11-04 20:51:10
+/* Smarty version 3.1.36, created on 2020-11-05 17:44:10
   from 'C:\laragon\www\projet-festival\templates\candidature.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fa3143e4e68c5_86790222',
+  'unifunc' => 'content_5fa439ea610953_92550790',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b2202afa16af64e094307ddedb39ec22a579a904' => 
     array (
       0 => 'C:\\laragon\\www\\projet-festival\\templates\\candidature.tpl',
-      1 => 1604523069,
+      1 => 1604598056,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fa3143e4e68c5_86790222 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fa439ea610953_92550790 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
     <head>
@@ -37,7 +37,7 @@ function content_5fa3143e4e68c5_86790222 (Smarty_Internal_Template $_smarty_tpl)
         <main>
             <h1>Candidature</h1>
             <section>
-
+            
                         
                 <form action="./candidature" method="POST" enctype="multipart/form-data">
                     <div>
@@ -48,24 +48,68 @@ function content_5fa3143e4e68c5_86790222 (Smarty_Internal_Template $_smarty_tpl)
                     <div>
                         <label for="departement-input">Département d'origine</label>
                         <select name="departement" id="departement-input">
-                            
-                                                                                    
-                            
+                            <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['nom_depts']->value, 'nom_dept');
+$_smarty_tpl->tpl_vars['nom_dept']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['nom_dept']->value) {
+$_smarty_tpl->tpl_vars['nom_dept']->do_else = false;
+?>
+                                
+                                <option value="<?php echo $_smarty_tpl->tpl_vars['nom_dept']->value;?>
+" 
+                                <?php if ($_smarty_tpl->tpl_vars['nom_dept']->value == $_smarty_tpl->tpl_vars['old_form']->value['departement']) {?> 
+                                    selected                                        <?php }?>><?php echo $_smarty_tpl->tpl_vars['nom_dept']->value;?>
+</option>
+
+                            <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         </select>
                     </div>
                     <div>
                         <label for="style-input">Style du groupe</label>
                         <select name="style" id="style-input">
-                                                    </select>
+                             <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['styles']->value, 'style');
+$_smarty_tpl->tpl_vars['style']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['style']->value) {
+$_smarty_tpl->tpl_vars['style']->do_else = false;
+?>
+                                
+                                <option value="<?php echo $_smarty_tpl->tpl_vars['style']->value;?>
+" 
+                                <?php if ($_smarty_tpl->tpl_vars['style']->value == $_smarty_tpl->tpl_vars['old_form']->value['style']) {?> 
+                                    selected                                        <?php }?>><?php echo $_smarty_tpl->tpl_vars['style']->value;?>
+</option>
+                            <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                        </select>
                     </div>
                     <div>
                         <label for="scene-input">Scène du groupe</label>
                         <select name="scene" id="scene-input">
-                                                    </select>
+                            <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['scenes']->value, 'scene');
+$_smarty_tpl->tpl_vars['scene']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['scene']->value) {
+$_smarty_tpl->tpl_vars['scene']->do_else = false;
+?>
+                                
+                                <option value="<?php echo $_smarty_tpl->tpl_vars['scene']->value;?>
+" 
+                                <?php if ($_smarty_tpl->tpl_vars['scene']->value == $_smarty_tpl->tpl_vars['old_form']->value['scene']) {?> 
+                                    selected                                        <?php }?>><?php echo $_smarty_tpl->tpl_vars['scene']->value;?>
+</option>
+                            <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                        </select>
+                        </select>
                     </div>
                     <div>
                         <label for="image1-input">Photo du groupe n°1</label>
-                        <input type="file" id="image1-input" name="image1">
+                        <input type="file" id="image1-input" name="image1" value=>
                     </div>
                     <div>
                         <label for="image2-input">Photo du groupe n°2</label>

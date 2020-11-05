@@ -36,13 +36,26 @@
                     <div>
                         <label for="style-input">Style du groupe</label>
                         <select name="style" id="style-input">
-                            {*Faire un foreach pour afficher les options*}
+                             {foreach from=$styles item=style}
+                                
+                                <option value="{$style}" 
+                                {if $style==$old_form['style']} 
+                                    selected        {*à tester*}
+                                {/if}>{$style}</option>
+                            {/foreach}
                         </select>
                     </div>
                     <div>
                         <label for="scene-input">Scène du groupe</label>
                         <select name="scene" id="scene-input">
-                            {*Faire un foreach pour afficher les options*}
+                            {foreach from=$scenes item=scene}
+                                
+                                <option value="{$scene}" 
+                                {if $scene==$old_form['scene']} 
+                                    selected        {*à tester*}
+                                {/if}>{$scene}</option>
+                            {/foreach}
+                        </select>
                         </select>
                     </div>
                     <div>

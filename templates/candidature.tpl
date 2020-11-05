@@ -14,7 +14,7 @@
         <main>
             <h1>Candidature</h1>
             <section>
-
+            
             {*
             Clés:
                 nom_groupe
@@ -49,11 +49,9 @@
                                 <option value="{$nom_dept}" 
                                 {if $nom_dept==$old_form['departement']} 
                                     selected        {*à tester*}
-                                {/if}></option>
+                                {/if}>{$nom_dept}</option>
 
                             {/foreach}
-                            
-                            
                         </select>
                     </div>
                     <div>
@@ -64,7 +62,7 @@
                                 <option value="{$style}" 
                                 {if $style==$old_form['style']} 
                                     selected        {*à tester*}
-                                {/if}></option>
+                                {/if}>{$style}</option>
                             {/foreach}
                         </select>
                     </div>
@@ -76,7 +74,7 @@
                                 <option value="{$scene}" 
                                 {if $scene==$old_form['scene']} 
                                     selected        {*à tester*}
-                                {/if}></option>
+                                {/if}>{$scene}</option>
                             {/foreach}
                         </select>
                         </select>

@@ -104,7 +104,21 @@ Flight::route("/details", function (){
  * Name = "candidature"
  */
 Flight::route("GET /candidature", function (){
-    Flight::render('templates/candidature.tpl', array('erreurs'=>null,'old_form'=>null));
+    $db=Flight::db();
+    $nom_depts=$db->query("SELECT departement FROM departement;");
+    $nom_depts=$nom_depts->fetchAll(PDO::FETCH_COLUMN);
+
+    $styles=$db->query("SELECT nom_style FROM style;");
+    $styles=$styles->fetchAll(PDO::FETCH_COLUMN);
+
+    $scenes=$db->query("SELECT nom_type FROM scene;");
+    $scenes=$scenes->fetchAll(PDO::FETCH_COLUMN);
+    
+    Flight::render('templates/candidature.tpl', array('erreurs'=>null,'old_form'=>null,
+        'nom_depts'=>$nom_depts,
+        'styles'=>$styles,
+        'scenes'=>$scenes,
+    )); 
 });
 
 /**
@@ -235,7 +249,17 @@ Flight::route("/c_edit", function (){
     $db=Flight::db();
     $nom_depts=$db->query("SELECT departement FROM departement;");
     $nom_depts=$nom_depts->fetchAll(PDO::FETCH_COLUMN);
-    print_r($nom_depts);
+
+    $styles=$db->query("SELECT nom_style FROM style;");
+    $styles=$styles->fetchAll(PDO::FETCH_COLUMN);
+
+    $scenes=$db->query("SELECT nom_type FROM scene;");
+    $scenes=$scenes->fetchAll(PDO::FETCH_COLUMN);
     
-    Flight::render('templates/c_edit.tpl', array('erreurs'=>null,'old_form'=>null,'name'=>null,'lignes'=>null,'nom_depts'=>$nom_depts));
+    Flight::render('templates/c_edit.tpl', array('erreurs'=>null,'old_form'=>null,'name'=>null,
+        'nom_depts'=>$nom_depts,
+        'styles'=>$styles,
+        'scenes'=>$scenes,
+        
+    ));
 });
