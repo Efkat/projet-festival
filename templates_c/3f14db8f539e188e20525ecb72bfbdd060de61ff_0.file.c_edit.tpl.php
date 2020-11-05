@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-11-05 17:51:44
+/* Smarty version 3.1.36, created on 2020-11-05 22:35:16
   from 'C:\laragon\www\projet-festival\templates\c_edit.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fa43bb03fa865_39945618',
+  'unifunc' => 'content_5fa47e249ffa90_10547764',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3f14db8f539e188e20525ecb72bfbdd060de61ff' => 
     array (
       0 => 'C:\\laragon\\www\\projet-festival\\templates\\c_edit.tpl',
-      1 => 1604598702,
+      1 => 1604598728,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fa43bb03fa865_39945618 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fa47e249ffa90_10547764 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
     <head>
@@ -132,11 +132,13 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     </div>
                     <div>
                         <label for="presentation-input">Présentation</label>
-                        <textarea id="presentation-input" name="presentation" maxlength="500" required>test</textarea>
+                        <textarea id="presentation-input" name="presentation" maxlength="500" required><?php echo $_smarty_tpl->tpl_vars['old_form']->value['presentation'];?>
+</textarea>
                     </div>
                     <div>
                         <label for="experience-input">Expérience</label>
-                        <textarea id="experience-input" name="experience" maxlength="500" required></textarea>
+                        <textarea id="experience-input" name="experience" maxlength="500" required><?php echo $_smarty_tpl->tpl_vars['old_form']->value['experience'];?>
+</textarea>
                     </div>
                     <div>
                         <label for="site_web-input">Site Web</label>

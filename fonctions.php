@@ -9,7 +9,8 @@ Flight::register('db', 'PDO', array('mysql:host=127.0.0.1;dbname=festival','root
  * Name = "home"
  */
 Flight::route('/', function (){
-    Flight::render('templates/index.tpl',array(null));
+    //si on a défini le nom de session, on l'injecte au template, sinon : null
+    Flight::render('templates/index.tpl',array('name'=>isset($_SESSION['nom'])?$_SESSION['nom']:null));
 });
 
 /**
@@ -42,7 +43,7 @@ Flight::route('POST /register',function(){
 
     //sécurité
     $nom  = htmlspecialchars(trim($_POST["nom"]));
-    $mail = htmlspecialchars(trim($_POST["email"]));;
+    $mail = htmlspecialchars(trim($_POST["email"]));
     $pswd = htmlspecialchars(trim($_POST["pswd"]));
     
     /*SUCCESSION DE IF => PERMET D'AFFICHER CHAQUE ERREUR */
@@ -60,7 +61,7 @@ Flight::route('POST /register',function(){
         $erreurs.="<br/>Mot de passe: 8 caractères minimum requis.";
 
     //taille de l'email
-    if(strlen($email) > 64)
+    if(strlen($mail) > 64)
         $erreurs.="<br/>Email trop long";
 
     //Vérification nom & mail pas dans la base
@@ -89,8 +90,48 @@ Flight::route('POST /register',function(){
 /**
  * Name = "login"
  */
-Flight::route("/login", function (){
+Flight::route("GET /login", function (){
     Flight::render('templates/login.tpl', array('erreurs'=>null,'old_form'=>null));
+});
+
+Flight::route("POST /login", function (){
+    $db=Flight::db();
+    $nom =htmlspecialchars(trim($_POST['nom']));
+    $pswd=htmlspecialchars(trim($_POST['pswd']));
+    $erreurs="";
+
+
+    /*Vérifications, à compléter?*/
+    if(!empty($_POST['nom']) & !empty($_POST['pswd']))
+    {
+        //Vérification existence nom
+        $nom_check=$db->query("SELECT nom_user FROM utilisateur WHERE nom_user='$nom'");
+        $nom_check=$nom_check->fetchAll();
+        if($nom_check==array())
+        {
+            $erreurs="Compte inexistant.";
+        }
+        else
+        {
+            //Vérification mot de passe
+            $pswd_check=$db->query("SELECT password FROM utilisateur WHERE nom_user='$nom'");
+            $pswd_check=$pswd_check->fetch();
+            if(password_verify($pswd,$pswd_check['password']))
+            {
+                $_SESSION['nom']=$nom;
+                Flight::redirect('/');
+            }
+            else 
+                $erreurs="Mot de passe incorrect.";
+        }
+    }
+    else 
+    {
+        $erreurs="Veuillez remplir tous les champs.";
+    }
+    Flight::render('templates/login.tpl', array('erreurs'=>$erreurs,'old_form'=>$_POST));
+    
+    
 });
 
 /**
@@ -239,7 +280,14 @@ Flight::route("POST /candidature", function(){
  * Name = "profil_consulter"
  */
 Flight::route("/c_consulter", function (){
-    Flight::render('templates/c_consulter.tpl', array('name'=>null,'lignes'=>null));
+    //si on a défini le nom de session, on l'injecte au template, sinon : null
+    if(isset($_SESSION['name']))
+    {
+        Flight::render('templates/c_consulter.tpl', array('name'=>$_SESSION['name'],'lignes'=>null));    
+    }
+    else 
+        Flight::redirect('/login');   
+    
 });
 
 /**

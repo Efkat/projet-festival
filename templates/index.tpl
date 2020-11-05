@@ -13,8 +13,22 @@
         <main>
             <h1>Home</h1>
             <section>
+
+            {if $name==null}
+                <p>Bonjour visiteur!</p>
                 <a href="./register">S'enregistrer</a>
                 <a href="./login">Se Connecter</a>
+            {else}
+                <p>Bonjour {$name}!</p>
+
+                {*Si en a fait une ?*}
+                <a href="./c_consulter">Consulter Candidature</a> 
+                <a href="./login">Editer Candidature</a>
+
+                {*Sinon*}
+                <a href="./candidature">Candidature</a>
+            {/if}
+                
 
             </section>
         </main>
