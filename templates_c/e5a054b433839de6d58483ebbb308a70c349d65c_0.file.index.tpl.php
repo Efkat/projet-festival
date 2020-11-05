@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-11-05 23:25:59
+/* Smarty version 3.1.36, created on 2020-11-05 23:30:42
   from 'C:\laragon\www\projet-festival\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fa48a07829d02_13729066',
+  'unifunc' => 'content_5fa48b22193b73_32359389',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e5a054b433839de6d58483ebbb308a70c349d65c' => 
     array (
       0 => 'C:\\laragon\\www\\projet-festival\\templates\\index.tpl',
-      1 => 1604618719,
+      1 => 1604618941,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fa48a07829d02_13729066 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fa48b22193b73_32359389 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
     <head>
@@ -49,6 +49,8 @@ function content_5fa48a07829d02_13729066 (Smarty_Internal_Template $_smarty_tpl)
                 <a href="./login">Editer Candidature</a>
 
                                 <a href="./candidature">Candidature</a>
+
+                <a href="./logout">Déconnexion</a>
             <?php }?>
                 
 

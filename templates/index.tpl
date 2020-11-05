@@ -27,6 +27,8 @@
 
                 {*Sinon*}
                 <a href="./candidature">Candidature</a>
+
+                <a href="./logout">Déconnexion</a>
             {/if}
                 
 

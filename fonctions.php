@@ -135,6 +135,16 @@ Flight::route("POST /login", function (){
 });
 
 /**
+ * Name = "logout"
+ */
+Flight::route("/logout",function(){
+    session_destroy();
+    unset($_SESSION);
+    Flight::render("templates/index.tpl",array('name'=>null));
+});
+
+
+/**
  * Name = "details"
  */
 Flight::route("/details", function (){
