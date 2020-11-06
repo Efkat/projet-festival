@@ -21,11 +21,15 @@
             {else} {*Si connecté*}
                 <p>Bonjour {$name}!</p>
 
-                {if $candidature==null} {*Si pas de candidature*}
+                {if $candidature==null && $name!=admin} {*Si pas de candidature et si ce n'est pas l'admin*}
                     <a href="./candidature">Candidature</a>
-                {else}  {*Si déjà candidature*}
-                <a href="./c_consulter">Consulter Candidature</a> 
-                <a href="./c_edit">Editer Candidature</a>
+                {else}  
+                    {if $name==admin}
+                        <a href="./liste">Liste Candidatures</a>
+                    {else} {*Si déjà candidature*}
+                        <a href="./c_consulter">Consulter Candidature</a> 
+                        <a href="./c_edit">Editer Candidature</a>
+                    {/if}
                 {/if}
                 
 
