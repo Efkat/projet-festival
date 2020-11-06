@@ -14,19 +14,20 @@
             <h1>Home</h1>
             <section>
 
-            {if $name==null}
+            {if $name==null} {*Si déconnecté*}
                 <p>Bonjour visiteur!</p>
                 <a href="./register">S'enregistrer</a>
                 <a href="./login">Se Connecter</a>
-            {else}
+            {else} {*Si connecté*}
                 <p>Bonjour {$name}!</p>
 
-                {*Si en a fait une ?*}
+                {if $candidature==null} {*Si pas de candidature*}
+                    <a href="./candidature">Candidature</a>
+                {else}  {*Si déjà candidature*}
                 <a href="./c_consulter">Consulter Candidature</a> 
-                <a href="./login">Editer Candidature</a>
-
-                {*Sinon*}
-                <a href="./candidature">Candidature</a>
+                <a href="./c_edit">Editer Candidature</a>
+                {/if}
+                
 
                 <a href="./logout">Déconnexion</a>
             {/if}

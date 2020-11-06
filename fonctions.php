@@ -10,7 +10,11 @@ Flight::register('db', 'PDO', array('mysql:host=127.0.0.1;dbname=festival','root
  */
 Flight::route('/', function (){
     //si on a défini le nom de session, on l'injecte au template, sinon : null
-    Flight::render('templates/index.tpl',array('name'=>isset($_SESSION['nom'])?$_SESSION['nom']:null));
+    Flight::render('templates/index.tpl',array(
+        'name'=>isset($_SESSION['nom'])?$_SESSION['nom']:null,
+        'candidature'=>isset($_SESSION['candidature'])?$_SESSION['candidature']:null,
+    
+    ));
 });
 
 /**
@@ -275,9 +279,11 @@ Flight::route("POST /candidature", function(){
     }
     if($erreur = ""){
         //TODO : faire la requête et insert le candid + fichier
+        //TODO : définir $_SESSION['candidature']
     }else{
         //TODO : rendre login.tpl + erreurs
     }
+    
 });
 
 
@@ -291,9 +297,19 @@ Flight::route("POST /candidature", function(){
  */
 Flight::route("/c_consulter", function (){
     //si on a défini le nom de session, on l'injecte au template, sinon : null
-    if(isset($_SESSION['name']))
+    if(isset($_SESSION['nom']))
     {
-        Flight::render('templates/c_consulter.tpl', array('name'=>$_SESSION['name'],'lignes'=>null));    
+        //si la candidature a été faite : on peut consulter
+        //sinon : redirection au formulaire de la candidature 
+        if(isset($_SESSION['candidature']))
+        {
+            Flight::render('templates/c_consulter.tpl', array(
+                'name'=>$_SESSION['nom'],
+                'lignes'=>null,
+            )); 
+        }
+        else Flight::redirect('/candidature');
+           
     }
     else 
         Flight::redirect('/login');   
@@ -304,20 +320,32 @@ Flight::route("/c_consulter", function (){
  * Name = "profil_edit"
  */
 Flight::route("/c_edit", function (){
-    $db=Flight::db();
-    $nom_depts=$db->query("SELECT departement FROM departement;");
-    $nom_depts=$nom_depts->fetchAll(PDO::FETCH_COLUMN);
-
-    $styles=$db->query("SELECT nom_style FROM style;");
-    $styles=$styles->fetchAll(PDO::FETCH_COLUMN);
-
-    $scenes=$db->query("SELECT nom_type FROM scene;");
-    $scenes=$scenes->fetchAll(PDO::FETCH_COLUMN);
-    
-    Flight::render('templates/c_edit.tpl', array('erreurs'=>null,'old_form'=>null,'name'=>null,
-        'nom_depts'=>$nom_depts,
-        'styles'=>$styles,
-        'scenes'=>$scenes,
+    //si on a défini le nom de session, on l'injecte au template, sinon : null
+    if(isset($_SESSION['nom']))
+    {
+        //si la candidature a été faite : on peut consulter
+        //sinon : redirection au formulaire de la candidature 
+        if(isset($_SESSION['candidature']))
+        {
+            $db=Flight::db();
+            $nom_depts=$db->query("SELECT departement FROM departement;");
+            $nom_depts=$nom_depts->fetchAll(PDO::FETCH_COLUMN);
         
-    ));
+            $styles=$db->query("SELECT nom_style FROM style;");
+            $styles=$styles->fetchAll(PDO::FETCH_COLUMN);
+        
+            $scenes=$db->query("SELECT nom_type FROM scene;");
+            $scenes=$scenes->fetchAll(PDO::FETCH_COLUMN);
+            
+            Flight::render('templates/c_edit.tpl', array('erreurs'=>null,'old_form'=>null,
+                'nom_depts'=>$nom_depts,
+                'styles'=>$styles,
+                'scenes'=>$scenes,
+            ));
+        }
+        else Flight::redirect('/candidature');
+           
+    }
+    else 
+        Flight::redirect('/login');   
 });
