@@ -2,6 +2,7 @@
 Flight::register('db', 'PDO', array('mysql:host=127.0.0.1;dbname=festival','root','root'),
     function ($db){
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $db->exec("SET NAMES UTF8");
     }
 );
 
@@ -138,11 +139,12 @@ Flight::route("POST /login", function (){
         else
         {
             //Vérification mot de passe
-            $pswd_check=$db->query("SELECT password FROM utilisateur WHERE nom_user='$nom'");
-            $pswd_check=$pswd_check->fetch();
-            if(password_verify($pswd,$pswd_check['password']))
+            $getInfo=$db->query("SELECT id,password FROM utilisateur WHERE nom_user='$nom'");
+            $info=$getInfo->fetch();
+            if(password_verify($pswd,$info['password']))
             {
                 $_SESSION['nom']=$nom;
+                $_SESSION['id']=$info['id'];
                 Flight::redirect('/');
             }
             else 
@@ -290,31 +292,50 @@ Flight::route("POST /candidature", function(){
 
         //Vérifie les images
         if((($_FILES['image1']['type'] == "image/jpeg") || ($_FILES['image1']['type'] == "image/png")) && (($_FILES['image2']['type'] == "image/jpeg") || ($_FILES['image2']['type'] == "image/png"))){
-            $nomImage1 = $nomGroupe + "_image1";
-            $nomImage2 = $nomGroupe + "_image2";
-            $_FILES['image1']['name'] = $nomImage1;
-            $_FILES['image2']['name'] = $nomImage2;
+            $_FILES['image1']['name'] = $nomGroupe + "_image1";
+            $_FILES['image2']['name'] = $nomGroupe + "_image2";
         }else{
             $erreur = "Le format des images n'est pas correct (jpeg ou png)";
         }
 
-        //TODO : Vérifie les sons
         if((($_FILES['piste1']['type'] == "audio/mpeg") && ($_FILES['piste2']['type'] == "audio/mpeg") && ($_FILES['piste3']['type'] == "audio/mpeg"))){
+            $_FILES['piste3']['name'] = $nomGroupe . "_piste1";
+            $_FILES['piste2']['name'] = $nomGroupe . "_piste2";
+            $_FILES['piste1']['name'] = $nomGroupe . "_piste3";
+        }else{
+            $erreur = "Le format des pistes audio n'est pas correct (MP3)";
         }
     }else{
         $erreur = "Tout les champs nécessaires ne sont pas renseignées !";
     }
     if($erreur = ""){
-        //TODO : faire la requête et insert le candid + fichier
-        //TODO : définir $_SESSION['candidature']
+        $insertRequest = $db->prepare("INSERT INTO candidature VALUES(':nomGroupe',':idDepartement',':idScene',':idRepresentant',':idStyle',':anneeCreation',':presentation',':experience',':siteWeb',':soundcloud',':youtube',':statutAssoc','isSacem',':haveProducer',':membres')");
+        $insertRequest->execute(array(
+            ":nomGroupe" => $nomGroupe,
+            ":idDepartement" => $_POST['departement'],
+            ":idScene" => $_POST['scene'],
+            ":idRepresentant" => $_SESSION['id'],
+            ":idStyle" => $_POST['style'],
+            ":anneeCreation" => $anneeCreation,
+            ":presentation" => $presentation,
+            ":experience" => $experience,
+            ":siteWeb" => $siteWeb,
+            ":soundCloud" => $soundcloud,
+            ":youtube" => $youtube,
+            ":statutAssoc" => $statutAssoc,
+            ":isSacem" => $isSacem,
+            "haveProducer" => $haveProducer,
+            ":membres" => $_POST['membres']
+        ));
+        $_SESSION['candidature'] = $nomGroupe;
+        //TODO : Insert fichiers
     }else{
-        //TODO : rendre login.tpl + erreurs
+        Flight::render("templates/login.tpl", [
+            "erreurs" => $erreur
+        ]);
     }
     
 });
-
-
-
 
 /**
  * Name = "profil_consulter"
