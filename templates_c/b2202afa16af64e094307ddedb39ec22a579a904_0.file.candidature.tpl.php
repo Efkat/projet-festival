@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-11-05 22:35:17
+/* Smarty version 3.1.36, created on 2020-11-06 13:55:59
   from 'C:\laragon\www\projet-festival\templates\candidature.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fa47e254b5718_79874905',
+  'unifunc' => 'content_5fa555ef7ac917_43231639',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b2202afa16af64e094307ddedb39ec22a579a904' => 
     array (
       0 => 'C:\\laragon\\www\\projet-festival\\templates\\candidature.tpl',
-      1 => 1604598838,
+      1 => 1604670958,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fa47e254b5718_79874905 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fa555ef7ac917_43231639 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
     <head>
@@ -111,32 +111,27 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
                     <div>
                         <label for="image1-input">Photo du groupe n°1</label>
-                        <input type="file" id="image1-input" name="image1" value="<?php echo $_smarty_tpl->tpl_vars['old_form']->value['image1'];?>
-">
+                        <input type="file" id="image1-input" name="image1">
                     </div>
                     <div>
                         <label for="image2-input">Photo du groupe n°2</label>
-                        <input type="file" id="image2-input" name="image2" value="<?php echo $_smarty_tpl->tpl_vars['old_form']->value['image2'];?>
-">
+                        <input type="file" id="image2-input" name="image2">
                     </div>
                     <div>
                         <label for="piste1-input">Piste MP3 n°1</label>
-                        <input name="piste1" id="piste1-input" type="file" value="<?php echo $_smarty_tpl->tpl_vars['old_form']->value['piste1'];?>
-">
+                        <input name="piste1" id="piste1-input" type="file">
                     </div>
                     <div>
                         <label for="piste2-input">Piste MP3 n°2</label>
-                        <input name="piste2" id="piste2-input" type="file" value="<?php echo $_smarty_tpl->tpl_vars['old_form']->value['piste2'];?>
-">
+                        <input name="piste2" id="piste2-input" type="file">
                     </div>
                     <div>
                         <label for="piste3-input">Piste MP3 n°3</label>
-                        <input name="piste3" id="piste3-input" type="file" value="<?php echo $_smarty_tpl->tpl_vars['old_form']->value['piste3'];?>
-">
+                        <input name="piste3" id="piste3-input" type="file">
                     </div>
                     <div>
                         <label for="annee_creation-input">Année de Création</label>
-                        <input id="annee_creation-input" name="annee_creation" type="number" value="<?php echo $_smarty_tpl->tpl_vars['old_form']->value['annee_creation'];?>
+                        <input id="annee_creation-input" name="annee_creation" type="number" min=2000 max=2020 value="<?php echo $_smarty_tpl->tpl_vars['old_form']->value['annee_creation'];?>
 " required>
                     </div>
                     <div>
@@ -155,7 +150,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 ">
                     </div>
                     <div>
-                        <label for="soundcloud-input">Soundcloud*</label>                         <input id="soundcloud-input" name="soundcloud" type="text" value="<?php echo $_smarty_tpl->tpl_vars['old_form']->value['text'];?>
+                        <label for="soundcloud-input">Soundcloud*</label>                         <input id="soundcloud-input" name="soundcloud" type="text" value="<?php echo $_smarty_tpl->tpl_vars['old_form']->value['soundcloud'];?>
 ">
                     </div>
                     <div>
@@ -164,18 +159,19 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     </div>
                     <div>
                         <label for="statut_assoc-input">Statut Association</label>
-                        <input id="statut_assoc-input" name="statut_assoc" type="checkbox" required>
+                        <input id="statut_assoc-input" name="statut_assoc" type="checkbox">
                     </div>
                     <div>
                         <label for="is_sacem-input">Sacem</label>
-                        <input id="is_sacem-input" name="is_sacem" type="checkbox" required>
+                        <input id="is_sacem-input" name="is_sacem" type="checkbox">
                     </div>
                     <div>
                         <label for="have_producteur-input">Producteur</label>
-                        <input id="have_producteur-input" name="have_producteur" type="checkbox" required>
+                        <input id="have_producteur-input" name="have_producteur" type="checkbox">
                     </div>
                     <div>                         <label for="membres-input">Membres</label>
-                        <textarea id="membres-input" name="membres" maxlength="500"></textarea>
+                        <textarea id="membres-input" name="membres" maxlength="500"><?php echo $_smarty_tpl->tpl_vars['old_form']->value['membres'];?>
+</textarea>
                     </div>
                     <div>
                         <label for="technique-input">Fiche technique</label>

@@ -195,7 +195,9 @@ Flight::route("GET /candidature", function (){
         $scenes=$db->query("SELECT nom_type FROM scene;");
         $scenes=$scenes->fetchAll(PDO::FETCH_COLUMN);
         
-        Flight::render('templates/candidature.tpl', array('erreurs'=>null,'old_form'=>null,
+        Flight::render('templates/candidature.tpl', array(
+            'erreurs'=>null,
+            'old_form'=>null,
             'nom_depts'=>$nom_depts,
             'styles'=>$styles,
             'scenes'=>$scenes,
@@ -330,9 +332,23 @@ Flight::route("POST /candidature", function(){
         $_SESSION['candidature'] = $nomGroupe;
         //TODO : Insert fichiers
     }else{
-        Flight::render("templates/login.tpl", [
-            "erreurs" => $erreur
-        ]);
+
+        $nom_depts=$db->query("SELECT departement FROM departement;");
+        $nom_depts=$nom_depts->fetchAll(PDO::FETCH_COLUMN);
+
+        $styles=$db->query("SELECT nom_style FROM style;");
+        $styles=$styles->fetchAll(PDO::FETCH_COLUMN);
+
+        $scenes=$db->query("SELECT nom_type FROM scene;");
+        $scenes=$scenes->fetchAll(PDO::FETCH_COLUMN);
+        
+        Flight::render('templates/candidature.tpl', array(
+            'erreurs'=>$erreur,
+            'old_form'=>$_POST,
+            'nom_depts'=>$nom_depts,
+            'styles'=>$styles,
+            'scenes'=>$scenes,
+        ));
     }
     
 });
@@ -353,7 +369,11 @@ Flight::route("/c_consulter", function (){
                 'candidature'=>null
             )); 
         }
-        else Flight::redirect('/candidature');
+        else 
+        {
+            Flight::render('templates/candidature.tpl');
+        }
+            
            
     }
     else 

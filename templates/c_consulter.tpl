@@ -20,68 +20,68 @@
                     <section>
                         <dl>
                             <dt>Nom Groupe</dt>
-                            <dd>{$ligne[0]}</dd>
+                            <dd>{$candidature[0]}</dd>
 
                             <dt>Département</dt>
-                            <dd>{$ligne[1]}</dd>
+                            <dd>{$candidature[1]}</dd>
 
                             <dt>Style</dt>
-                            <dd>{$ligne[2]}</dd>
+                            <dd>{$candidature[2]}</dd>
 
                             <dt>Scène</dt>
-                            <dd>{$ligne[3]}</dd>
+                            <dd>{$candidature[3]}</dd>
 
                             <dt>Année de Création</dt>
-                            <dd>{$ligne[4]}</dd>
+                            <dd>{$candidature[4]}</dd>
 
                             <dt>Présentation</dt>
-                            <dd>{$ligne[5]}</dd>
+                            <dd>{$candidature[5]}</dd>
 
                             <dt>Expérience</dt>
-                            <dd>{$ligne[6]}</dd>
+                            <dd>{$candidature[6]}</dd>
 
                             <dt>Site Web</dt>
-                            <dd>{$ligne[7]}</dd>
+                            <dd>{$candidature[7]}</dd>
 
                             <dt>Soundcloud</dt>
-                            <dd>{$ligne[8]}</dd>
+                            <dd>{$candidature[8]}</dd>
 
                             <dt>Youtube</dt>
-                            <dd>{$ligne[9]}</dd>
+                            <dd>{$candidature[9]}</dd>
 
                             <dt>Statut Association</dt>
-                            <dd>{$ligne[10]}</dd>
+                            <dd>{$candidature[10]}</dd>
 
                             <dt>Sacem</dt>
-                            <dd>{$ligne[11]}</dd>
+                            <dd>{$candidature[11]}</dd>
 
                             <dt>Producteur</dt>
-                            <dd>{$ligne[12]}</dd>
+                            <dd>{$candidature[12]}</dd>
 
                             <dt>Membres</dt>
-                            <dd>{$ligne[13]}</dd>
+                            <dd>{$candidature[13]}</dd>
 
                             <dt>Fiche Technique</dt>
-                            <dd>{$ligne[14]}</dd>
+                            <dd>{$candidature[14]}</dd>
 
                             <dt>Sacem</dt>
-                            <dd>{$ligne[15]}</dd>
+                            <dd>{$candidature[15]}</dd>
 
 
 
                             {*Files*}
 
                             <dt>Image</dt>
-                            <dd>{$ligne[16]}</dd>
+                            <dd>{$candidature[16]}</dd>
 
                             <dt>Piste 1</dt>
-                            <dd>{$ligne[17]}</dd>
+                            <dd>{$candidature[17]}</dd>
 
                             <dt>Piste 2</dt>
-                            <dd>{$ligne[18]}</dd>
+                            <dd>{$candidature[18]}</dd>
 
                             <dt>Piste 3</dt>
-                            <dd>{$ligne[19]}</dd>
+                            <dd>{$candidature[19]}</dd>
 
                         </dl>
                             

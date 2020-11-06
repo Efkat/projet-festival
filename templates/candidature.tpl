@@ -83,27 +83,27 @@
 
                     <div>
                         <label for="image1-input">Photo du groupe n°1</label>
-                        <input type="file" id="image1-input" name="image1" value="{$old_form['image1']}">
+                        <input type="file" id="image1-input" name="image1">
                     </div>
                     <div>
                         <label for="image2-input">Photo du groupe n°2</label>
-                        <input type="file" id="image2-input" name="image2" value="{$old_form['image2']}">
+                        <input type="file" id="image2-input" name="image2">
                     </div>
                     <div>
                         <label for="piste1-input">Piste MP3 n°1</label>
-                        <input name="piste1" id="piste1-input" type="file" value="{$old_form['piste1']}">
+                        <input name="piste1" id="piste1-input" type="file">
                     </div>
                     <div>
                         <label for="piste2-input">Piste MP3 n°2</label>
-                        <input name="piste2" id="piste2-input" type="file" value="{$old_form['piste2']}">
+                        <input name="piste2" id="piste2-input" type="file">
                     </div>
                     <div>
                         <label for="piste3-input">Piste MP3 n°3</label>
-                        <input name="piste3" id="piste3-input" type="file" value="{$old_form['piste3']}">
+                        <input name="piste3" id="piste3-input" type="file">
                     </div>
                     <div>
                         <label for="annee_creation-input">Année de Création</label>
-                        <input id="annee_creation-input" name="annee_creation" type="number" value="{$old_form['annee_creation']}" required>
+                        <input id="annee_creation-input" name="annee_creation" type="number" min=2000 max=2020 value="{$old_form['annee_creation']}" required>
                     </div>
                     <div>
                         <label for="presentation-input">Présentation</label>
@@ -119,7 +119,7 @@
                     </div>
                     <div>
                         <label for="soundcloud-input">Soundcloud*</label> {*NULLABLE*}
-                        <input id="soundcloud-input" name="soundcloud" type="text" value="{$old_form['text']}">
+                        <input id="soundcloud-input" name="soundcloud" type="text" value="{$old_form['soundcloud']}">
                     </div>
                     <div>
                         <label for="youtube-input">Youtube*</label> {*NULLABLE*}
@@ -127,19 +127,19 @@
                     </div>
                     <div>
                         <label for="statut_assoc-input">Statut Association</label>
-                        <input id="statut_assoc-input" name="statut_assoc" type="checkbox" required>
+                        <input id="statut_assoc-input" name="statut_assoc" type="checkbox">
                     </div>
                     <div>
                         <label for="is_sacem-input">Sacem</label>
-                        <input id="is_sacem-input" name="is_sacem" type="checkbox" required>
+                        <input id="is_sacem-input" name="is_sacem" type="checkbox">
                     </div>
                     <div>
                         <label for="have_producteur-input">Producteur</label>
-                        <input id="have_producteur-input" name="have_producteur" type="checkbox" required>
+                        <input id="have_producteur-input" name="have_producteur" type="checkbox">
                     </div>
                     <div> {*Préciser orthographe à suivre ? Vérification ?*}
                         <label for="membres-input">Membres</label>
-                        <textarea id="membres-input" name="membres" maxlength="500"></textarea>
+                        <textarea id="membres-input" name="membres" maxlength="500">{$old_form['membres']}</textarea>
                     </div>
                     <div>
                         <label for="technique-input">Fiche technique</label>

@@ -18,15 +18,15 @@
                 <form action="./c_edit" method="POST" enctype="multipart/form-data">
                     <div>
                         <label for="nom_groupe-input">Nom du groupe</label>
-                        <input id="nom_groupe-input" name="nom_groupe" type="text" required>
+                        <input id="nom_groupe-input" name="nom_groupe" type="text" required value="{$candidature['nom_groupe']}">
                     </div>
                     <div>
                         <label for="departement-input">Département d'origine</label>
-                        <select name="departement" id="departement-input">
+                        <select name="departement" id="departement-input" value="{$candidature['departement']}">
                             {foreach from=$nom_depts item=nom_dept}
                                 
                                 <option value="{$nom_dept}" 
-                                {if $nom_dept==$old_form['departement']} 
+                                {if $nom_dept==$candidature['departement']} 
                                     selected        {*à tester*}
                                 {/if}>{$nom_dept}</option>
 
@@ -39,7 +39,7 @@
                              {foreach from=$styles item=style}
                                 
                                 <option value="{$style}" 
-                                {if $style==$old_form['style']} 
+                                {if $style==$candidature['style']} 
                                     selected        {*à tester*}
                                 {/if}>{$style}</option>
                             {/foreach}
@@ -51,7 +51,7 @@
                             {foreach from=$scenes item=scene}
                                 
                                 <option value="{$scene}" 
-                                {if $scene==$old_form['scene']} 
+                                {if $scene==$candidature['scene']} 
                                     selected        {*à tester*}
                                 {/if}>{$scene}</option>
                             {/foreach}
@@ -80,27 +80,27 @@
                     </div>
                     <div>
                         <label for="annee_creation-input">Année de Création</label>
-                        <input id="annee_creation-input" name="annee_creation" type="number" value="{$old_form['annee_creation']}" required>
+                        <input id="annee_creation-input" name="annee_creation" type="number" value="{$candidature['annee_creation']}" required>
                     </div>
                     <div>
                         <label for="presentation-input">Présentation</label>
-                        <textarea id="presentation-input" name="presentation" maxlength="500" required>{$old_form['presentation']}</textarea>
+                        <textarea id="presentation-input" name="presentation" maxlength="500" required>{$candidature['presentation']}</textarea>
                     </div>
                     <div>
                         <label for="experience-input">Expérience</label>
-                        <textarea id="experience-input" name="experience" maxlength="500" required>{$old_form['experience']}</textarea>
+                        <textarea id="experience-input" name="experience" maxlength="500" required>{$candidature['experience']}</textarea>
                     </div>
                     <div>
                         <label for="site_web-input">Site Web</label>
-                        <input id="site_web-input" name="site_web" type="text" required>
+                        <input id="site_web-input" name="site_web" type="text" required value="{$candidature['site_web']}">
                     </div>
                     <div>
                         <label for="soundcloud-input">Soundcloud*</label> {*NULLABLE*}
-                        <input id="soundcloud-input" name="soundcloud" type="text">
+                        <input id="soundcloud-input" name="soundcloud" type="text" value="{$candidature['soundcloud']}">
                     </div>
                     <div>
                         <label for="youtube-input">Youtube*</label> {*NULLABLE*}
-                        <input id="youtube-input" name="youtube" type="text">
+                        <input id="youtube-input" name="youtube" type="text" value="{$candidature['youtube']}">
                     </div>
                     <div>
                         <label for="statut_assoc-input">Statut Association</label>
@@ -116,7 +116,7 @@
                     </div>
                     <div> {*Préciser orthographe à suivre ? Vérification ?*}
                         <label for="membres-input">Membres</label>
-                        <textarea id="membres-input" name="membres" maxlength="500"></textarea>
+                        <textarea id="membres-input" name="membres" maxlength="500">{$candidature['membres']}</textarea>
                     </div>
                     <div>
                         <label for="technique-input">Fiche technique</label>
