@@ -71,17 +71,20 @@
 
                             {*Files*}
 
-                            <dt>Image</dt>
-                            <dd>{$candidature[16]}</dd>
+                            <dt>Image 1</dt>
+                            <dd>{*$images[0]*}</dd>
+
+                            <dt>Image 2</dt>
+                            <dd>{*$images[1]*}</dd>
 
                             <dt>Piste 1</dt>
-                            <dd>{$candidature[17]}</dd>
+                            <dd>{*$pistes[0]*}</dd>
 
                             <dt>Piste 2</dt>
-                            <dd>{$candidature[18]}</dd>
+                            <dd>{*$pistes[1]*}</dd>
 
                             <dt>Piste 3</dt>
-                            <dd>{$candidature[19]}</dd>
+                            <dd>{*$pistes[2]*}</dd>
 
                         </dl>
                             

@@ -366,7 +366,9 @@ Flight::route("/c_consulter", function (){
         {
             Flight::render('templates/c_consulter.tpl', array(
                 'name'=>$_SESSION['nom'],
-                'candidature'=>null
+                'candidature'=>null,
+                'images'=>null,
+                'pistes'=>null
             )); 
         }
         else 
@@ -385,11 +387,13 @@ Flight::route("/c_consulter", function (){
  * Name = "profil_edit"
  */
 Flight::route("/c_edit", function (){
-    //si on a défini le nom de session, on l'injecte au template, sinon : null
     if(isset($_SESSION['nom']))
     {
+        if($_SESSION==['admin'])
+        {
+            Flight::redirect('/liste');
+        }
         //si la candidature a été faite : on peut consulter
-        //sinon : redirection au formulaire de la candidature 
         if(isset($_SESSION['candidature']))
         {
             $db=Flight::db();
@@ -405,10 +409,11 @@ Flight::route("/c_edit", function (){
             Flight::render('templates/c_edit.tpl', array('erreurs'=>null,'candidature'=>null,
                 'nom_depts'=>$nom_depts,
                 'styles'=>$styles,
-                'scenes'=>$scenes,
+                'scenes'=>$scenes
             ));
         }
         else Flight::redirect('/candidature');
+        //sinon : redirection au formulaire de la candidature 
            
     }
     else 
