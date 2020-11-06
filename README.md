@@ -10,10 +10,6 @@ Un festival de musique associatif lance chaque année un appel à candidatures p
 * [Flight](https://flightphp.com/) - Framework léger pour PHP
 * [Bootswatch](https://bootswatch.com/) - Template Bootstrap
 
-## Contributing
-
-Si vous souhaitez contribuer, lisez le fichier [CONTRIBUTING.md](https://example.org) pour savoir comment le faire.
-
 ## Développeurs
 
 * **Hugo Benabdelhak** _alias_ [@Efkat](https://github.com/Efkat)
