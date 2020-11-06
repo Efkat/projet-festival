@@ -14,19 +14,24 @@
             <h1>Home</h1>
             <section>
 
-            {if $name==null} {*Si déconnecté*}
+            {if $name==null} 
+            {*Si déconnecté*}
                 <p>Bonjour visiteur!</p>
                 <a href="./register">S'enregistrer</a>
                 <a href="./login">Se Connecter</a>
-            {else} {*Si connecté*}
+            {else} 
+            {*Si connecté*}
                 <p>Bonjour {$name}!</p>
 
-                {if $candidature==null && $name!=admin} {*Si pas de candidature et si ce n'est pas l'admin*}
+                {if $candidature==null && $name!=admin} 
+                {*Si pas de candidature et si ce n'est pas l'admin*}
                     <a href="./candidature">Candidature</a>
                 {else}  
+                    {*Si admin*}
                     {if $name==admin}
                         <a href="./liste">Liste Candidatures</a>
-                    {else} {*Si déjà candidature*}
+                    {else} 
+                    {*Si déjà candidature*}
                         <a href="./c_consulter">Consulter Candidature</a> 
                         <a href="./c_edit">Editer Candidature</a>
                     {/if}
