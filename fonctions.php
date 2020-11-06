@@ -350,7 +350,7 @@ Flight::route("/c_consulter", function (){
         {
             Flight::render('templates/c_consulter.tpl', array(
                 'name'=>$_SESSION['nom'],
-                'lignes'=>null,
+                'candidature'=>null
             )); 
         }
         else Flight::redirect('/candidature');
@@ -382,7 +382,7 @@ Flight::route("/c_edit", function (){
             $scenes=$db->query("SELECT nom_type FROM scene;");
             $scenes=$scenes->fetchAll(PDO::FETCH_COLUMN);
             
-            Flight::render('templates/c_edit.tpl', array('erreurs'=>null,'old_form'=>null,
+            Flight::render('templates/c_edit.tpl', array('erreurs'=>null,'candidature'=>null,
                 'nom_depts'=>$nom_depts,
                 'styles'=>$styles,
                 'scenes'=>$scenes,
