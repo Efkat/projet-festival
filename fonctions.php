@@ -139,12 +139,12 @@ Flight::route("POST /login", function (){
         else
         {
             //Vérification mot de passe
-            $getInfo=$db->query("SELECT id,password FROM utilisateur WHERE nom_user='$nom'");
+            $getInfo=$db->query("SELECT id_user,password FROM utilisateur WHERE nom_user='$nom'");
             $info=$getInfo->fetch();
             if(password_verify($pswd,$info['password']))
             {
                 $_SESSION['nom']=$nom;
-                $_SESSION['id']=$info['id'];
+                $_SESSION['id']=$info['id_user'];
                 Flight::redirect('/');
             }
             else 
@@ -311,8 +311,8 @@ Flight::route("POST /candidature", function(){
         $erreur = "Tout les champs nécessaires ne sont pas renseignées !";
     }
     if($erreur = ""){
-        $insertRequest = $db->prepare("INSERT INTO candidature VALUES(':nomGroupe',':idDepartement',':idScene',':idRepresentant',':idStyle',':anneeCreation',':presentation',':experience',':siteWeb',':soundcloud',':youtube',':statutAssoc','isSacem',':haveProducer',':membres')");
-        $insertRequest->execute(array(
+        $insertCandidRequest = $db->prepare("INSERT INTO candidature VALUES(':nomGroupe',':idDepartement',':idScene',':idRepresentant',':idStyle',':anneeCreation',':presentation',':experience',':siteWeb',':soundcloud',':youtube',':statutAssoc','isSacem',':haveProducer',':membres')");
+        $insertCandidRequest->execute(array(
             ":nomGroupe" => $nomGroupe,
             ":idDepartement" => $_POST['departement'],
             ":idScene" => $_POST['scene'],
@@ -329,8 +329,9 @@ Flight::route("POST /candidature", function(){
             "haveProducer" => $haveProducer,
             ":membres" => $_POST['membres']
         ));
+        //TODO : Insert nom files + upload files
+        $insertFileName = $db->prepare("INSERT INTO fichier VALUES(NULL,':format', ':nomFichier', ':nomGroupe');");
         $_SESSION['candidature'] = $nomGroupe;
-        //TODO : Insert fichiers
     }else{
 
         $nom_depts=$db->query("SELECT departement FROM departement;");
