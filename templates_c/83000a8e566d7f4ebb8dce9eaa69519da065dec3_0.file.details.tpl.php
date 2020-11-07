@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-11-02 17:18:05
+/* Smarty version 3.1.36, created on 2020-11-07 23:02:23
   from 'C:\laragon\www\projet-festival\templates\details.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fa03f4d790eb9_04153526',
+  'unifunc' => 'content_5fa7277f70e2e6_86042227',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '83000a8e566d7f4ebb8dce9eaa69519da065dec3' => 
     array (
       0 => 'C:\\laragon\\www\\projet-festival\\templates\\details.tpl',
-      1 => 1604162179,
+      1 => 1604790142,
       2 => 'file',
     ),
   ),
@@ -20,93 +20,100 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fa03f4d790eb9_04153526 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fa7277f70e2e6_86042227 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="../styles/style.css">
         <meta charset="UTF-8">
-        <title>Détails</title>
+        <title>Details</title>
+
     </head>
-    <main>
+    <body>
         <header>
+
+        
+        </header> 
+        <main>
+            <h1>Détails</h1>
+            <section>
+                    <h3>
+                        <section>
+                            <dl>
+                                <dt>Nom Groupe</dt>
+                                <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['nom_groupe'];?>
+</dd>
+
+                                <dt>Département</dt>
+                                <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['departement'];?>
+</dd>
+
+                                <dt>Style</dt>
+                                <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['nom_style'];?>
+</dd>
+
+                                <dt>Scène</dt>
+                                <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['nom_type'];?>
+</dd>
+
+                                <dt>Année de Création</dt>
+                                <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['annee_creation'];?>
+</dd>
+
+                                <dt>Présentation</dt>
+                                <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['presentation'];?>
+</dd>
+
+                                <dt>Expérience</dt>
+                                <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['experience'];?>
+</dd>
+
+                                <dt>Site Web</dt>
+                                <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['site_web'];?>
+</dd>
+
+                                <dt>Soundcloud</dt>
+                                <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['soundcloud'];?>
+</dd>
+
+                                <dt>Youtube</dt>
+                                <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['youtube'];?>
+</dd>
+
+                                <dt>Statut Association</dt>
+                                <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['statut_assoc'];?>
+</dd>
+
+                                <dt>Sacem</dt>
+                                <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['is_sacem'];?>
+</dd>
+
+                                <dt>Producteur</dt>
+                                <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['have_producer'];?>
+</dd>
+
+                                <dt>Membres</dt>
+                                <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['membres'];?>
+</dd>
+
+
+                                
+                                                            </dl>
+                            
+
+                        </section>
+                    </h3>
+            </section>
+
             
-        </header>
-        <body>
-            <dl>
-                                <dt>nom_groupe</dt>
-                <dd><?php echo $_smarty_tpl->tpl_vars['ligne']->value[0];?>
-</dd> 
-
-                <dt>id_departement</dt>
-                <dd><?php echo $_smarty_tpl->tpl_vars['ligne']->value[1];?>
-</dd>
-
-                <dt>id_scene</dt>
-                <dd><?php echo $_smarty_tpl->tpl_vars['ligne']->value[2];?>
-</dd>
-
-                <dt>id_representant</dt>
-                <dd><?php echo $_smarty_tpl->tpl_vars['ligne']->value[3];?>
-</dd>
-
-                <dt>id_style</dt>
-                <dd><?php echo $_smarty_tpl->tpl_vars['ligne']->value[4];?>
-</dd>
-
-                <dt>annee_creation</dt>
-                <dd><?php echo $_smarty_tpl->tpl_vars['ligne']->value[5];?>
-</dd>
-
-                <dt>presentation</dt>
-                <dd><?php echo $_smarty_tpl->tpl_vars['ligne']->value[6];?>
-</dd>
-
-                <dt>experience</dt>
-                <dd><?php echo $_smarty_tpl->tpl_vars['ligne']->value[7];?>
-</dd>
-                
-                <dt>site_web</dt>
-                <dd><?php echo $_smarty_tpl->tpl_vars['ligne']->value[8];?>
-</dd>
-
-                <dt>soundcloud</dt>
-                <dd><?php echo $_smarty_tpl->tpl_vars['ligne']->value[9];?>
-</dd>
-                
-                <dt>youtube</dt>
-                <dd><?php echo $_smarty_tpl->tpl_vars['ligne']->value[10];?>
-</dd>
-
-                <dt>statut_assoc</dt>
-                <dd><?php echo $_smarty_tpl->tpl_vars['ligne']->value[11];?>
-</dd>
-                
-                <dt>is_sacem</dt>
-                <dd><?php echo $_smarty_tpl->tpl_vars['ligne']->value[12];?>
-</dd>
-
-                <dt>have_producteur</dt>
-                <dd><?php echo $_smarty_tpl->tpl_vars['ligne']->value[13];?>
-</dd>
-
-                <dt>membres</dt>
-                <dd><?php echo $_smarty_tpl->tpl_vars['ligne']->value[14];?>
-</dd>
-
-            </dl>
-            
-
-        </body>
+        </main>   
         <footer>
-            <p>Nino BELIC & Hugo BENAB DEL K</p>
 
+            
         </footer>
 
-    </main>
-
-
-
+    </body>
 
 </html><?php }
 }
