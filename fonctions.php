@@ -55,7 +55,8 @@ Flight::route("/details/@nom_groupe", function ($nom_groupe){
                                 FROM candidature,style,departement,scene 
                                 WHERE scene.num_type=candidature.id_scene 
                                 AND num_dept=id_departement 
-                                AND style.id_style=candidature.id_style;");
+                                AND style.id_style=candidature.id_style
+                                AND nom_groupe='$nom_groupe';");
         $candidature=$candidature->fetch();
         Flight::render('templates/details.tpl', array('candidature'=>$candidature));
     }
@@ -201,23 +202,30 @@ Flight::route("/logout",function(){
 Flight::route("GET /candidature", function (){
     if(isset($_SESSION['nom']))
     {
-        $db=Flight::db();
-        $nom_depts=$db->query("SELECT departement FROM departement;");
-        $nom_depts=$nom_depts->fetchAll(PDO::FETCH_COLUMN);
-
-        $styles=$db->query("SELECT nom_style FROM style;");
-        $styles=$styles->fetchAll(PDO::FETCH_COLUMN);
-
-        $scenes=$db->query("SELECT nom_type FROM scene;");
-        $scenes=$scenes->fetchAll(PDO::FETCH_COLUMN);
-        
-        Flight::render('templates/candidature.tpl', array(
-            'erreurs'=>null,
-            'old_form'=>null,
-            'nom_depts'=>$nom_depts,
-            'styles'=>$styles,
-            'scenes'=>$scenes,
-        )); 
+        if($_SESSION['nom']=='admin')
+        {
+            Flight::redirect('/liste');
+        }
+        else 
+        {
+            $db=Flight::db();
+            $nom_depts=$db->query("SELECT departement FROM departement;");
+            $nom_depts=$nom_depts->fetchAll(PDO::FETCH_COLUMN);
+    
+            $styles=$db->query("SELECT nom_style FROM style;");
+            $styles=$styles->fetchAll(PDO::FETCH_COLUMN);
+    
+            $scenes=$db->query("SELECT nom_type FROM scene;");
+            $scenes=$scenes->fetchAll(PDO::FETCH_COLUMN);
+            
+            Flight::render('templates/candidature.tpl', array(
+                'erreurs'=>null,
+                'old_form'=>null,
+                'nom_depts'=>$nom_depts,
+                'styles'=>$styles,
+                'scenes'=>$scenes,
+            ));
+        }
     }
     else
         Flight::redirect('/login');
@@ -377,24 +385,28 @@ Flight::route("/c_consulter", function (){
     //si on a défini le nom de session, on l'injecte au template, sinon : null
     if(isset($_SESSION['nom']))
     {
-        if(isset($_SESSION['nom'])
-        //si la candidature a été faite : on peut consulter
-        //sinon : redirection au formulaire de la candidature 
-        if(isset($_SESSION['candidature']))
+        if($_SESSION['nom']=='admin')
         {
-            Flight::render('templates/c_consulter.tpl', array(
-                'name'=>$_SESSION['nom'],
-                'candidature'=>null,
-                'images'=>null,
-                'pistes'=>null
-            )); 
+            Flight::redirect('/liste');
         }
-        else 
+        else
         {
-            Flight::redirect('/candidature');
+            //si la candidature a été faite : on peut consulter
+            //sinon : redirection au formulaire de la candidature 
+            if(isset($_SESSION['candidature']))
+            {
+                Flight::render('templates/c_consulter.tpl', array(
+                    'name'=>$_SESSION['nom'],
+                    'candidature'=>null,
+                    'images'=>null,
+                    'pistes'=>null
+                )); 
+            }
+            else 
+            {
+                Flight::redirect('/candidature');
+            }
         }
-            
-           
     }
     else 
         Flight::redirect('/login');   
@@ -407,10 +419,12 @@ Flight::route("/c_consulter", function (){
 Flight::route("/c_edit", function (){
     if(isset($_SESSION['nom']))
     {
-        if($_SESSION==['admin'])
+        if($_SESSION['nom']=='admin')
         {
             Flight::redirect('/liste');
         }
+        else
+        {
         //si la candidature a été faite : on peut consulter
         if(isset($_SESSION['candidature']))
         {
@@ -431,8 +445,8 @@ Flight::route("/c_edit", function (){
             ));
         }
         else Flight::redirect('/candidature');
-        //sinon : redirection au formulaire de la candidature 
-           
+        //sinon : redirection au formulaire de la candidature
+        }
     }
     else 
         Flight::redirect('/login');   

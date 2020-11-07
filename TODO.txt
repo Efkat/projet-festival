@@ -4,5 +4,7 @@
  (dans les routes : aller les chercher 
   et les passer au template)
 
--affichage ou non des routes selon qui est connecté
+-vérifier conditions des routes selon qui est connecté
  (admin : peut pas candidature etc)
+
+-
