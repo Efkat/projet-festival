@@ -25,7 +25,11 @@ Flight::route('/liste', function (){
     if($_SESSION['nom']=='admin')
     {
         $db=Flight::db();
-        $lignes=$db->query("SELECT * FROM candidature;");
+        $lignes=$db->query("SELECT nom_groupe,departement,nom_type,nom_style,annee_creation,presentation,experience 
+                            FROM candidature,style,departement,scene 
+                            WHERE scene.num_type=candidature.id_scene 
+                            AND num_dept=id_departement 
+                            AND style.id_style=candidature.id_style;");
         $lignes=$lignes->fetchAll();
         Flight::render('templates/liste.tpl', array('lignes'=>$lignes));
     }
@@ -43,8 +47,20 @@ Flight::route("/profil", function (){
 /**
  * Name = "details"
  */
-Flight::route("/details", function (){
-    Flight::render('templates/details.tpl', array('ligne'=>null));
+Flight::route("/details/@nom_groupe", function ($nom_groupe){
+    if($_SESSION['nom']=='admin')
+    {
+        $db=Flight::db();
+        $candidature=$db->query("SELECT * /*nom_groupe,departement,nom_type,nom_style,annee_creation,presentation,experience */ 
+                                FROM candidature,style,departement,scene 
+                                WHERE scene.num_type=candidature.id_scene 
+                                AND num_dept=id_departement 
+                                AND style.id_style=candidature.id_style;");
+        $candidature=$candidature->fetch();
+        Flight::render('templates/details.tpl', array('candidature'=>$candidature));
+    }
+    else 
+        Flight::redirect('/');
 });
 
 
@@ -119,7 +135,7 @@ Flight::route("GET /login", function (){
     Flight::render('templates/login.tpl', array('erreurs'=>null,'old_form'=>null));
 });
 
-Flight::route("POST /login", function (){
+Flight::route("POST /login", function (){                   
     $db=Flight::db();
     $nom =htmlspecialchars(trim($_POST['nom']));
     $pswd=htmlspecialchars(trim($_POST['pswd']));
@@ -361,6 +377,7 @@ Flight::route("/c_consulter", function (){
     //si on a défini le nom de session, on l'injecte au template, sinon : null
     if(isset($_SESSION['nom']))
     {
+        if(isset($_SESSION['nom'])
         //si la candidature a été faite : on peut consulter
         //sinon : redirection au formulaire de la candidature 
         if(isset($_SESSION['candidature']))
@@ -374,7 +391,7 @@ Flight::route("/c_consulter", function (){
         }
         else 
         {
-            Flight::render('templates/candidature.tpl');
+            Flight::redirect('/candidature');
         }
             
            
