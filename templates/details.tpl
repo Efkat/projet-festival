@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="./styles/style.css">
+        <link rel="stylesheet" type="text/css" href="../styles/style.css">
         <meta charset="UTF-8">
         <title>Details</title>
 
@@ -15,87 +15,76 @@
         <main>
             <h1>Détails</h1>
             <section>
-
-                {*Vérification Admin*}
-                {if $name==admin}
                     <h3>
                         <section>
                             <dl>
                                 <dt>Nom Groupe</dt>
-                                <dd>{$ligne[0]}</dd>
+                                <dd>{$candidature['nom_groupe']}</dd>
 
                                 <dt>Département</dt>
-                                <dd>{$ligne[1]}</dd>
+                                <dd>{$candidature['departement']}</dd>
 
                                 <dt>Style</dt>
-                                <dd>{$ligne[2]}</dd>
+                                <dd>{$candidature['nom_style']}</dd>
 
                                 <dt>Scène</dt>
-                                <dd>{$ligne[3]}</dd>
+                                <dd>{$candidature['nom_type']}</dd>
 
                                 <dt>Année de Création</dt>
-                                <dd>{$ligne[4]}</dd>
+                                <dd>{$candidature['annee_creation']}</dd>
 
                                 <dt>Présentation</dt>
-                                <dd>{$ligne[5]}</dd>
+                                <dd>{$candidature['presentation']}</dd>
 
                                 <dt>Expérience</dt>
-                                <dd>{$ligne[6]}</dd>
+                                <dd>{$candidature['experience']}</dd>
 
                                 <dt>Site Web</dt>
-                                <dd>{$ligne[7]}</dd>
+                                <dd>{$candidature['site_web']}</dd>
 
                                 <dt>Soundcloud</dt>
-                                <dd>{$ligne[8]}</dd>
+                                <dd>{$candidature['soundcloud']}</dd>
 
                                 <dt>Youtube</dt>
-                                <dd>{$ligne[9]}</dd>
+                                <dd>{$candidature['youtube']}</dd>
 
                                 <dt>Statut Association</dt>
-                                <dd>{$ligne[10]}</dd>
+                                <dd>{$candidature['statut_assoc']}</dd>
 
                                 <dt>Sacem</dt>
-                                <dd>{$ligne[11]}</dd>
+                                <dd>{$candidature['is_sacem']}</dd>
 
                                 <dt>Producteur</dt>
-                                <dd>{$ligne[12]}</dd>
+                                <dd>{$candidature['have_producer']}</dd>
 
                                 <dt>Membres</dt>
-                                <dd>{$ligne[13]}</dd>
+                                <dd>{$candidature['membres']}</dd>
 
+
+                                {* ???
                                 <dt>Fiche Technique</dt>
-                                <dd>{$ligne[14]}</dd>
+                                <dd>{$candidature['fiche_technique']}</dd>
+                                *}
 
-                                <dt>Sacem</dt>
-                                <dd>{$ligne[15]}</dd>
-
-
-
-                                {*Files*}
+                                {*Files
 
                                 <dt>Image</dt>
-                                <dd>{$ligne[16]}</dd>
+                                <dd>{$files[16]}</dd>
 
                                 <dt>Piste 1</dt>
-                                <dd>{$ligne[17]}</dd>
+                                <dd>{$files[17]}</dd>
 
                                 <dt>Piste 2</dt>
-                                <dd>{$ligne[18]}</dd>
+                                <dd>{$files[18]}</dd>
 
                                 <dt>Piste 3</dt>
-                                <dd>{$ligne[19]}</dd>
-
+                                <dd>{$files[19]}</dd>
+                                *}
                             </dl>
                             
 
                         </section>
                     </h3>
-                    
-                    
-                    
-                {/if}
-
-
             </section>
 
             
