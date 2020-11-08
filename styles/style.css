@@ -24,8 +24,11 @@ div{
 .cancel{
     margin:20px 0;
 }
-dt
-{
+dt{
     font-weight: 100;
+}
+dt::after{
+    display:block;
+    margin:20;
 }
 
