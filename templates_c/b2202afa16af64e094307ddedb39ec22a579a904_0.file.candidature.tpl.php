@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-11-07 23:19:49
+/* Smarty version 3.1.36, created on 2020-11-08 20:22:20
   from 'C:\laragon\www\projet-festival\templates\candidature.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fa72b95d72b01_09535677',
+  'unifunc' => 'content_5fa8537c7e60c8_70370931',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b2202afa16af64e094307ddedb39ec22a579a904' => 
     array (
       0 => 'C:\\laragon\\www\\projet-festival\\templates\\candidature.tpl',
-      1 => 1604791089,
+      1 => 1604866829,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fa72b95d72b01_09535677 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fa8537c7e60c8_70370931 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
     <head>
@@ -107,7 +107,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         </select>
                         </select>
                     </div>
-
+                    
 
                     <div>
                         <label for="image1-input">Photo du groupe n°1</label>
@@ -169,10 +169,24 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <label for="have_producteur-input">Producteur</label>
                         <input id="have_producteur-input" name="have_producteur" type="checkbox">
                     </div>
-                    <div>                         <label for="membres-input">Membres</label>
-                        <textarea id="membres-input" name="membres" maxlength="500"><?php echo $_smarty_tpl->tpl_vars['old_form']->value['membres'];?>
+
+
+                    <div>   
+                        <label for="membres-input">Membres</label>
+                        <textarea id="membres-input" wrap="off" rows=6 name="membres" maxlength="500"><?php echo $_smarty_tpl->tpl_vars['old_form']->value['membres'];?>
 </textarea>
+                        
+                        <p class="membres_model">Nom1</p>
+                        <p class="membres_model">Prenom1</p>
+                        <p class="membres_model">Instrument1</p>
+
+                        <p class="membres_model">Nom2</p>
+                        <p class="membres_model">Prenom2</p>
+                        <p class="membres_model">Instrument2</p>
+
                     </div>
+                        
+
                     <div>
                         <label for="technique-input">Fiche technique</label>
                         <input type="file" id="technique-input" name="technique">
@@ -187,6 +201,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                 <a class="cancel" href="./">Annuler</a>
                 <p><?php echo $_smarty_tpl->tpl_vars['erreurs']->value;?>
 </p>
+
 
             </section>
         </main>

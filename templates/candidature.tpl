@@ -79,7 +79,7 @@
                         </select>
                         </select>
                     </div>
-
+                    
 
                     <div>
                         <label for="image1-input">Photo du groupe n°1</label>
@@ -137,10 +137,23 @@
                         <label for="have_producteur-input">Producteur</label>
                         <input id="have_producteur-input" name="have_producteur" type="checkbox">
                     </div>
-                    <div> {*Préciser orthographe à suivre ? Vérification ?*}
+
+
+                    <div> {*Vérification ?*}  
                         <label for="membres-input">Membres</label>
-                        <textarea id="membres-input" name="membres" maxlength="500">{$old_form['membres']}</textarea>
+                        <textarea id="membres-input" wrap="off" rows=6 name="membres" maxlength="500">{$old_form['membres']}</textarea>
+                        
+                        <p class="membres_model">Nom1</p>
+                        <p class="membres_model">Prenom1</p>
+                        <p class="membres_model">Instrument1</p>
+
+                        <p class="membres_model">Nom2</p>
+                        <p class="membres_model">Prenom2</p>
+                        <p class="membres_model">Instrument2</p>
+
                     </div>
+                        
+
                     <div>
                         <label for="technique-input">Fiche technique</label>
                         <input type="file" id="technique-input" name="technique">
@@ -154,6 +167,7 @@
                 </form>
                 <a class="cancel" href="./">Annuler</a>
                 <p>{$erreurs}</p>
+
 
             </section>
         </main>

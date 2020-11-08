@@ -272,7 +272,20 @@ Flight::route("POST /candidature", function(){
     $db = Flight::db();
     $erreur = "";
     //Vérification si tous les champs nécessaires sont présents
-    if((!empty($_POST['nom_groupe']) && !empty($_POST['annee_creation']) && !empty($_POST['presentation']) && !empty($_POST['experience']) && !empty($_POST['site_web']) && !empty($_POST['statut_assoc']) && !empty($_POST['is_sacem']) && !empty($_POST['have_producteur']) && isset($_POST['departement'])&& isset($_POST['style']) && isset($_POST['scene']) && file_exists($_FILES['image1'])&& file_exists($_FILES['image2']) && file_exists($_FILES['piste1']) && file_exists($_FILES['piste2']) && file_exists($_FILES['piste3']) && !empty($_POST['membres']))){
+    if((!empty($_POST['nom_groupe']) 
+    && !empty($_POST['annee_creation']) 
+    && !empty($_POST['presentation']) 
+    && !empty($_POST['experience']) 
+    && !empty($_POST['site_web']) 
+    && isset($_POST['departement'])
+    && isset($_POST['style']) 
+    && isset($_POST['scene'])
+    && isset($_FILES['image1'])
+    && isset($_FILES['image2']) 
+    && isset($_FILES['piste1']) 
+    && isset($_FILES['piste2']) 
+    && isset($_FILES['piste3']) 
+    && !empty($_POST['membres']))){
         //Vérifie le nom du groupe
         if(strlen($_POST['nom_groupe'])){
             $nomGroupe = htmlspecialchars(trim($_POST['nom_groupe']));
@@ -295,43 +308,45 @@ Flight::route("POST /candidature", function(){
         }
 
         //Vérifie l'expérience
-        if(strlen($_POST['experience']) >= 500){
+        if(strlen($_POST['experience']) <= 500){
             $experience = htmlspecialchars(trim($_POST['experience']));
         }else{
             $erreur = "L'expérience doit faire 500 caractères maximum !";
         }
 
         //Vérifie le site web
-        if(strlen($_POST['site_web']) >= 100){
+        if(strlen($_POST['site_web']) <= 100){
             $siteWeb = htmlspecialchars(trim($_POST['site_web']));
         }else{
             $erreur = "L'URL de votre site de communication est trop longue !";
         }
 
+        
         //Vérifie le statut associatif
         if(isset($_POST['statut_assoc'])){
             $statutAssoc = true;
         }else{
-            $erreur = "Vous n'indiquez pas si vous êtes une association !";
+            $statutAssoc = false;
         }
 
         //Vérifie si inscrit à la SACEM
         if(isset($_POST['is_sacem'])){
             $isSacem = true;
         }else{
-            $erreur = "Vous n'indiquez pas si vous êtes inscrit à la SACEM !";
+            $isSacem = false;
         }
 
         //Vérifie la présence d'un producteur
         if(isset($_POST['have_producteur'])){
             $haveProducer = true;
         }else{
-            $erreur = "Vous n'indiquez pas la présence d'un producteur !";
+            $haveProducer = false;
         }
+        
 
         //Vérifie le site youtube si il est renseigné 
         if(isset($_POST['youtube'])){
-            if(strlen($_POST['youtube']) >= 100){
+            if(strlen($_POST['youtube']) <= 100){
                 $youtube = htmlspecialchars(trim($_POST['youtube']));
             }else{
                 $erreur = "Le lien youtube est trop long";
@@ -341,8 +356,8 @@ Flight::route("POST /candidature", function(){
         }
         //Vérifie le site soundcloud si il est renseigné
         if(isset($_POST['soundcloud'])){
-            if(strlen($_POST['soundcloud']) >= 100){
-                $youtube = htmlspecialchars(trim($_POST['soundcloud']));
+            if(strlen($_POST['soundcloud']) <= 100){
+                $soundcloud = htmlspecialchars(trim($_POST['soundcloud']));
             }else{
                 $erreur = "Le lien soundcloud est trop long";
             }
@@ -352,8 +367,8 @@ Flight::route("POST /candidature", function(){
 
         //Vérifie les images
         if((($_FILES['image1']['type'] == "image/jpeg") || ($_FILES['image1']['type'] == "image/png")) && (($_FILES['image2']['type'] == "image/jpeg") || ($_FILES['image2']['type'] == "image/png"))){
-            $_FILES['image1']['name'] = $nomGroupe + "_image1";
-            $_FILES['image2']['name'] = $nomGroupe + "_image2";
+            $_FILES['image1']['name'] = $nomGroupe."_image1";
+            $_FILES['image2']['name'] = $nomGroupe."_image2";
         }else{
             $erreur = "Le format des images n'est pas correct (jpeg ou png)";
         }
@@ -368,14 +383,15 @@ Flight::route("POST /candidature", function(){
     }else{
         $erreur = "Tout les champs nécessaires ne sont pas renseignées !";
     }
-    if($erreur = ""){
-        $insertCandidRequest = $db->prepare("INSERT INTO candidature VALUES(':nomGroupe',':idDepartement',':idScene',':idRepresentant',':idStyle',':anneeCreation',':presentation',':experience',':siteWeb',':soundcloud',':youtube',':statutAssoc','isSacem',':haveProducer',':membres')");
+    if($erreur == ""){
+        $n=$_SESSION['id'];
+        $insertCandidRequest = $db->prepare("INSERT INTO candidature VALUES(':nomGroupe',80,1,$n,1,':anneeCreation',':presentation',':experience',':siteWeb',':soundCloud',':youtube',':statutAssoc','isSacem',':haveProducer',':membres')");
         $insertCandidRequest->execute(array(
             ":nomGroupe" => $nomGroupe,
-            ":idDepartement" => $_POST['departement'],
-            ":idScene" => $_POST['scene'],
-            ":idRepresentant" => $_SESSION['id'],
-            ":idStyle" => $_POST['style'],
+            //":idDepartement" => $_POST['departement'],
+            //":idScene" => $_POST['scene'],
+            //":idRepresentant" => intval($_SESSION['id']),
+            //":idStyle" => $_POST['style'],
             ":anneeCreation" => $anneeCreation,
             ":presentation" => $presentation,
             ":experience" => $experience,
@@ -384,7 +400,7 @@ Flight::route("POST /candidature", function(){
             ":youtube" => $youtube,
             ":statutAssoc" => $statutAssoc,
             ":isSacem" => $isSacem,
-            "haveProducer" => $haveProducer,
+            ":haveProducer" => $haveProducer,
             ":membres" => $_POST['membres']
         ));
         //TODO : Insert nom files + upload files
@@ -400,7 +416,7 @@ Flight::route("POST /candidature", function(){
 
         $scenes=$db->query("SELECT nom_type FROM scene;");
         $scenes=$scenes->fetchAll(PDO::FETCH_COLUMN);
-        
+
         Flight::render('templates/candidature.tpl', array(
             'erreurs'=>$erreur,
             'old_form'=>$_POST,
