@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-11-03 08:46:50
+/* Smarty version 3.1.36, created on 2020-11-08 12:29:38
   from 'C:\laragon\www\projet-festival\templates\register.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fa118fa773599_35885361',
+  'unifunc' => 'content_5fa7e4b2a10664_86807456',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '08bd7ab058611060e521c2f2b209d1d607344b60' => 
     array (
       0 => 'C:\\laragon\\www\\projet-festival\\templates\\register.tpl',
-      1 => 1604393063,
+      1 => 1604791102,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fa118fa773599_35885361 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fa7e4b2a10664_86807456 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
     <head>

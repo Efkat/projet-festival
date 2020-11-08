@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-11-07 23:19:41
+/* Smarty version 3.1.36, created on 2020-11-08 13:26:05
   from 'C:\laragon\www\projet-festival\templates\details.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fa72b8d996ae9_25520803',
+  'unifunc' => 'content_5fa7f1ed0eeb52_46289606',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '83000a8e566d7f4ebb8dce9eaa69519da065dec3' => 
     array (
       0 => 'C:\\laragon\\www\\projet-festival\\templates\\details.tpl',
-      1 => 1604791161,
+      1 => 1604841810,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fa72b8d996ae9_25520803 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fa7f1ed0eeb52_46289606 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
     <head>
@@ -94,8 +94,28 @@ function content_5fa72b8d996ae9_25520803 (Smarty_Internal_Template $_smarty_tpl)
 </dd>
 
                                 <dt>Membres</dt>
-                                <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['membres'];?>
-</dd>
+                                <dd>
+                                    <ul>
+                                    <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['membres']->value, 'membre');
+$_smarty_tpl->tpl_vars['membre']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['membre']->value) {
+$_smarty_tpl->tpl_vars['membre']->do_else = false;
+?>
+                                        <li>
+                                            <p><?php echo $_smarty_tpl->tpl_vars['membre']->value[0];?>
+</p>
+                                            <p><?php echo $_smarty_tpl->tpl_vars['membre']->value[1];?>
+</p>
+                                            <p><?php echo $_smarty_tpl->tpl_vars['membre']->value[2];?>
+</p>
+                                        </li>
+                                    <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                                    </ul>
+                                
+                                </dd>
 
 
                                 

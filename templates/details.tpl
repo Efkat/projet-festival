@@ -58,7 +58,18 @@
                                 <dd>{$candidature['have_producer']}</dd>
 
                                 <dt>Membres</dt>
-                                <dd>{$candidature['membres']}</dd>
+                                <dd>
+                                    <ul>
+                                    {foreach from=$membres item=membre}
+                                        <li>
+                                            <p>{$membre[0]}</p>
+                                            <p>{$membre[1]}</p>
+                                            <p>{$membre[2]}</p>
+                                        </li>
+                                    {/foreach}
+                                    </ul>
+                                
+                                </dd>
 
 
                                 {* ???

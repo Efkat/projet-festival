@@ -58,7 +58,41 @@ Flight::route("/details/@nom_groupe", function ($nom_groupe){
                                 AND style.id_style=candidature.id_style
                                 AND nom_groupe='$nom_groupe';");
         $candidature=$candidature->fetch();
-        Flight::render('templates/details.tpl', array('candidature'=>$candidature));
+        
+
+        //Gestion condition statut_assoc,sacem,producteur
+        //on peut le faire aussi sur smarty (dans le tpl)
+        if($candidature['statut_assoc']==0)
+        {
+            $candidature['statut_assoc']="Non";
+        }
+        else $candidature['statut_assoc']="Oui";
+
+        if($candidature['is_sacem']==0)
+        {
+            $candidature['is_sacem']="Non";
+        }
+        else $candidature['is_sacem']="Oui";
+
+        if($candidature['have_producer']==0)
+        {
+            $candidature['have_producer']="Non";
+        }
+        else $candidature['have_producer']="Oui";
+        
+        //Gestion membres
+        if($candidature['membres']!=null)
+        {   //dodo1_nom/dodo1_prenom/violon,dodo2_nom/dodo2_prenom/triangle
+            $i=0;
+            foreach(explode(',',$candidature['membres']) as $membre)
+            {
+                $membres[$i]=explode('/',$membre);
+                $i++;
+            }
+            
+        }
+
+        Flight::render('templates/details.tpl', array('candidature'=>$candidature,'membres'=>$membres));
     }
     else 
         Flight::redirect('/');
