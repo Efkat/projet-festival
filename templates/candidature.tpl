@@ -80,7 +80,6 @@
                                 >{$nom}</option>
                             {/foreach}
                         </select>
-                        </select>
                     </div>
                     
 
@@ -106,7 +105,7 @@
                     </div>
                     <div>
                         <label for="annee_creation-input">Année de Création</label>
-                        <input id="annee_creation-input" name="annee_creation" type="number" min=2000 max=2020 value="{$old_form['annee_creation']}" required>
+                        <input id="annee_creation-input" name="annee_creation" type="number" min=1990 max=2020 value="{$old_form['annee_creation']}" required>
                     </div>
                     <div>
                         <label for="presentation-input">Présentation</label>

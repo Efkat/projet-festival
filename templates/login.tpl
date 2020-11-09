@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="UTF-8">
@@ -8,20 +8,18 @@
     </head>
     <body>
         <header>
-            
-
         </header>
         <main>
             <h1>Se Connecter</h1>
             <section>
                 <form action="./login" method="POST">
                     <div>
-                        <label for="nom">Nom</label>
-                        <input name="nom" type="text" value="{$old_form['nom']}" required> 
+                        <label for="nom-input">Nom</label>
+                        <input name="nom" id="nom-input" type="text" value="{$old_form['nom']}" required>
                     </div>
                     <div>
-                        <label for="pswd">Mot De Passe:</label>
-                        <input name="pswd" type="password">
+                        <label for="pswd-input">Mot De Passe:</label>
+                        <input name="pswd" id="pswd-input" type="password">
                     </div>
                         <input type="submit" value="Envoyer">
                 </form>
@@ -32,12 +30,6 @@
         </main>
         <footer>
             <p>Nino BELIC & Hugo BENAB DEL K</p>
-
         </footer>
-
     </body>
-
-
-
-
 </html>

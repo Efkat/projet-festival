@@ -25,11 +25,7 @@ Flight::route('/liste', function (){
     if($_SESSION['nom']=='admin')
     {
         $db=Flight::db();
-        $lignes=$db->query("SELECT nom_groupe,departement,nom_type,nom_style,annee_creation,presentation,experience 
-                            FROM candidature,style,departement,scene 
-                            WHERE scene.num_type=candidature.id_scene 
-                            AND num_dept=id_departement 
-                            AND style.id_style=candidature.id_style;");
+        $lignes=$db->query("SELECT nom_groupe,departement,nom_type,nom_style,annee_creation,presentation,experience FROM candidature,style,departement,scene WHERE scene.num_type=candidature.id_scene AND num_dept=id_departement AND style.id_style=candidature.id_style;");
         $lignes=$lignes->fetchAll();
         Flight::render('templates/liste.tpl', array('lignes'=>$lignes));
     }
@@ -175,8 +171,6 @@ Flight::route("POST /login", function (){
     $nom =htmlspecialchars(trim($_POST['nom']));
     $pswd=htmlspecialchars(trim($_POST['pswd']));
     $erreurs="";
-
-
     /*Vérifications, à compléter?*/
     if(!empty($_POST['nom']) & !empty($_POST['pswd']))
     {
@@ -219,16 +213,6 @@ Flight::route("/logout",function(){
     unset($_SESSION);
     Flight::render("templates/index.tpl",array('name'=>null));
 });
-
-
-
-
-
-
-
-
-
-
 
 /**
  * Name = "candidature"
@@ -280,11 +264,11 @@ Flight::route("POST /candidature", function(){
     && isset($_POST['departement'])
     && isset($_POST['style']) 
     && isset($_POST['scene'])
-    && isset($_FILES['image1'])
-    && isset($_FILES['image2']) 
-    && isset($_FILES['piste1']) 
-    && isset($_FILES['piste2']) 
-    && isset($_FILES['piste3']) 
+    && file_exists($_FILES['image1'])
+    && file_exists($_FILES['image2'])
+    && file_exists($_FILES['piste1'])
+    && file_exists($_FILES['piste2'])
+    && file_exists($_FILES['piste3'])
     && !empty($_POST['membres']))){
         //Vérifie le nom du groupe
         if(strlen($_POST['nom_groupe'])){
@@ -324,23 +308,23 @@ Flight::route("POST /candidature", function(){
         
         //Vérifie le statut associatif
         if(isset($_POST['statut_assoc'])){
-            $statutAssoc = true;
+            $statutAssoc = 1;
         }else{
-            $statutAssoc = false;
+            $statutAssoc = 0;
         }
 
         //Vérifie si inscrit à la SACEM
         if(isset($_POST['is_sacem'])){
-            $isSacem = true;
+            $isSacem = 1;
         }else{
-            $isSacem = false;
+            $isSacem = 0;
         }
 
         //Vérifie la présence d'un producteur
         if(isset($_POST['have_producteur'])){
-            $haveProducer = true;
+            $haveProducer = 1;
         }else{
-            $haveProducer = false;
+            $haveProducer = 0;
         }
         
 
@@ -367,8 +351,8 @@ Flight::route("POST /candidature", function(){
 
         //Vérifie les images
         if((($_FILES['image1']['type'] == "image/jpeg") || ($_FILES['image1']['type'] == "image/png")) && (($_FILES['image2']['type'] == "image/jpeg") || ($_FILES['image2']['type'] == "image/png"))){
-            $_FILES['image1']['name'] = $nomGroupe."_image1";
-            $_FILES['image2']['name'] = $nomGroupe."_image2";
+            $_FILES['image1']['name'] = $nomGroupe . "_image1";
+            $_FILES['image2']['name'] = $nomGroupe . "_image2";
         }else{
             $erreur = "Le format des images n'est pas correct (jpeg ou png)";
         }
@@ -384,7 +368,7 @@ Flight::route("POST /candidature", function(){
         $erreur = "Tous les champs nécessaires ne sont pas renseigné    s !";
     }
     if($erreur == ""){
-        $insertCandidRequest = $db->prepare('INSERT INTO candidature VALUES(:nomGroupe,:idDepartement,:idStyle,:idRepresentant,:idScene,:anneeCreation,:presentation,:experience,:siteWeb,:soundCloud,:youtube,:statutAssoc,:isSacem,:haveProducer,:membres)');
+        $insertCandidRequest = $db->prepare('INSERT INTO candidature VALUES(:nomGroupe,:idDepartement,:idStyle,:idRepresentant,:idScene,:anneeCreation,:presentation,:experience,:siteWeb,:soundcloud,:youtube,:statutAssoc,:isSacem,:haveProducer,:membres)');
         $insertCandidRequest->execute(array(
             ':nomGroupe' => $nomGroupe,
             ':idDepartement' => (int)$_POST['departement'],
@@ -395,7 +379,7 @@ Flight::route("POST /candidature", function(){
             ':presentation' => $presentation,
             ':experience' => $experience,
             ':siteWeb' => $siteWeb,
-            ':soundCloud' => $soundcloud,
+            ':soundcloud' => $soundcloud,
             ':youtube' => $youtube,
             ':statutAssoc' => (int)$statutAssoc,
             ':isSacem' => (int)$isSacem,
