@@ -44,12 +44,13 @@
                     <div>
                         <label for="departement-input">Département d'origine</label>
                         <select name="departement" id="departement-input">
-                            {foreach from=$nom_depts item=nom_dept}
-                                
-                                <option value="{$nom_dept}" 
-                                {if $nom_dept==$old_form['departement']} 
-                                    selected        {*à tester*}
-                                {/if}>{$nom_dept}</option>
+                            {foreach from=$depts key=num item=nom}
+
+                                <option value="{$num}" 
+                                {if $num==$old_form['departement']}
+                                selected
+                                {/if}
+                                >{$nom}</option>
 
                             {/foreach}
                         </select>
@@ -57,24 +58,26 @@
                     <div>
                         <label for="style-input">Style du groupe</label>
                         <select name="style" id="style-input">
-                             {foreach from=$styles item=style}
+                             {foreach from=$styles key=num item=nom}
                                 
-                                <option value="{$style}" 
-                                {if $style==$old_form['style']} 
-                                    selected        {*à tester*}
-                                {/if}>{$style}</option>
+                                <option value="{$num}" 
+                                {if $num==$old_form['style']}
+                                selected
+                                {/if}
+                                >{$nom}</option>
                             {/foreach}
                         </select>
                     </div>
                     <div>
                         <label for="scene-input">Scène du groupe</label>
                         <select name="scene" id="scene-input">
-                            {foreach from=$scenes item=scene}
+                            {foreach from=$scenes key=num item=nom}
                                 
-                                <option value="{$scene}" 
-                                {if $scene==$old_form['scene']} 
-                                    selected        {*à tester*}
-                                {/if}>{$scene}</option>
+                                <option value="{$num}" 
+                                {if $num==$old_form['scene']}
+                                selected
+                                {/if}
+                                >{$nom}</option>
                             {/foreach}
                         </select>
                         </select>

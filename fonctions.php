@@ -243,9 +243,9 @@ Flight::route("GET /candidature", function (){
         else 
         {
             $db=Flight::db();
-            $nom_depts=$db->query("SELECT departement FROM departement;");
-            $nom_depts=$nom_depts->fetchAll(PDO::FETCH_COLUMN);
-    
+            $depts=$db->query("SELECT departement,num_dept FROM departement;");
+            $depts=$depts->fetchAll(PDO::FETCH_COLUMN);
+
             $styles=$db->query("SELECT nom_style FROM style;");
             $styles=$styles->fetchAll(PDO::FETCH_COLUMN);
     
@@ -255,7 +255,7 @@ Flight::route("GET /candidature", function (){
             Flight::render('templates/candidature.tpl', array(
                 'erreurs'=>null,
                 'old_form'=>null,
-                'nom_depts'=>$nom_depts,
+                'depts'=>$depts,
                 'styles'=>$styles,
                 'scenes'=>$scenes,
             ));
@@ -381,46 +381,46 @@ Flight::route("POST /candidature", function(){
             $erreur = "Le format des pistes audio n'est pas correct (MP3)";
         }
     }else{
-        $erreur = "Tout les champs nécessaires ne sont pas renseignées !";
+        $erreur = "Tous les champs nécessaires ne sont pas renseigné    s !";
     }
     if($erreur == ""){
-        $n=$_SESSION['id'];
-        $insertCandidRequest = $db->prepare("INSERT INTO candidature VALUES(':nomGroupe',80,1,$n,1,':anneeCreation',':presentation',':experience',':siteWeb',':soundCloud',':youtube',':statutAssoc','isSacem',':haveProducer',':membres')");
+        $insertCandidRequest = $db->prepare('INSERT INTO candidature VALUES(:nomGroupe,:idDepartement,:idStyle,:idRepresentant,:idScene,:anneeCreation,:presentation,:experience,:siteWeb,:soundCloud,:youtube,:statutAssoc,:isSacem,:haveProducer,:membres)');
         $insertCandidRequest->execute(array(
-            ":nomGroupe" => $nomGroupe,
-            //":idDepartement" => $_POST['departement'],
-            //":idScene" => $_POST['scene'],
-            //":idRepresentant" => intval($_SESSION['id']),
-            //":idStyle" => $_POST['style'],
-            ":anneeCreation" => $anneeCreation,
-            ":presentation" => $presentation,
-            ":experience" => $experience,
-            ":siteWeb" => $siteWeb,
-            ":soundCloud" => $soundcloud,
-            ":youtube" => $youtube,
-            ":statutAssoc" => $statutAssoc,
-            ":isSacem" => $isSacem,
-            ":haveProducer" => $haveProducer,
-            ":membres" => $_POST['membres']
+            ':nomGroupe' => $nomGroupe,
+            ':idDepartement' => (int)$_POST['departement'],
+            ':idScene' => (int)$_POST['scene'],
+            ':idRepresentant' => (int)$_SESSION['id'],
+            ':idStyle' => (int)$_POST['style'],
+            ':anneeCreation' => (int)$anneeCreation,
+            ':presentation' => $presentation,
+            ':experience' => $experience,
+            ':siteWeb' => $siteWeb,
+            ':soundCloud' => $soundcloud,
+            ':youtube' => $youtube,
+            ':statutAssoc' => (int)$statutAssoc,
+            ':isSacem' => (int)$isSacem,
+            ':haveProducer' => (int)$haveProducer,
+            ':membres' => $_POST['membres']
         ));
+
         //TODO : Insert nom files + upload files
         $insertFileName = $db->prepare("INSERT INTO fichier VALUES(NULL,':format', ':nomFichier', ':nomGroupe');");
         $_SESSION['candidature'] = $nomGroupe;
     }else{
 
-        $nom_depts=$db->query("SELECT departement FROM departement;");
-        $nom_depts=$nom_depts->fetchAll(PDO::FETCH_COLUMN);
+        $depts=$db->query("SELECT departement,num_dept FROM departement;");
+        $depts=$depts->fetchAll(PDO::FETCH_COLUMN);
 
-        $styles=$db->query("SELECT nom_style FROM style;");
+        $styles=$db->query("SELECT nom_style,id_style FROM style;");
         $styles=$styles->fetchAll(PDO::FETCH_COLUMN);
 
-        $scenes=$db->query("SELECT nom_type FROM scene;");
+        $scenes=$db->query("SELECT nom_type,num_type FROM scene;");
         $scenes=$scenes->fetchAll(PDO::FETCH_COLUMN);
-
+        
         Flight::render('templates/candidature.tpl', array(
             'erreurs'=>$erreur,
             'old_form'=>$_POST,
-            'nom_depts'=>$nom_depts,
+            'depts'=>$depts,
             'styles'=>$styles,
             'scenes'=>$scenes,
         ));
