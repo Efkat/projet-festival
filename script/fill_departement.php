@@ -5,6 +5,8 @@ require '../vendor/autoload.php';
 Flight::register('db', 'PDO', array('mysql:host=127.0.0.1;dbname=festival','root','root'),
 function ($db){
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $db->exec("SET NAMES UTF8");
+
 });
 
 $db=Flight::db();
