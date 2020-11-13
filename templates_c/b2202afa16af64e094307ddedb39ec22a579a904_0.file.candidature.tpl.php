@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-11-09 10:54:08
+/* Smarty version 3.1.36, created on 2020-11-13 13:24:06
   from 'C:\laragon\www\projet-festival\templates\candidature.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fa91fd09d0801_45062396',
+  'unifunc' => 'content_5fae88f62601b1_20297401',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b2202afa16af64e094307ddedb39ec22a579a904' => 
     array (
       0 => 'C:\\laragon\\www\\projet-festival\\templates\\candidature.tpl',
-      1 => 1604919246,
+      1 => 1605273505,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fa91fd09d0801_45062396 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fae88f62601b1_20297401 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
     <head>
@@ -111,7 +111,6 @@ $_smarty_tpl->tpl_vars['nom']->do_else = false;
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         </select>
-                        </select>
                     </div>
                     
 
@@ -137,7 +136,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     </div>
                     <div>
                         <label for="annee_creation-input">Année de Création</label>
-                        <input id="annee_creation-input" name="annee_creation" type="number" min=2000 max=2020 value="<?php echo $_smarty_tpl->tpl_vars['old_form']->value['annee_creation'];?>
+                        <input id="annee_creation-input" name="annee_creation" type="number" min=1990 max=2020 value="<?php echo $_smarty_tpl->tpl_vars['old_form']->value['annee_creation'];?>
 " required>
                     </div>
                     <div>

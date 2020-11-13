@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-11-07 23:18:03
+/* Smarty version 3.1.36, created on 2020-11-13 13:40:49
   from 'C:\laragon\www\projet-festival\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fa72b2b0336c4_93115861',
+  'unifunc' => 'content_5fae8ce1a4b677_43973753',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e5a054b433839de6d58483ebbb308a70c349d65c' => 
     array (
       0 => 'C:\\laragon\\www\\projet-festival\\templates\\index.tpl',
-      1 => 1604791082,
+      1 => 1605274678,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fa72b2b0336c4_93115861 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fae8ce1a4b677_43973753 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
     <head>
@@ -62,6 +62,8 @@ function content_5fa72b2b0336c4_93115861 (Smarty_Internal_Template $_smarty_tpl)
                 
 
             </section>
+            <p><?php echo $_smarty_tpl->tpl_vars['erreurs']->value;?>
+</p>
         </main>
         <footer>
             <p>Nino BELIC & Hugo BENAB DEL K</p>

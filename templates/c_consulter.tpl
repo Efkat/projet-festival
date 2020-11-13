@@ -19,74 +19,80 @@
                 <h3>
                     <section>
                         <dl>
-                            <dt>Nom Groupe</dt>
-                            <dd>{$candidature[0]}</dd>
+                                <dt>Nom Groupe</dt>
+                                <dd>{$candidature['nom_groupe']}</dd>
 
-                            <dt>Département</dt>
-                            <dd>{$candidature[1]}</dd>
+                                <dt>Département</dt>
+                                <dd>{$candidature['departement']}</dd>
 
-                            <dt>Style</dt>
-                            <dd>{$candidature[2]}</dd>
+                                <dt>Style</dt>
+                                <dd>{$candidature['nom_style']}</dd>
 
-                            <dt>Scène</dt>
-                            <dd>{$candidature[3]}</dd>
+                                <dt>Scène</dt>
+                                <dd>{$candidature['nom_type']}</dd>
 
-                            <dt>Année de Création</dt>
-                            <dd>{$candidature[4]}</dd>
+                                <dt>Année de Création</dt>
+                                <dd>{$candidature['annee_creation']}</dd>
 
-                            <dt>Présentation</dt>
-                            <dd>{$candidature[5]}</dd>
+                                <dt>Présentation</dt>
+                                <dd>{$candidature['presentation']}</dd>
 
-                            <dt>Expérience</dt>
-                            <dd>{$candidature[6]}</dd>
+                                <dt>Expérience</dt>
+                                <dd>{$candidature['experience']}</dd>
 
-                            <dt>Site Web</dt>
-                            <dd>{$candidature[7]}</dd>
+                                <dt>Site Web</dt>
+                                <dd>{$candidature['site_web']}</dd>
 
-                            <dt>Soundcloud</dt>
-                            <dd>{$candidature[8]}</dd>
+                                <dt>Soundcloud</dt>
+                                <dd>{$candidature['soundcloud']}</dd>
 
-                            <dt>Youtube</dt>
-                            <dd>{$candidature[9]}</dd>
+                                <dt>Youtube</dt>
+                                <dd>{$candidature['youtube']}</dd>
 
-                            <dt>Statut Association</dt>
-                            <dd>{$candidature[10]}</dd>
+                                <dt>Statut Association</dt>
+                                <dd>{$candidature['statut_assoc']}</dd>
 
-                            <dt>Sacem</dt>
-                            <dd>{$candidature[11]}</dd>
+                                <dt>Sacem</dt>
+                                <dd>{$candidature['is_sacem']}</dd>
 
-                            <dt>Producteur</dt>
-                            <dd>{$candidature[12]}</dd>
+                                <dt>Producteur</dt>
+                                <dd>{$candidature['have_producer']}</dd>
 
-                            <dt>Membres</dt>
-                            <dd>{$candidature[13]}</dd>
+                                <dt>Membres</dt>
+                                <dd>
+                                    <ul>
+                                    {foreach from=$membres item=membre}
+                                        <li>
+                                            <p>{$membre[0]}</p>
+                                            <p>{$membre[1]}</p>
+                                            <p>{$membre[2]}</p>
+                                        </li>
+                                    {/foreach}
+                                    </ul>
+                                
+                                </dd>
 
-                            <dt>Fiche Technique</dt>
-                            <dd>{$candidature[14]}</dd>
 
-                            <dt>Sacem</dt>
-                            <dd>{$candidature[15]}</dd>
+                                {* ???
+                                <dt>Fiche Technique</dt>
+                                <dd>{$candidature['fiche_technique']}</dd>
+                                *}
 
+                                {*Files
 
+                                <dt>Image</dt>
+                                <dd>{$files[16]}</dd>
 
-                            {*Files*}
+                                <dt>Piste 1</dt>
+                                <dd>{$files[17]}</dd>
 
-                            <dt>Image 1</dt>
-                            <dd>{*$images[0]*}</dd>
+                                <dt>Piste 2</dt>
+                                <dd>{$files[18]}</dd>
 
-                            <dt>Image 2</dt>
-                            <dd>{*$images[1]*}</dd>
-
-                            <dt>Piste 1</dt>
-                            <dd>{*$pistes[0]*}</dd>
-
-                            <dt>Piste 2</dt>
-                            <dd>{*$pistes[1]*}</dd>
-
-                            <dt>Piste 3</dt>
-                            <dd>{*$pistes[2]*}</dd>
-
-                        </dl>
+                                <dt>Piste 3</dt>
+                                <dd>{$files[19]}</dd>
+                                *}
+                            </dl>
                             
 
                     </section>
