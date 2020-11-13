@@ -43,6 +43,7 @@
                 
 
             </section>
+            <p>{$erreurs}</p>
         </main>
         <footer>
             <p>Nino BELIC & Hugo BENAB DEL K</p>

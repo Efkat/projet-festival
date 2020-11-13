@@ -14,6 +14,7 @@ Flight::route('/', function (){
     Flight::render('templates/index.tpl',array(
         'name'=>isset($_SESSION['nom'])?$_SESSION['nom']:null,
         'candidature'=>isset($_SESSION['candidature'])?$_SESSION['candidature']:null,
+        'erreurs'=>null
     
     ));
 });
@@ -22,7 +23,7 @@ Flight::route('/', function (){
  * Name = "liste"
  */
 Flight::route('/liste', function (){
-    if($_SESSION['nom']=='admin')
+    if($_SESSION['nom']=='admin') //seul l'admin peut accèder à la liste
     {
         $db=Flight::db();
         $lignes=$db->query("SELECT nom_groupe,departement,nom_type,nom_style,annee_creation,presentation,experience FROM candidature,style,departement,scene WHERE scene.num_type=candidature.id_scene AND num_dept=id_departement AND style.id_style=candidature.id_style;");
@@ -34,20 +35,13 @@ Flight::route('/liste', function (){
 });
 
 /**
- * Name = "profil"
- */
-Flight::route("/profil", function (){
-    Flight::render('templates/profil.tpl', array(null));
-});
-
-/**
  * Name = "details"
  */
 Flight::route("/details/@nom_groupe", function ($nom_groupe){
-    if($_SESSION['nom']=='admin')
+    if($_SESSION['nom']=='admin') //seul l'admin peut accèder au détails d'une candidature
     {
         $db=Flight::db();
-        $candidature=$db->query("SELECT * /*nom_groupe,departement,nom_type,nom_style,annee_creation,presentation,experience */ 
+        $candidature=$db->query("SELECT *
                                 FROM candidature,style,departement,scene 
                                 WHERE scene.num_type=candidature.id_scene 
                                 AND num_dept=id_departement 
@@ -85,7 +79,6 @@ Flight::route("/details/@nom_groupe", function ($nom_groupe){
                 $membres[$i]=explode('/',$membre);
                 $i++;
             }
-            
         }
 
         Flight::render('templates/details.tpl', array('candidature'=>$candidature,'membres'=>$membres));
@@ -95,15 +88,24 @@ Flight::route("/details/@nom_groupe", function ($nom_groupe){
 });
 
 
-
-
-
-
 /**
  * Name = "register"
  */
 Flight::route('GET /register',function(){
-    Flight::render('templates/register.tpl',array('erreurs'=>null,'old_form'=>null));
+    if(!isset($_SESSION['nom'])) //seulement si déconnecté
+    {
+        Flight::render('templates/register.tpl',array('erreurs'=>null,'old_form'=>null));
+    }
+    else 
+    {
+        Flight::render('templates/index.tpl',array(
+            'name'=>isset($_SESSION['nom'])?$_SESSION['nom']:null,
+            'candidature'=>isset($_SESSION['candidature'])?$_SESSION['candidature']:null,
+            'erreurs'=>'Vous devez vous déconnecter pour vous inscrire!'
+         ));
+    }
+    
+    
 });
 
 /**
@@ -163,7 +165,21 @@ Flight::route('POST /register',function(){
  * Name = "login"
  */
 Flight::route("GET /login", function (){
-    Flight::render('templates/login.tpl', array('erreurs'=>null,'old_form'=>null));
+    if(!isset($_SESSION['nom']))
+    {
+        Flight::render('templates/login.tpl', array(
+            'erreurs'=>null,
+            'old_form'=>null));
+    }
+    else 
+    {
+        Flight::render('templates/index.tpl',array(
+            'name'=>isset($_SESSION['nom'])?$_SESSION['nom']:null,
+            'candidature'=>isset($_SESSION['candidature'])?$_SESSION['candidature']:null,
+            'erreurs'=>'Vous devez vous déconnecter pour vous connecter!'
+         ));
+    }
+    
 });
 
 Flight::route("POST /login", function (){                   
@@ -211,7 +227,9 @@ Flight::route("POST /login", function (){
 Flight::route("/logout",function(){
     session_destroy();
     unset($_SESSION);
-    Flight::render("templates/index.tpl",array('name'=>null));
+    Flight::render("templates/index.tpl",array(
+        'name'=>null,
+        'erreurs'=>null));
 });
 
 /**
@@ -252,7 +270,7 @@ Flight::route("GET /candidature", function (){
 /**
  * Name = "candidature-traitement"
  */
-Flight::route("POST /candidature", function(){
+Flight::route("POST /candidature", function(){  
     $db = Flight::db();
     $erreur = "";
     //Vérification si tous les champs nécessaires sont présents
@@ -264,11 +282,6 @@ Flight::route("POST /candidature", function(){
     && isset($_POST['departement'])
     && isset($_POST['style']) 
     && isset($_POST['scene'])
-    && file_exists($_FILES['image1'])
-    && file_exists($_FILES['image2'])
-    && file_exists($_FILES['piste1'])
-    && file_exists($_FILES['piste2'])
-    && file_exists($_FILES['piste3'])
     && !empty($_POST['membres']))){
         //Vérifie le nom du groupe
         if(strlen($_POST['nom_groupe'])){
@@ -429,11 +442,48 @@ Flight::route("/c_consulter", function (){
             //sinon : redirection au formulaire de la candidature 
             if(isset($_SESSION['candidature']))
             {
+                $db=Flight::db();
+                $candidature=$_SESSION['candidature'];
+                $candidature=$db->query("SELECT * FROM candidature,style,departement,scene WHERE scene.num_type=candidature.id_scene AND num_dept=id_departement AND style.id_style=candidature.id_style AND nom_groupe='$candidature';");
+                $candidature=$candidature->fetch();
+
+                //Gestion condition statut_assoc,sacem,producteur
+                //on peut le faire aussi sur smarty (dans le tpl)
+                if($candidature['statut_assoc']==0)
+                {
+                    $candidature['statut_assoc']="Non";
+                }
+                else $candidature['statut_assoc']="Oui";
+
+                if($candidature['is_sacem']==0)
+                {
+                    $candidature['is_sacem']="Non";
+                }
+                else $candidature['is_sacem']="Oui";
+
+                if($candidature['have_producer']==0)
+                {
+                    $candidature['have_producer']="Non";
+                }
+                else $candidature['have_producer']="Oui";
+                
+                //Gestion membres
+                if($candidature['membres']!=null)
+                {   //dodo1_nom/dodo1_prenom/violon,dodo2_nom/dodo2_prenom/triangle
+                    $i=0;
+                    foreach(explode(',',$candidature['membres']) as $membre)
+                    {
+                        $membres[$i]=explode('/',$membre);
+                        $i++;
+                    }
+                }
+
                 Flight::render('templates/c_consulter.tpl', array(
                     'name'=>$_SESSION['nom'],
-                    'candidature'=>null,
+                    'candidature'=>$candidature,
                     'images'=>null,
-                    'pistes'=>null
+                    'pistes'=>null,
+                    'membres'=>null
                 )); 
             }
             else 
