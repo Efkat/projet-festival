@@ -11,7 +11,10 @@ Flight::register('db', 'PDO', array('mysql:host=127.0.0.1;dbname=festival','root
  */
 Flight::route('/', function (){
     //si on a défini le nom de session, on l'injecte au template, sinon : null
-    Flight::render('templates/index.tpl',array('name'=>isset($_SESSION['nom'])?$_SESSION['nom']:null, 'candidature'=>isset($_SESSION['candidature'])?$_SESSION['candidature']:null, 'erreurs'=>null));
+    $db=Flight::db();
+    $candidature=$db->query("SELECT have_candidature FROM utilisateur");
+    $candidature=$candidature->fetch();
+    Flight::render('templates/index.tpl',array('name'=>isset($_SESSION['nom'])?$_SESSION['nom']:null, 'candidature'=>$candidature, 'erreurs'=>null));
 });
 
 /**
@@ -113,7 +116,7 @@ Flight::route('POST /register',function(){
     //sinon => affichage erreurs
     if($erreurs==""){
         $pswd=password_hash($pswd,PASSWORD_DEFAULT);
-        $requete=$db->prepare("INSERT INTO utilisateur (`id_user`,`nom_user`,`password`,`email`) VALUES (NULL,:nom,:pswd,:mail);");
+        $requete=$db->prepare("INSERT INTO utilisateur (`id_user`,`nom_user`,`password`,`email`,`have_candidature`) VALUES (NULL,:nom,:pswd,:mail,0);");
         $requete->execute(array(
             ':nom'=>$nom,
             ':pswd'=>$pswd,
@@ -287,6 +290,9 @@ Flight::route("POST /candidature", function(){
         //TODO : Insert upload files
         $insertFileName = $db->prepare("INSERT INTO fichier VALUES(NULL,':format', ':nomFichier', ':nomGroupe');");
         $_SESSION['candidature'] = $nomGroupe;
+
+        $user=$_SESSION['nom'];
+        $db->query("UPDATE utilisateur SET have_candidature=1 WHERE nom_user='$user';");
     }else{
         $depts=$db->query("SELECT departement,num_dept FROM departement;");
         $depts=$depts->fetchAll(PDO::FETCH_COLUMN);

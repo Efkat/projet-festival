@@ -23,7 +23,7 @@
             {*Si connecté*}
                 <p>Bonjour {$name}!</p>
 
-                {if $candidature==null && $name!=admin} 
+                {if $candidature==0 && $name!=admin} 
                 {*Si pas de candidature et si ce n'est pas l'admin*}
                     <a href="./candidature">Candidature</a>
                 {else}  

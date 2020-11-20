@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-11-13 13:40:49
+/* Smarty version 3.1.36, created on 2020-11-20 11:01:43
   from 'C:\laragon\www\projet-festival\templates\index.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fae8ce1a4b677_43973753',
+  'unifunc' => 'content_5fb7a217203487_32140219',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e5a054b433839de6d58483ebbb308a70c349d65c' => 
     array (
       0 => 'C:\\laragon\\www\\projet-festival\\templates\\index.tpl',
-      1 => 1605274678,
+      1 => 1605870102,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fae8ce1a4b677_43973753 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fb7a217203487_32140219 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
     <head>
@@ -45,7 +45,7 @@ function content_5fae8ce1a4b677_43973753 (Smarty_Internal_Template $_smarty_tpl)
                             <p>Bonjour <?php echo $_smarty_tpl->tpl_vars['name']->value;?>
 !</p>
 
-                <?php if ($_smarty_tpl->tpl_vars['candidature']->value == null && $_smarty_tpl->tpl_vars['name']->value != 'admin') {?> 
+                <?php if ($_smarty_tpl->tpl_vars['candidature']->value == 0 && $_smarty_tpl->tpl_vars['name']->value != 'admin') {?> 
                                     <a href="./candidature">Candidature</a>
                 <?php } else { ?>  
                                         <?php if ($_smarty_tpl->tpl_vars['name']->value == 'admin') {?>
