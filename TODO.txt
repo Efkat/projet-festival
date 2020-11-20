@@ -5,7 +5,7 @@
 -vérifier conditions des routes selon qui est connecté
  (admin : peut pas candidature etc)
 
--candidature : se rappeler du fait que la candidature a DEJA été faite
+-redirection apres POST candidature validé
 
 [HUGO, en cours]
 -améliorer saisie des membres dans formulaire candidature
