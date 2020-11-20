@@ -5,6 +5,8 @@
 -vérifier conditions des routes selon qui est connecté
  (admin : peut pas candidature etc)
 
--améliorer saisie des membres dans formulaire candidature
+-candidature : se rappeler du fait que la candidature a DEJA été faite
 
+[HUGO, en cours]
+-améliorer saisie des membres dans formulaire candidature
 -style(s) (avec site)

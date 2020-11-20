@@ -75,11 +75,7 @@ Flight::route('GET /register',function(){
     if(!isset($_SESSION['nom'])){ //seulement si déconnecté
         Flight::render('templates/register.tpl',array('erreurs'=>null,'old_form'=>null));
     }else{
-        Flight::render('templates/index.tpl',array(
-            'name'=>isset($_SESSION['nom'])?$_SESSION['nom']:null,
-            'candidature'=>isset($_SESSION['candidature'])?$_SESSION['candidature']:null,
-            'erreurs'=>'Vous devez vous déconnecter pour vous inscrire!'
-         ));
+        Flight::redirect('/');
     }
 });
 
@@ -131,18 +127,12 @@ Flight::route('POST /register',function(){
  * Name = "login"
  */
 Flight::route("GET /login", function (){
-    if(!isset($_SESSION['nom'])){
+    if(!isset($_SESSION['nom'])){ //seulement si déconnecté
         Flight::render('templates/login.tpl', array(
             'erreurs'=>null,
             'old_form'=>null));
     }else{
         Flight::redirect('/');
-        /*
-        Flight::render('templates/index.tpl',array(
-            'name'=>isset($_SESSION['nom'])?$_SESSION['nom']:null,
-            'candidature'=>isset($_SESSION['candidature'])?$_SESSION['candidature']:null,
-            'erreurs'=>'Vous devez vous déconnecter pour vous connecter!'
-         ));*/
     }  
 });
 
@@ -187,7 +177,7 @@ Flight::route("/logout",function(){
  * Name = "candidature"
  */
 Flight::route("GET /candidature", function (){
-    if(isset($_SESSION['nom'])){
+    if(isset($_SESSION['nom'])){ //seulement si connecté 
         if($_SESSION['nom']=='admin'){
             Flight::redirect('/liste');
         }
@@ -318,8 +308,7 @@ Flight::route("POST /candidature", function(){
  * Name = "profil_consulter"
  */
 Flight::route("/c_consulter", function (){
-    //si on a défini le nom de session, on l'injecte au template, sinon : null
-    if(isset($_SESSION['nom']))
+    if(isset($_SESSION['nom'])) //seulement si connecté
     {
         if($_SESSION['nom']=='admin'){
             Flight::redirect('/liste');
@@ -350,15 +339,15 @@ Flight::route("/c_consulter", function (){
                 else $candidature['have_producer']="Oui";
                 
                 //Gestion membres
-                if($candidature['membres']!=null){   //dodo1_nom/dodo1_prenom/violon,dodo2_nom/dodo2_prenom/triangle
+                if($candidature['membres']!=null){   //dodo1_nom/dodo1_prenom/violon\dodo2_nom/dodo2_prenom/triangle
                     $i=0;
-                    foreach(explode(',',$candidature['membres']) as $membre){
+                    foreach(explode('\\',$candidature['membres']) as $membre){
                         $membres[$i]=explode('/',$membre);
                         $i++;
                     }
                 }
 
-                Flight::render('templates/c_consulter.tpl', array('name'=>$_SESSION['nom'],'candidature'=>$candidature,'images'=>null,'pistes'=>null,'membres'=>null)); 
+                Flight::render('templates/c_consulter.tpl', array('name'=>$_SESSION['nom'],'candidature'=>$candidature,'images'=>null,'pistes'=>null,'membres'=>$membres)); 
             }else{ Flight::redirect('/candidature'); }
         }
     }
@@ -369,7 +358,7 @@ Flight::route("/c_consulter", function (){
  * Name = "profil_edit"
  */
 Flight::route("/c_edit", function (){
-    if(isset($_SESSION['nom'])){
+    if(isset($_SESSION['nom'])){ //seulement si connecté
         if($_SESSION['nom']=='admin'){
             Flight::redirect('/liste');
         }else{
