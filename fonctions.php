@@ -136,11 +136,13 @@ Flight::route("GET /login", function (){
             'erreurs'=>null,
             'old_form'=>null));
     }else{
+        Flight::redirect('/');
+        /*
         Flight::render('templates/index.tpl',array(
             'name'=>isset($_SESSION['nom'])?$_SESSION['nom']:null,
             'candidature'=>isset($_SESSION['candidature'])?$_SESSION['candidature']:null,
             'erreurs'=>'Vous devez vous déconnecter pour vous connecter!'
-         ));
+         ));*/
     }  
 });
 
