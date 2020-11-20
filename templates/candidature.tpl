@@ -38,12 +38,12 @@
                 <form action="./candidature" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="nom_groupe-input">Nom du groupe : </label>
-                        <input type="text" class="form-control" id="nom_groupe-input" placeholder="Entrez le nom du groupe" value="{$old_form['nom_groupe']}" required>
+                        <input type="text" class="form-control" id="nom_groupe-input" placeholder="Entrez le nom du groupe" value="{$old_form['nom_groupe']}" name="nom_groupe" required>
 
                         <label for="departement-input">Département d'origine : </label>
                         <select class="custom-select" name="departement" id="departement-input" required>
                             {foreach from=$depts key=num item=nom}
-                                <option value="{$num}" {if $num==$old_form['departement']} selected {/if}>{$num} - {$nom} </option>
+                                <option value="{$num}" {if $num==$old_form['departement']} selected {/if}>{$nom}</option>
                             {/foreach} 
                         </select>
                         
@@ -105,8 +105,8 @@
                         
                         <div> {*Vérification ?*}
                             <div>
-                                <button id="add" class="btn btn-outline-info">Ajouter</button>
-                                <button id="delete" class="btn btn-outline-warning">Supprimer</button>
+                                <button id="add" class="btn btn-outline-info" type="button">Ajouter</button>
+                                <button id="delete" class="btn btn-outline-warning" type="button">Supprimer</button>
                             </div>
                             <div id="container" class="d-flex flex-wrap">
                                 <section class="card text-white bg-primary m-3" style="max-width: 20rem">

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-11-17 21:11:23
+/* Smarty version 3.1.36, created on 2020-11-20 09:46:16
   from 'C:\laragon\www\projet-festival\templates\candidature.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fb43c7b8c0d53_22940505',
+  'unifunc' => 'content_5fb7906805d549_08971204',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b2202afa16af64e094307ddedb39ec22a579a904' => 
     array (
       0 => 'C:\\laragon\\www\\projet-festival\\templates\\candidature.tpl',
-      1 => 1605647482,
+      1 => 1605865571,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fb43c7b8c0d53_22940505 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fb7906805d549_08971204 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
     <head>
@@ -42,7 +42,7 @@ function content_5fb43c7b8c0d53_22940505 (Smarty_Internal_Template $_smarty_tpl)
                     <div class="form-group">
                         <label for="nom_groupe-input">Nom du groupe : </label>
                         <input type="text" class="form-control" id="nom_groupe-input" placeholder="Entrez le nom du groupe" value="<?php echo $_smarty_tpl->tpl_vars['old_form']->value['nom_groupe'];?>
-" required>
+" name="nom_groupe" required>
 
                         <label for="departement-input">Département d'origine : </label>
                         <select class="custom-select" name="departement" id="departement-input" required>
@@ -53,9 +53,8 @@ if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['num']->value => 
 $_smarty_tpl->tpl_vars['nom']->do_else = false;
 ?>
                                 <option value="<?php echo $_smarty_tpl->tpl_vars['num']->value;?>
-" <?php if ($_smarty_tpl->tpl_vars['num']->value == $_smarty_tpl->tpl_vars['old_form']->value['departement']) {?> selected <?php }?>><?php echo $_smarty_tpl->tpl_vars['num']->value;?>
- - <?php echo $_smarty_tpl->tpl_vars['nom']->value;?>
- </option>
+" <?php if ($_smarty_tpl->tpl_vars['num']->value == $_smarty_tpl->tpl_vars['old_form']->value['departement']) {?> selected <?php }?>><?php echo $_smarty_tpl->tpl_vars['nom']->value;?>
+</option>
                             <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> 
@@ -142,8 +141,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <input id="have_producteur-input" name="have_producteur" type="checkbox">
                         
                         <div>                             <div>
-                                <button id="add" class="btn btn-outline-info">Ajouter</button>
-                                <button id="delete" class="btn btn-outline-warning">Supprimer</button>
+                                <button id="add" class="btn btn-outline-info" type="button">Ajouter</button>
+                                <button id="delete" class="btn btn-outline-warning" type="button">Supprimer</button>
                             </div>
                             <div id="container" class="d-flex flex-wrap">
                                 <section class="card text-white bg-primary m-3" style="max-width: 20rem">

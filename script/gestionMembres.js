@@ -30,7 +30,8 @@ addButton.addEventListener("click", function (event) {
 });
 
 //Member confirmation
-addButton.addEventListener('click', function (){
+addButton.addEventListener('click', function (event){
+    event.preventDefault();
     cardContainer.lastElementChild.querySelector('.btn-sm').addEventListener('click', function (){
         membersInformations += "\\" + getCardInformation(cardContainer.lastElementChild)
         membersDisableInput.setAttribute("value", membersInformations)
