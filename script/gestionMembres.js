@@ -12,17 +12,18 @@ addButton.addEventListener("click", function (event) {
     event.preventDefault();
     if (membersCount < membersMax) {
         membersCount++
-        cardContainer.insertAdjacentHTML('beforeend', ' <section class="card text-white bg-primary m-3" style="max-width: 20rem">\n' +
-            '            <div class="card-header">MEMBRE 1</div>\n' +
-            '            <div class="card-body">\n' +
-            '                <div class="form-group">\n' +
-            '                    <input type="text" class="form-control my-1 nom-input" placeholder="Nom">\n' +
-            '                    <input type="text" class="form-control my-1 prenom-input" placeholder="Prénom">\n' +
-            '                    <input type="text" class="form-control my-1 instrument-input" placeholder="Instrument">\n' +
-            '                </div>\n' +
-            '                <button type="button" class="btn btn-info btn-sm">Confirmer membre</button>\n' +
-            '            </div>\n' +
-            '        </section>')
+        cardContainer.insertAdjacentHTML('beforeend', '<section class="card border-secondary m-2" style="width: 12rem">\n' +
+            '                                    <div class="card-header">MEMBRE 1</div>\n' +
+            '                                    <div class="card-body">\n' +
+            '                                        <div class="form-group">\n' +
+            '                                            <input type="text" class="form-control my-1 nom-input" placeholder="Nom">\n' +
+            '                                            <input type="text" class="form-control my-1 prenom-input" placeholder="Prénom">\n' +
+            '                                            <input type="text" class="form-control my-1 instrument-input"\n' +
+            '                                                placeholder="Instrument">\n' +
+            '                                        </div>\n' +
+            '                                        <button type="button" class="btn btn-sm btn-outline-info">Confirmer membre</button>\n' +
+            '                                    </div>\n' +
+            '                                </section>')
         updateCardsNumber()
     } else {
         alert("Nombre de membres maximale atteint")
