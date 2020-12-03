@@ -1,40 +1,26 @@
+@font-face {
+    font-family: "Nerko One";
+    src: url("/ressources/NerkoOne-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("/ressources/Montserrat-Regular.ttf");
+}
 *{
-    font-family: Carlito,Arial, Helvetica, sans-serif;
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
 }
-a{
-    display:block;
-    margin:10px 0;
-
-    text-decoration: unset;
-    color:rgb(11, 97, 167);
-}
-a:hover
-{
-    text-decoration: underline;
-    color:rgb(167, 11, 11);
+h1{
+    font-family: "Nerko One",Arial, Helvetica, sans-serif;
+    font-size: 5rem;
 }
 
-
-label{
-    display:block;
-}
-div{
-    margin:20px;
-}
-.cancel{
-    margin:20px 0;
-}
-dt{
-    font-weight: 100;
-}
-dt::after{
-    display:block;
-    margin:20;
+h2{
+    font-family: "Nerko One",Arial, Helvetica, sans-serif;
+    font-size: 3rem;
 }
 
-
-.membres_model{
-    margin:0px 30px;
-    color:grey;
-    font-size:15px;
+img{
+    width: 100vw;
+    height: auto;
 }
