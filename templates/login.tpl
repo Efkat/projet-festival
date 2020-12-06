@@ -8,7 +8,7 @@
             <div class="card w-25 mx-auto p-3 m-5">
                 <form action="./login" method="POST">
                     <div class="form-group row">
-                        <label for="nom-input"class="col-sm-2 col-form-label">Nom</label>
+                        <label for="nom-input" class="col-sm-2 col-form-label">Nom</label>
                         <input name="nom" id="nom-input" type="text" value="{$old_form['nom']}" class="col-sm-10" required>
                     </div>
                     <div class="form-group row">

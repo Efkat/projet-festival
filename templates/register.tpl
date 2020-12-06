@@ -4,26 +4,28 @@
 {/block}
 {block name="content"}
         <main>
-            <h1>S'enregistrer</h1>
-            <section>
+            <h1 class="text-center">S'enregistrer</h1>
+            <div class="card w-25 mx-auto p-3 m-5">
                 <form action="./register" method="POST">
-                    <div>
-                        <label for="nom">Nom</label>
-                        <input name="nom" type="text" value="{$old_form['nom']}"> 
+                    <div class="form-group row">
+                        <label for="nom-input" class="col-sm-2 col-form-label">Nom</label>
+                        <input id="nom-input" name="nom" type="text" value="{$old_form['nom']}" class="col-sm-10" required>
                     </div>
-                    <div>
-                        <label for="email">Email</label>
-                        <input name="email" type="text" value="{$old_form['email']}"> 
+                    <div class="form-group row">
+                        <label for="email-input" class="col-sm-2 col-form-label">Email</label>
+                        <input id="email-input" name="email" type="email" value="{$old_form['email']}" class="col-sm-10" required>
                     </div>
-                    <div>
-                        <label for="pswd">Mot De Passe:</label>
-                        <input name="pswd" type="password">
+                    <div class="form-group row" >
+                        <label for="pswd-input" class="col-sm-4 col-form-label">Mot De Passe</label>
+                        <input id="pswd-input" name="pswd" type="password"  class="col-sm-8" required>
                     </div>
-                        <input type="submit" value="Envoyer">
+                    <div class="lead text-center">
+                        <button type="submit" class="btn btn-success">Inscription</button>
+                    </div>
                 </form>
                 <a class="cancel" href="./">Annuler</a>
-                <p>{$erreurs}</p>
+                <p class="text-primary m-3 font-weight-bold p-2">{$erreurs}</p>
 
-            </section>
+            </div>
         </main>
 {/block}
