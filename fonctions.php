@@ -291,9 +291,32 @@ Flight::route("POST /candidature", function(){
         $insertCandidRequest->execute(array(':nomGroupe' => $nomGroupe,':idDepartement' => (int)$_POST['departement']+1,':idScene' => (int)$_POST['scene']+1,':idRepresentant' => (int)$_SESSION['id'],':idStyle' => (int)$_POST['style']+1,':anneeCreation' => (int)$anneeCreation,':presentation' => $presentation,':experience' => $experience,':siteWeb' => $siteWeb,':soundcloud' => $soundcloud,':youtube' => $youtube,':statutAssoc' => (int)$statutAssoc,':isSacem' => (int)$isSacem,':haveProducer' => (int)$haveProducer,            ':membres' => $_POST['membres']));
         
         //TODO : Insert upload files
-        $insertFileName = $db->prepare("INSERT INTO fichier VALUES(NULL,':format', ':nomFichier', ':nomGroupe');");
-        $_SESSION['candidature'] = $nomGroupe;
+        $blocs=explode('/',$_FILES['image1']['type']);
+        $extensions[0]=$blocs[count($blocs)-1];
+        $blocs=explode('/',$_FILES['image2']['type']);
+        $extensions[1]=$blocs[count($blocs)-1];
+        $blocs=explode('/',$_FILES['piste1']['type']);
+        $extensions[2]=$blocs[count($blocs)-1];
+        $blocs=explode('/',$_FILES['piste2']['type']);
+        $extensions[3]=$blocs[count($blocs)-1];
+        $blocs=explode('/',$_FILES['piste3']['type']);
+        $extensions[4]=$blocs[count($blocs)-1];
+        
+        $insertFileName = $db->prepare("INSERT INTO fichier(format,nom_fichier,nom_groupe) VALUES(:format, :nomFichier, :nomGroupe)");
+        $insertFileName->execute(array(':format'=>$extensions[0], ':nomFichier'=>'image1', ':nomGroupe'=>$nomGroupe));
+        $insertFileName->execute(array(':format'=>$extensions[1], ':nomFichier'=>'image2', ':nomGroupe'=>$nomGroupe));
+        $insertFileName->execute(array(':format'=>$extensions[2], ':nomFichier'=>'piste1', ':nomGroupe'=>$nomGroupe));
+        $insertFileName->execute(array(':format'=>$extensions[3], ':nomFichier'=>'piste2', ':nomGroupe'=>$nomGroupe));
+        $insertFileName->execute(array(':format'=>$extensions[4], ':nomFichier'=>'piste3', ':nomGroupe'=>$nomGroupe));
 
+        mkdir("data/$nomGroupe");
+        move_uploaded_file($_FILES['image1']['tmp_name'],"data/$nomGroupe/image1.$extensions[0]");
+        move_uploaded_file($_FILES['image2']['tmp_name'],"data/$nomGroupe/image2.$extensions[1]");
+        move_uploaded_file($_FILES['piste1']['tmp_name'],"data/$nomGroupe/piste1.$extensions[2]");
+        move_uploaded_file($_FILES['piste2']['tmp_name'],"data/$nomGroupe/piste2.$extensions[3]");
+        move_uploaded_file($_FILES['piste3']['tmp_name'],"data/$nomGroupe/piste3.$extensions[4]");
+        
+        $_SESSION['candidature'] = $nomGroupe;
         $user=$_SESSION['nom'];
         $db->query("UPDATE utilisateur SET have_candidature=1 WHERE nom_user='$user';");
         Flight::render('templates/success.tpl',array(null));
