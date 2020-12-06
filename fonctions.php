@@ -381,7 +381,7 @@ Flight::route("/c_edit", function (){
                 $styles=$styles->fetchAll(PDO::FETCH_COLUMN);
                 $scenes=$db->query("SELECT nom_type FROM scene;");
                 $scenes=$scenes->fetchAll(PDO::FETCH_COLUMN);
-                Flight::render('templates/c_edit.tpl', array('erreurs'=>null,'candidature'=>null,'nom_depts'=>$nom_dept,'styles'=>$styles,'scenes'=>$scenes));
+                Flight::render('templates/c_edit.tpl', array('erreurs'=>null,'candidature'=>null,'nom_depts'=>$nom_depts,'styles'=>$styles,'scenes'=>$scenes));
             }else {Flight::redirect('/candidature');}
             //sinon : redirection au formulaire de la candidature
         }
