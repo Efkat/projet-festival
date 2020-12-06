@@ -111,7 +111,6 @@
                                         <input type="text" class="form-control my-1 instrument-input"
                                                placeholder="Instrument">
                                     </div>
-                                    <button type="button" class="btn btn-sm btn-outline-info">Confirmer membre</button>
                                 </div>
                             </section>
                         </div>

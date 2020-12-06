@@ -13,33 +13,40 @@ const cards = document.getElementsByClassName("card")
 //Add button
 addButton.addEventListener("click", function (event) {
     event.preventDefault();
-    if (membersCount < membersMax /*&& [verification non vide] */) {
-        
+    if (membersCount < membersMax) {
         //CONFIRMATION
         let inputs = cards[membersCount-1].querySelectorAll('input')
+        let atLeastOneIsEmpty = false;
         for (let j = 0; j < inputs.length; j++) {
-            inputs[j].setAttribute('disabled', "")
+            if(inputs[j].value==""){ atLeastOneIsEmpty=true; }
+            else{
+                inputs[j].setAttribute('disabled', "")
+                inputs[j].setAttribute('style', "color:rgb(170, 169, 169);font-style:italic;")
+            }
         }
-        if(membersCount>1){ membersInformations+="\\" }
-        membersInformations += getCardInformation(cards[membersCount-1])
-        membersDisableInput.setAttribute("value", membersInformations)
-        
-        //ADD
-        membersCount++
-        cardContainer.insertAdjacentHTML('beforeend', '<section class="card border-secondary m-2" style="width: 12rem">\n' +
-            '                                    <div class="card-header">MEMBRE 1</div>\n' +
-            '                                    <div class="card-body">\n' +
-            '                                        <div class="form-group">\n' +
-            '                                            <input type="text" class="form-control my-1 nom-input" placeholder="Nom">\n' +
-            '                                            <input type="text" class="form-control my-1 prenom-input" placeholder="Prénom">\n' +
-            '                                            <input type="text" class="form-control my-1 instrument-input"\n' +
-            '                                                placeholder="Instrument">\n' +
-            '                                        </div>\n' +
-            '                                        <button type="button" class="btn btn-sm btn-outline-info">Confirmer membre</button>\n' +
-            '                                    </div>\n' +
-            '                                </section>')
-        alert(membersInformations)
-        updateCardsNumber()
+        if(!atLeastOneIsEmpty)
+        {
+            if(membersCount>1){ membersInformations+="\\" }
+            membersInformations += getCardInformation(cards[membersCount-1])
+            membersDisableInput.setAttribute("value", membersInformations)
+            
+            //ADD
+            membersCount++
+            cardContainer.insertAdjacentHTML('beforeend', '<section class="card border-secondary m-2" style="width: 12rem">\n' +
+                '                                    <div class="card-header">MEMBRE 1</div>\n' +
+                '                                    <div class="card-body">\n' +
+                '                                        <div class="form-group">\n' +
+                '                                            <input type="text" class="form-control my-1 nom-input" placeholder="Nom">\n' +
+                '                                            <input type="text" class="form-control my-1 prenom-input" placeholder="Prénom">\n' +
+                '                                            <input type="text" class="form-control my-1 instrument-input"\n' +
+                '                                                placeholder="Instrument">\n' +
+                '                                        </div>\n' +
+                '                                    </div>\n' +
+                '                                </section>')
+            alert(membersInformations)
+            updateCardsNumber()
+        }
+        else{ alert("Veuillez saisir tous les champs")}
         
     } else {
         alert("Nombre de membres maximale atteint")
