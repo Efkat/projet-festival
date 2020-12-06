@@ -14,8 +14,8 @@
     {block name="content"}
         Default content
     {/block}
-    <footer class="page-footer font-small blue pt-4 border-top">
-        <div class="container-fluid text-center text-md-left">
+    <footer class="footer-page font-small blue pt-4 border-top">
+        <div class="container text-center text-md-left">
             <div class="row">
                 <div class="col-md-6 mt-md-0 mt-3">
                     <h5 class="text-uppercase">Good Rockin' Festival</h5>

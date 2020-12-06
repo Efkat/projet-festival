@@ -6,7 +6,7 @@
     <main>
         <div class="jumbotron w-75 mx-auto rounded m-5">
             <h2 class="text-center m-3 display-3">Bienvenue {if $name != null}{$name}{else}visiteur{/if} sur la page d'inscription !</h2>
-            <div class="card w-50" style="margin: 0 auto;">           
+            <div class="card w-50 p-4" style="margin: 0 auto;">
                 {if $name==null}
                     {*Si déconnecté*}
                     <a class="btn btn-primary btn-lg mt-2" href="./register">S'enregistrer</a>
