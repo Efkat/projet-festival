@@ -27,7 +27,7 @@
                 {/if}
                 <hr class="my-2">
                 <p class="lead text-center">
-                    <a class="btn btn-primary btn-lg " href="/logout" role="button">Déconnexion</a>
+                    <a class="btn btn-primary btn-lg " href="./logout" role="button">Déconnexion</a>
                 </p>
             {/if}
 

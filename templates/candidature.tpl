@@ -158,5 +158,5 @@
             <p>{$erreurs}</p>
         </section>
     </main>
-    <script src="../script/gestionMembres.js"></script>
+    <script src="./script/gestionMembres.js"></script>
 {/block}
