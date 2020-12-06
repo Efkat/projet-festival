@@ -148,7 +148,7 @@
                         <input name="piste3" class="form-control-file" id="piste3-input" type="file">
                     </div>
                     <div class="text-center">
-                        <input type="submit" value="Envoyer" class="btn btn-success btn-lg">
+                        <input type="submit" id="submit" value="Envoyer" class="btn btn-success btn-lg">
                     </div>
 
                 </div>
