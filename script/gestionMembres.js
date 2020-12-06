@@ -5,6 +5,7 @@ let membersDisableInput = document.getElementById('membresVariables')
 const membersMax = 8;
 const addButton = document.getElementById("add")
 const delButton = document.getElementById("delete")
+const submitButton = document.getElementById("submit")
 const cardContainer = document.getElementById("container")
 const cards = document.getElementsByClassName("card")
 
@@ -67,7 +68,16 @@ delButton.addEventListener("click", function (event) {
     }
 })
 
-
+//Submit Button
+submitButton.addEventListener("click",function (event) {
+    let inputs = cards[membersCount-1].querySelectorAll('input')
+    if(inputs[0].value!="" && inputs[1].value!="" && inputs[2].value!="")
+    {
+        if(membersCount>1){ membersInformations+="\\" }
+        membersInformations += getCardInformation(cards[membersCount-1])
+    }
+    alert(membersInformations);
+})
 
 /* FUNCTIONS */
 function getCardInformation(card) {
