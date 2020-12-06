@@ -10,11 +10,14 @@ Flight::register('db', 'PDO', array('mysql:host=127.0.0.1;dbname=festival','root
  * Name = "home"
  */
 Flight::route('/', function (){
-    //si on a défini le nom de session, on l'injecte au template, sinon : null
     $db=Flight::db();
-    $candidature=$db->query("SELECT have_candidature FROM utilisateur");
-    $candidature=$candidature->fetch();
-    Flight::render('templates/index.tpl',array('name'=>isset($_SESSION['nom'])?$_SESSION['nom']:null, 'candidature'=>$candidature, 'erreurs'=>null));
+    if(isset($_SESSION['nom'])) //seulement si connecté
+    {
+        $user=$_SESSION['nom'];
+        $candidature=$db->query("SELECT have_candidature FROM utilisateur WHERE nom_user='$user'");
+        $candidature=$candidature->fetch();
+    }
+    Flight::render('templates/index.tpl',array('name'=>isset($_SESSION['nom'])?$_SESSION['nom']:null, 'candidature'=>isset($_SESSION['nom'])?$candidature[0]:null, 'erreurs'=>null));
 });
 
 /**
@@ -284,15 +287,16 @@ Flight::route("POST /candidature", function(){
         }else{ $erreur = "Le format des pistes audio n'est pas correct (MP3)"; }
     }else{ $erreur = "Tous les champs nécessaires ne sont pas renseignés !"; }
     if($erreur == ""){
-        $insertCandidRequest = $db->prepare('INSERT INTO candidature VALUES(:nomGroupe,:idDepartement,:idStyle,:idRepresentant,:idScene,:anneeCreation,:presentation,:experience,:siteWeb,:soundcloud,:youtube,:statutAssoc,:isSacem,:haveProducer,:membres)');
-        $insertCandidRequest->execute(array(':nomGroupe' => $nomGroupe,':idDepartement' => (int)$_POST['departement'],':idScene' => (int)$_POST['scene'],':idRepresentant' => (int)$_SESSION['id'],':idStyle' => (int)$_POST['style'],':anneeCreation' => (int)$anneeCreation,':presentation' => $presentation,':experience' => $experience,':siteWeb' => $siteWeb,':soundcloud' => $soundcloud,':youtube' => $youtube,':statutAssoc' => (int)$statutAssoc,':isSacem' => (int)$isSacem,':haveProducer' => (int)$haveProducer,            ':membres' => $_POST['membres']));
-
+        $insertCandidRequest = $db->prepare('INSERT INTO candidature VALUES(:nomGroupe,:idDepartement,:idScene,:idRepresentant,:idStyle,:anneeCreation,:presentation,:experience,:siteWeb,:soundcloud,:youtube,:statutAssoc,:isSacem,:haveProducer,:membres)');
+        $insertCandidRequest->execute(array(':nomGroupe' => $nomGroupe,':idDepartement' => (int)$_POST['departement']+1,':idScene' => (int)$_POST['scene']+1,':idRepresentant' => (int)$_SESSION['id'],':idStyle' => (int)$_POST['style']+1,':anneeCreation' => (int)$anneeCreation,':presentation' => $presentation,':experience' => $experience,':siteWeb' => $siteWeb,':soundcloud' => $soundcloud,':youtube' => $youtube,':statutAssoc' => (int)$statutAssoc,':isSacem' => (int)$isSacem,':haveProducer' => (int)$haveProducer,            ':membres' => $_POST['membres']));
+        
         //TODO : Insert upload files
         $insertFileName = $db->prepare("INSERT INTO fichier VALUES(NULL,':format', ':nomFichier', ':nomGroupe');");
         $_SESSION['candidature'] = $nomGroupe;
 
         $user=$_SESSION['nom'];
         $db->query("UPDATE utilisateur SET have_candidature=1 WHERE nom_user='$user';");
+        Flight::redirect('/');
     }else{
         $depts=$db->query("SELECT departement,num_dept FROM departement;");
         $depts=$depts->fetchAll(PDO::FETCH_COLUMN);
