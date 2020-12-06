@@ -14,7 +14,7 @@
         <main>
             <h3>Enregistré!</h3>
             <p>Données transférées à la base!</p>
-            <a href="./login">Connexion</a>
+            <a href="./">Accueil</a>
         </main>   
         <footer>
 

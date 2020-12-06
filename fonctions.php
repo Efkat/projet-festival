@@ -296,7 +296,7 @@ Flight::route("POST /candidature", function(){
 
         $user=$_SESSION['nom'];
         $db->query("UPDATE utilisateur SET have_candidature=1 WHERE nom_user='$user';");
-        Flight::redirect('/');
+        Flight::render('templates/success.tpl',array(null));
     }else{
         $depts=$db->query("SELECT departement,num_dept FROM departement;");
         $depts=$depts->fetchAll(PDO::FETCH_COLUMN);

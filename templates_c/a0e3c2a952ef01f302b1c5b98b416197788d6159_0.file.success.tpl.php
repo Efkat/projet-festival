@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-11-13 13:23:57
+/* Smarty version 3.1.36, created on 2020-12-06 13:54:55
   from 'C:\laragon\www\projet-festival\templates\success.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fae88ed76c841_61312760',
+  'unifunc' => 'content_5fcce2af620e59_27359617',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a0e3c2a952ef01f302b1c5b98b416197788d6159' => 
     array (
       0 => 'C:\\laragon\\www\\projet-festival\\templates\\success.tpl',
-      1 => 1604791106,
+      1 => 1607262728,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fae88ed76c841_61312760 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fcce2af620e59_27359617 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html>
     <head>
@@ -37,7 +37,7 @@ function content_5fae88ed76c841_61312760 (Smarty_Internal_Template $_smarty_tpl)
         <main>
             <h3>Enregistré!</h3>
             <p>Données transférées à la base!</p>
-            <a href="./login">Connexion</a>
+            <a href="./">Accueil</a>
         </main>   
         <footer>
 
