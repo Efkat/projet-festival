@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="./styles/style.css">
-        <title>Candidature_Edit</title>
-    </head>
-    <body>
-        <header>
-            
-
-        </header>
+{extends file="base.tpl"}
+{block name="title"}
+    Editer Candidature
+{/block}
+{block name="content"}
         <main>
             <h1>Editer Candidature</h1>
             <section>
@@ -134,14 +126,5 @@
 
             </section>
         </main>
-        <footer>
-            <p>Nino BELIC & Hugo BENAB DEL K</p>
 
-        </footer>
-
-    </body>
-
-
-
-
-</html>
+{/block}

@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="./styles/style.css">
-        <meta charset="UTF-8">
-        <title>Candidature_Consulter</title>
-
-    </head>
-    <body>
-        <header>
-
-        
-        </header> 
+{extends file="base.tpl"}
+{block name="title"}
+    Consulter Candidature
+{/block}
+{block name="content"}
         <main>
             <h1>Consulter Candidature</h1>
             <section>
@@ -103,11 +94,4 @@
 
             
         </main>   
-        <footer>
-
-            
-        </footer>
-
-    </body>
-
-</html>
+{/block}

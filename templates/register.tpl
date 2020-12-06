@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="./styles/style.css">
-        <title>Register</title>
-    </head>
-    <body>
-        <header>
-            
-
-        </header>
+{extends file="base.tpl"}
+{block name="title"}
+    Register
+{/block}
+{block name="content"}
         <main>
             <h1>S'enregistrer</h1>
             <section>
@@ -34,14 +26,4 @@
 
             </section>
         </main>
-        <footer>
-            <p>Nino BELIC & Hugo BENAB DEL K</p>
-
-        </footer>
-
-    </body>
-
-
-
-
-</html>
+{/block}

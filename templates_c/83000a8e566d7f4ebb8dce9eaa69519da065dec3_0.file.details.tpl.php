@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-11-08 13:26:05
+/* Smarty version 3.1.36, created on 2020-12-06 17:55:13
   from 'C:\laragon\www\projet-festival\templates\details.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fa7f1ed0eeb52_46289606',
+  'unifunc' => 'content_5fcd1b018221b0_41236797',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '83000a8e566d7f4ebb8dce9eaa69519da065dec3' => 
     array (
       0 => 'C:\\laragon\\www\\projet-festival\\templates\\details.tpl',
-      1 => 1604841810,
+      1 => 1607277305,
       2 => 'file',
     ),
   ),
@@ -20,21 +20,48 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fa7f1ed0eeb52_46289606 (Smarty_Internal_Template $_smarty_tpl) {
-?><!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="../styles/style.css">
-        <meta charset="UTF-8">
-        <title>Details</title>
+function content_5fcd1b018221b0_41236797 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_loadInheritance();
+$_smarty_tpl->inheritance->init($_smarty_tpl, true);
+?>
 
-    </head>
-    <body>
-        <header>
+<?php 
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_2977888575fcd1b01810306_27288985', "title");
+?>
 
-        
-        </header> 
+<?php 
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_16129213575fcd1b01810f10_36694671', "content");
+$_smarty_tpl->inheritance->endChild($_smarty_tpl, "base.tpl");
+}
+/* {block "title"} */
+class Block_2977888575fcd1b01810306_27288985 extends Smarty_Internal_Block
+{
+public $subBlocks = array (
+  'title' => 
+  array (
+    0 => 'Block_2977888575fcd1b01810306_27288985',
+  ),
+);
+public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
+?>
+
+    Détails
+<?php
+}
+}
+/* {/block "title"} */
+/* {block "content"} */
+class Block_16129213575fcd1b01810f10_36694671 extends Smarty_Internal_Block
+{
+public $subBlocks = array (
+  'content' => 
+  array (
+    0 => 'Block_16129213575fcd1b01810f10_36694671',
+  ),
+);
+public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
+?>
+
         <main>
             <h1>Détails</h1>
             <section>
@@ -128,12 +155,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
             
         </main>   
-        <footer>
-
-            
-        </footer>
-
-    </body>
-
-</html><?php }
+<?php
+}
+}
+/* {/block "content"} */
 }
