@@ -215,126 +215,134 @@ Flight::route("GET /candidature", function (){
 Flight::route("POST /candidature", function(){  
     $db = Flight::db();
     $erreur = "";
-    //Vérification si tous les champs nécessaires sont présents
-    if((!empty($_POST['nom_groupe']) && !empty($_POST['annee_creation']) && !empty($_POST['presentation']) && !empty($_POST['experience']) && !empty($_POST['site_web']) && isset($_POST['departement']) && isset($_POST['style']) && isset($_POST['scene']) && !empty($_POST['membres']))){
-        //Vérifie le nom du groupe
-        if(strlen($_POST['nom_groupe'])){
-            $nomGroupe = htmlspecialchars(trim($_POST['nom_groupe']));
-        }else{ $erreur = "Le nom du groupe est trop long"; }
+    
+    if(!isset($_SESSION['candidature'])) //seulement si candidature pas déjà faite
+    {
 
-        //Vérifie l'année de création
-        if(strlen($_POST['annee_creation']) == 4){
-            $anneeCreation = htmlspecialchars($_POST['annee_creation']);
-        }else{ $erreur = "Le format de l'année de création n'est pas valide (ex: 2020)"; }
+        //Vérification si tous les champs nécessaires sont présents
+        if((!empty($_POST['nom_groupe']) && !empty($_POST['annee_creation']) && !empty($_POST['presentation']) && !empty($_POST['experience']) && !empty($_POST['site_web']) && isset($_POST['departement']) && isset($_POST['style']) && isset($_POST['scene']) && !empty($_POST['membres']))){
+            //Vérifie le nom du groupe
+            if(strlen($_POST['nom_groupe'])){
+                $nomGroupe = htmlspecialchars(trim($_POST['nom_groupe']));
+            }else{ $erreur = "Le nom du groupe est trop long"; }
 
-        //Vérifie la présentation
-        if(strlen($_POST['annee_creation']) <= 500){
-            $presentation = htmlspecialchars(trim($_POST['presentation']));
-        }else{ $erreur = "La présentation doit faire 500 caractères maximum !"; }
+            //Vérifie l'année de création
+            if(strlen($_POST['annee_creation']) == 4){
+                $anneeCreation = htmlspecialchars($_POST['annee_creation']);
+            }else{ $erreur = "Le format de l'année de création n'est pas valide (ex: 2020)"; }
 
-        //Vérifie l'expérience
-        if(strlen($_POST['experience']) <= 500){
-            $experience = htmlspecialchars(trim($_POST['experience']));
-        }else{ $erreur = "L'expérience doit faire 500 caractères maximum !"; }
+            //Vérifie la présentation
+            if(strlen($_POST['annee_creation']) <= 500){
+                $presentation = htmlspecialchars(trim($_POST['presentation']));
+            }else{ $erreur = "La présentation doit faire 500 caractères maximum !"; }
 
-        //Vérifie le site web
-        if(strlen($_POST['site_web']) <= 100){
-            $siteWeb = htmlspecialchars(trim($_POST['site_web']));
-        }else{ $erreur = "L'URL de votre site de communication est trop longue !"; }
+            //Vérifie l'expérience
+            if(strlen($_POST['experience']) <= 500){
+                $experience = htmlspecialchars(trim($_POST['experience']));
+            }else{ $erreur = "L'expérience doit faire 500 caractères maximum !"; }
 
+            //Vérifie le site web
+            if(strlen($_POST['site_web']) <= 100){
+                $siteWeb = htmlspecialchars(trim($_POST['site_web']));
+            }else{ $erreur = "L'URL de votre site de communication est trop longue !"; }
+
+            
+            //Vérifie le statut associatif
+            if(isset($_POST['statut_assoc'])){
+                $statutAssoc = 1;
+            }else{ $statutAssoc = 0; }
+
+            //Vérifie si inscrit à la SACEM
+            if(isset($_POST['is_sacem'])){
+                $isSacem = 1;
+            }else{ $isSacem = 0;}
+
+            //Vérifie la présence d'un producteur
+            if(isset($_POST['have_producteur'])){
+                $haveProducer = 1;
+            }else{
+                $haveProducer = 0;
+            }
+            
+
+            //Vérifie le site youtube si il est renseigné 
+            if(isset($_POST['youtube'])){
+                if(strlen($_POST['youtube']) <= 100){
+                    $youtube = htmlspecialchars(trim($_POST['youtube']));
+                }else{ $erreur = "Le lien youtube est trop long";}
+            }else{ $youtube = ""; }
+            //Vérifie le site soundcloud si il est renseigné
+            if(isset($_POST['soundcloud'])){
+                if(strlen($_POST['soundcloud']) <= 100){
+                    $soundcloud = htmlspecialchars(trim($_POST['soundcloud']));
+                }else{ $erreur = "Le lien soundcloud est trop long";}
+            }else{ $soundcloud = ""; }
+
+            //Vérifie les images
+            if((($_FILES['image1']['type'] == "image/jpeg") || ($_FILES['image1']['type'] == "image/png")) && (($_FILES['image2']['type'] == "image/jpeg") || ($_FILES['image2']['type'] == "image/png"))){
+                $_FILES['image1']['name'] = $nomGroupe . "_image1";
+                $_FILES['image2']['name'] = $nomGroupe . "_image2";
+            }else{ $erreur = "Le format des images n'est pas correct (jpeg ou png)"; }
+
+            if((($_FILES['piste1']['type'] == "audio/mpeg") && ($_FILES['piste2']['type'] == "audio/mpeg") && ($_FILES['piste3']['type'] == "audio/mpeg"))){
+                $_FILES['piste3']['name'] = $nomGroupe . "_piste1";
+                $_FILES['piste2']['name'] = $nomGroupe . "_piste2";
+                $_FILES['piste1']['name'] = $nomGroupe . "_piste3";
+            }else{ $erreur = "Le format des pistes audio n'est pas correct (MP3)"; }
+        }else{ $erreur = "Tous les champs nécessaires ne sont pas renseignés !"; }
+        if($erreur == ""){
+            //candidature
+            $insertCandidRequest = $db->prepare('INSERT INTO candidature VALUES(:nomGroupe,:idDepartement,:idScene,:idRepresentant,:idStyle,:anneeCreation,:presentation,:experience,:siteWeb,:soundcloud,:youtube,:statutAssoc,:isSacem,:haveProducer,:membres)');
+            $insertCandidRequest->execute(array(':nomGroupe' => $nomGroupe,':idDepartement' => (int)$_POST['departement']+1,':idScene' => (int)$_POST['scene']+1,':idRepresentant' => (int)$_SESSION['id'],':idStyle' => (int)$_POST['style']+1,':anneeCreation' => (int)$anneeCreation,':presentation' => $presentation,':experience' => $experience,':siteWeb' => $siteWeb,':soundcloud' => $soundcloud,':youtube' => $youtube,':statutAssoc' => (int)$statutAssoc,':isSacem' => (int)$isSacem,':haveProducer' => (int)$haveProducer,            ':membres' => $_POST['membres']));
+            
+            //récupérations des extensions
+            $blocs=explode('/',$_FILES['image1']['type']);
+            $extensions[0]=$blocs[count($blocs)-1];
+            $blocs=explode('/',$_FILES['image2']['type']);
+            $extensions[1]=$blocs[count($blocs)-1];
+            $blocs=explode('/',$_FILES['piste1']['type']);
+            $extensions[2]=$blocs[count($blocs)-1];
+            $blocs=explode('/',$_FILES['piste2']['type']);
+            $extensions[3]=$blocs[count($blocs)-1];
+            $blocs=explode('/',$_FILES['piste3']['type']);
+            $extensions[4]=$blocs[count($blocs)-1];
         
-        //Vérifie le statut associatif
-        if(isset($_POST['statut_assoc'])){
-            $statutAssoc = 1;
-        }else{ $statutAssoc = 0; }
+            
+            $insertFileName = $db->prepare("INSERT INTO fichier(format,nom_fichier,nom_groupe) VALUES(:format, :nomFichier, :nomGroupe)");
+            $insertFileName->execute(array(':format'=>$extensions[0], ':nomFichier'=>'image1', ':nomGroupe'=>$nomGroupe));
+            $insertFileName->execute(array(':format'=>$extensions[1], ':nomFichier'=>'image2', ':nomGroupe'=>$nomGroupe));
+            $insertFileName->execute(array(':format'=>$extensions[2], ':nomFichier'=>'piste1', ':nomGroupe'=>$nomGroupe));
+            $insertFileName->execute(array(':format'=>$extensions[3], ':nomFichier'=>'piste2', ':nomGroupe'=>$nomGroupe));
+            $insertFileName->execute(array(':format'=>$extensions[4], ':nomFichier'=>'piste3', ':nomGroupe'=>$nomGroupe));
 
-        //Vérifie si inscrit à la SACEM
-        if(isset($_POST['is_sacem'])){
-            $isSacem = 1;
-        }else{ $isSacem = 0;}
-
-        //Vérifie la présence d'un producteur
-        if(isset($_POST['have_producteur'])){
-            $haveProducer = 1;
+            mkdir("data/$nomGroupe");
+            move_uploaded_file($_FILES['image1']['tmp_name'],"data/$nomGroupe/image1.$extensions[0]");
+            move_uploaded_file($_FILES['image2']['tmp_name'],"data/$nomGroupe/image2.$extensions[1]");
+            move_uploaded_file($_FILES['piste1']['tmp_name'],"data/$nomGroupe/piste1.$extensions[2]");
+            move_uploaded_file($_FILES['piste2']['tmp_name'],"data/$nomGroupe/piste2.$extensions[3]");
+            move_uploaded_file($_FILES['piste3']['tmp_name'],"data/$nomGroupe/piste3.$extensions[4]");
+            
+            $_SESSION['candidature'] = $nomGroupe;
+            $user=$_SESSION['nom'];
+            $db->query("UPDATE utilisateur SET have_candidature=1 WHERE nom_user='$user';");
+            Flight::render('templates/success.tpl',array(null));
         }else{
-            $haveProducer = 0;
+            $depts=$db->query("SELECT departement,num_dept FROM departement;");
+            $depts=$depts->fetchAll(PDO::FETCH_COLUMN);
+            $styles=$db->query("SELECT nom_style,id_style FROM style;");
+            $styles=$styles->fetchAll(PDO::FETCH_COLUMN);
+            $scenes=$db->query("SELECT nom_type,num_type FROM scene;");
+            $scenes=$scenes->fetchAll(PDO::FETCH_COLUMN);
+            Flight::render('templates/candidature.tpl', array(
+                'erreurs'=>$erreur,
+                'old_form'=>$_POST,
+                'depts'=>$depts,
+                'styles'=>$styles,
+                'scenes'=>$scenes,
+            ));
         }
-        
-
-        //Vérifie le site youtube si il est renseigné 
-        if(isset($_POST['youtube'])){
-            if(strlen($_POST['youtube']) <= 100){
-                $youtube = htmlspecialchars(trim($_POST['youtube']));
-            }else{ $erreur = "Le lien youtube est trop long";}
-        }else{ $youtube = ""; }
-        //Vérifie le site soundcloud si il est renseigné
-        if(isset($_POST['soundcloud'])){
-            if(strlen($_POST['soundcloud']) <= 100){
-                $soundcloud = htmlspecialchars(trim($_POST['soundcloud']));
-            }else{ $erreur = "Le lien soundcloud est trop long";}
-        }else{ $soundcloud = ""; }
-
-        //Vérifie les images
-        if((($_FILES['image1']['type'] == "image/jpeg") || ($_FILES['image1']['type'] == "image/png")) && (($_FILES['image2']['type'] == "image/jpeg") || ($_FILES['image2']['type'] == "image/png"))){
-            $_FILES['image1']['name'] = $nomGroupe . "_image1";
-            $_FILES['image2']['name'] = $nomGroupe . "_image2";
-        }else{ $erreur = "Le format des images n'est pas correct (jpeg ou png)"; }
-
-        if((($_FILES['piste1']['type'] == "audio/mpeg") && ($_FILES['piste2']['type'] == "audio/mpeg") && ($_FILES['piste3']['type'] == "audio/mpeg"))){
-            $_FILES['piste3']['name'] = $nomGroupe . "_piste1";
-            $_FILES['piste2']['name'] = $nomGroupe . "_piste2";
-            $_FILES['piste1']['name'] = $nomGroupe . "_piste3";
-        }else{ $erreur = "Le format des pistes audio n'est pas correct (MP3)"; }
-    }else{ $erreur = "Tous les champs nécessaires ne sont pas renseignés !"; }
-    if($erreur == ""){
-        $insertCandidRequest = $db->prepare('INSERT INTO candidature VALUES(:nomGroupe,:idDepartement,:idScene,:idRepresentant,:idStyle,:anneeCreation,:presentation,:experience,:siteWeb,:soundcloud,:youtube,:statutAssoc,:isSacem,:haveProducer,:membres)');
-        $insertCandidRequest->execute(array(':nomGroupe' => $nomGroupe,':idDepartement' => (int)$_POST['departement']+1,':idScene' => (int)$_POST['scene']+1,':idRepresentant' => (int)$_SESSION['id'],':idStyle' => (int)$_POST['style']+1,':anneeCreation' => (int)$anneeCreation,':presentation' => $presentation,':experience' => $experience,':siteWeb' => $siteWeb,':soundcloud' => $soundcloud,':youtube' => $youtube,':statutAssoc' => (int)$statutAssoc,':isSacem' => (int)$isSacem,':haveProducer' => (int)$haveProducer,            ':membres' => $_POST['membres']));
-        
-        //TODO : Insert upload files
-        $blocs=explode('/',$_FILES['image1']['type']);
-        $extensions[0]=$blocs[count($blocs)-1];
-        $blocs=explode('/',$_FILES['image2']['type']);
-        $extensions[1]=$blocs[count($blocs)-1];
-        $blocs=explode('/',$_FILES['piste1']['type']);
-        $extensions[2]=$blocs[count($blocs)-1];
-        $blocs=explode('/',$_FILES['piste2']['type']);
-        $extensions[3]=$blocs[count($blocs)-1];
-        $blocs=explode('/',$_FILES['piste3']['type']);
-        $extensions[4]=$blocs[count($blocs)-1];
-        
-        $insertFileName = $db->prepare("INSERT INTO fichier(format,nom_fichier,nom_groupe) VALUES(:format, :nomFichier, :nomGroupe)");
-        $insertFileName->execute(array(':format'=>$extensions[0], ':nomFichier'=>'image1', ':nomGroupe'=>$nomGroupe));
-        $insertFileName->execute(array(':format'=>$extensions[1], ':nomFichier'=>'image2', ':nomGroupe'=>$nomGroupe));
-        $insertFileName->execute(array(':format'=>$extensions[2], ':nomFichier'=>'piste1', ':nomGroupe'=>$nomGroupe));
-        $insertFileName->execute(array(':format'=>$extensions[3], ':nomFichier'=>'piste2', ':nomGroupe'=>$nomGroupe));
-        $insertFileName->execute(array(':format'=>$extensions[4], ':nomFichier'=>'piste3', ':nomGroupe'=>$nomGroupe));
-
-        mkdir("data/$nomGroupe");
-        move_uploaded_file($_FILES['image1']['tmp_name'],"data/$nomGroupe/image1.$extensions[0]");
-        move_uploaded_file($_FILES['image2']['tmp_name'],"data/$nomGroupe/image2.$extensions[1]");
-        move_uploaded_file($_FILES['piste1']['tmp_name'],"data/$nomGroupe/piste1.$extensions[2]");
-        move_uploaded_file($_FILES['piste2']['tmp_name'],"data/$nomGroupe/piste2.$extensions[3]");
-        move_uploaded_file($_FILES['piste3']['tmp_name'],"data/$nomGroupe/piste3.$extensions[4]");
-        
-        $_SESSION['candidature'] = $nomGroupe;
-        $user=$_SESSION['nom'];
-        $db->query("UPDATE utilisateur SET have_candidature=1 WHERE nom_user='$user';");
-        Flight::render('templates/success.tpl',array(null));
-    }else{
-        $depts=$db->query("SELECT departement,num_dept FROM departement;");
-        $depts=$depts->fetchAll(PDO::FETCH_COLUMN);
-        $styles=$db->query("SELECT nom_style,id_style FROM style;");
-        $styles=$styles->fetchAll(PDO::FETCH_COLUMN);
-        $scenes=$db->query("SELECT nom_type,num_type FROM scene;");
-        $scenes=$scenes->fetchAll(PDO::FETCH_COLUMN);
-        Flight::render('templates/candidature.tpl', array(
-            'erreurs'=>$erreur,
-            'old_form'=>$_POST,
-            'depts'=>$depts,
-            'styles'=>$styles,
-            'scenes'=>$scenes,
-        ));
     }
+    else Flight::redirect('/');
 });
 
 /**
