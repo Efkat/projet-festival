@@ -24,7 +24,7 @@ Flight::route('/', function (){
  * Name = "liste"
  */
 Flight::route('/liste', function (){
-    if($_SESSION['nom']=='admin'){ //seul l'admin peut accèder à la liste
+    if(isset($_SESSION['nom']) && $_SESSION['nom']=='admin'){ //seul l'admin peut accèder à la liste
         $db=Flight::db();
         $lignes=$db->query("SELECT nom_groupe,departement,nom_type,nom_style,annee_creation,presentation,experience FROM candidature,style,departement,scene WHERE scene.num_type=candidature.id_scene AND num_dept=id_departement AND style.id_style=candidature.id_style;");
         $lignes=$lignes->fetchAll();
