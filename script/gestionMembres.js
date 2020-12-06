@@ -75,6 +75,7 @@ submitButton.addEventListener("click",function (event) {
     {
         if(membersCount>1){ membersInformations+="\\" }
         membersInformations += getCardInformation(cards[membersCount-1])
+        membersDisableInput.setAttribute("value", membersInformations)
     }
     alert(membersInformations);
 })
