@@ -20,7 +20,7 @@
                     </div>
                 </form>
                     <a class="cancel " href="./">Annuler...</a>
-                <p class="text-primary card m-3 font-weight-bold p-2">{$erreurs}</p>
+                <p class="text-primary m-3 font-weight-bold p-2">{$erreurs}</p>
 
             </div>
         </main>
