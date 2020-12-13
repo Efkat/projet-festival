@@ -190,10 +190,10 @@ Flight::route("GET /candidature", function (){
         }
         else{
             $user=$_SESSION['nom'];
-            $candidature_check=$db->query("SELECT * FROM candidature,utilisateur WHERE id_representant=id_user AND nom_user='$user'");
-            $candidature_check=$candidature_check->fetchAll();
+            $candidature_check=$db->query("SELECT have_candidature FROM utilisateur WHERE nom_user='$user'");
+            $candidature_check=$candidature_check->fetch();
 
-            if($candidature_check==array())
+            if($candidature_check[0]==0)
             {
                 $depts=$db->query("SELECT departement,num_dept FROM departement;");
                 $depts=$depts->fetchAll(PDO::FETCH_ASSOC);
@@ -224,9 +224,12 @@ Flight::route("POST /candidature", function(){
     $db = Flight::db();
     $erreur = "";
     
-    if(!isset($_SESSION['candidature'])) //seulement si candidature pas déjà faite
-    {
+    $user=$_SESSION['nom'];
+    $candidature_check=$db->query("SELECT have_candidature FROM utilisateur WHERE nom_user='$user'");
+    $candidature_check=$candidature_check->fetch();
 
+    if($candidature_check[0]==0) //seulement si pas de candidature
+    {
         //Vérification si tous les champs nécessaires sont présents
         if((!empty($_POST['nom_groupe']) && !empty($_POST['annee_creation']) && !empty($_POST['presentation']) && !empty($_POST['experience']) && !empty($_POST['site_web']) && isset($_POST['departement']) && isset($_POST['style']) && isset($_POST['scene']) && !empty($_POST['membres']))){
             //Vérifie le nom du groupe
@@ -371,13 +374,10 @@ Flight::route("/c_consulter", function (){
             Flight::redirect('/liste'); //on affiche la liste des candidatures
         }else{
             $user=$_SESSION['nom'];
-            $candidature_check=$db->query("SELECT have_candidature,nom_groupe FROM utilisateur,candidature WHERE nom_user='$user' AND id_user=id_representant");
+            $candidature_check=$db->query("SELECT have_candidature FROM utilisateur WHERE nom_user='$user'");
             $candidature_check=$candidature_check->fetch();
 
-
-            //si la candidature a été faite : on peut consulter
-            //sinon : redirection au formulaire de la candidature 
-            if($candidature_check!=array()){
+            if($candidature_check[0]==1){ //seulement si candidature faite
                 $nomGroupe=$candidature_check['nom_groupe'];
                 $candidature=$db->query("SELECT * FROM candidature,style,departement,scene WHERE scene.num_type=candidature.id_scene AND num_dept=id_departement AND style.id_style=candidature.id_style AND candidature.nom_groupe='$nomGroupe';");
                 $candidature=$candidature->fetch();
@@ -434,13 +434,11 @@ Flight::route("/c_edit", function (){
             Flight::redirect('/liste');
         }else{
             $user=$_SESSION['nom'];
-            $candidature_check=$db->query("SELECT have_candidature,nom_groupe FROM utilisateur,candidature WHERE nom_user='$user' AND id_user=id_representant");
+            $candidature_check=$db->query("SELECT have_candidature FROM utilisateur WHERE nom_user='$user'");
             $candidature_check=$candidature_check->fetch();
 
-
-            //si la candidature a été faite : on peut consulter
-            //sinon : redirection au formulaire de la candidature 
-            if($candidature_check!=array()){
+            if($candidature_check[0]==1) //seulement si candidature faite
+            {
                 $nomGroupe=$candidature_check['nom_groupe'];
                 $candidature=$db->query("SELECT * FROM candidature,style,departement,scene WHERE scene.num_type=candidature.id_scene AND num_dept=id_departement AND style.id_style=candidature.id_style AND nom_groupe='$nomGroupe';");
                 $candidature=$candidature->fetch();
