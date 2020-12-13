@@ -183,28 +183,36 @@ Flight::route("/logout",function(){
  * Name = "candidature"
  */
 Flight::route("GET /candidature", function (){
+    $db=Flight::db();
     if(isset($_SESSION['nom'])){ //seulement si connecté 
-        if($_SESSION['nom']=='admin'){
-            Flight::redirect('/liste');
+        if($_SESSION['nom']=='admin'){ //si admin 
+            Flight::redirect('/liste'); //on affiche la liste
         }
         else{
-            $db=Flight::db();
-            $depts=$db->query("SELECT departement,num_dept FROM departement;");
-            $depts=$depts->fetchAll(PDO::FETCH_ASSOC);
+            $user=$_SESSION['nom'];
+            $candidature_check=$db->query("SELECT * FROM candidature,utilisateur WHERE id_representant=id_user AND nom_user='$user'");
+            $candidature_check=$candidature_check->fetchAll();
 
-            $styles=$db->query("SELECT nom_style FROM style;");
-            $styles=$styles->fetchAll(PDO::FETCH_COLUMN);
-    
-            $scenes=$db->query("SELECT nom_type FROM scene;");
-            $scenes=$scenes->fetchAll(PDO::FETCH_COLUMN);
-            
-            Flight::render('templates/candidature.tpl', array(
-                'erreurs'=>null,
-                'old_form'=>null,
-                'depts'=>$depts,
-                'styles'=>$styles,
-                'scenes'=>$scenes,
-            ));
+            if($candidature_check==array())
+            {
+                $depts=$db->query("SELECT departement,num_dept FROM departement;");
+                $depts=$depts->fetchAll(PDO::FETCH_ASSOC);
+
+                $styles=$db->query("SELECT nom_style FROM style;");
+                $styles=$styles->fetchAll(PDO::FETCH_COLUMN);
+        
+                $scenes=$db->query("SELECT nom_type FROM scene;");
+                $scenes=$scenes->fetchAll(PDO::FETCH_COLUMN);
+                
+                Flight::render('templates/candidature.tpl', array(
+                    'erreurs'=>null,
+                    'old_form'=>null,
+                    'depts'=>$depts,
+                    'styles'=>$styles,
+                    'scenes'=>$scenes,
+                )); 
+            }
+            else Flight::redirect('/c_consulter');
         }
     }else{Flight::redirect('/login');}    
 });
@@ -409,7 +417,6 @@ Flight::route("/c_consulter", function (){
                         array_push($images,$file);
                     else array_push($pistes,$file);
                 }
-                print_r($pistes);
                 Flight::render('templates/c_consulter.tpl', array('name'=>$_SESSION['nom'],'candidature'=>$candidature,'images'=>$images,'pistes'=>$pistes,'membres'=>$membres)); 
             }else{ Flight::redirect('/candidature'); }
         }
