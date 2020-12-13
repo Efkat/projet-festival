@@ -411,20 +411,30 @@ Flight::route("/c_consulter", function (){
  * Name = "profil_edit"
  */
 Flight::route("/c_edit", function (){
+    $db=Flight::db();
     if(isset($_SESSION['nom'])){ //seulement si connecté
         if($_SESSION['nom']=='admin'){
             Flight::redirect('/liste');
         }else{
+            $user=$_SESSION['nom'];
+            $candidature_check=$db->query("SELECT have_candidature,nom_groupe FROM utilisateur,candidature WHERE nom_user='$user' AND id_user=id_representant");
+            $candidature_check=$candidature_check->fetch();
+
+
             //si la candidature a été faite : on peut consulter
-            if(isset($_SESSION['candidature'])){
-                $db=Flight::db();
+            //sinon : redirection au formulaire de la candidature 
+            if($candidature_check!=array()){
+                $nomGroupe=$candidature_check['nom_groupe'];
+                $candidature=$db->query("SELECT * FROM candidature,style,departement,scene WHERE scene.num_type=candidature.id_scene AND num_dept=id_departement AND style.id_style=candidature.id_style AND nom_groupe='$nomGroupe';");
+                $candidature=$candidature->fetch();
+                
                 $nom_depts=$db->query("SELECT departement FROM departement;");
                 $nom_depts=$nom_depts->fetchAll(PDO::FETCH_COLUMN);
                 $styles=$db->query("SELECT nom_style FROM style;");
                 $styles=$styles->fetchAll(PDO::FETCH_COLUMN);
                 $scenes=$db->query("SELECT nom_type FROM scene;");
                 $scenes=$scenes->fetchAll(PDO::FETCH_COLUMN);
-                Flight::render('templates/c_edit.tpl', array('erreurs'=>null,'candidature'=>null,'nom_depts'=>$nom_depts,'styles'=>$styles,'scenes'=>$scenes));
+                Flight::render('templates/c_edit.tpl', array('erreurs'=>null,'candidature'=>$candidature,'nom_depts'=>$nom_depts,'styles'=>$styles,'scenes'=>$scenes));
             }else {Flight::redirect('/candidature');}
             //sinon : redirection au formulaire de la candidature
         }

@@ -28,10 +28,10 @@
                     <div>
                         <label for="style-input">Style du groupe</label>
                         <select name="style" id="style-input">
-                             {foreach from=$styles item=style}
+                             {foreach from=$styles key=num item=style}
                                 
-                                <option value="{$style}" 
-                                {if $style==$candidature['style']} 
+                                <option value="{$num}" 
+                                {if $num==$candidature['id_style']} 
                                     selected        {*à tester*}
                                 {/if}>{$style}</option>
                             {/foreach}
@@ -40,10 +40,10 @@
                     <div>
                         <label for="scene-input">Scène du groupe</label>
                         <select name="scene" id="scene-input">
-                            {foreach from=$scenes item=scene}
+                            {foreach from=$scenes key=num item=scene}
                                 
-                                <option value="{$scene}" 
-                                {if $scene==$candidature['scene']} 
+                                <option value="{$num}" 
+                                {if $num==$candidature['id_scene']} 
                                     selected        {*à tester*}
                                 {/if}>{$scene}</option>
                             {/foreach}
