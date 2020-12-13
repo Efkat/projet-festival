@@ -1,11 +1,11 @@
 @font-face {
     font-family: "Nerko One";
-    src: url("/ressources/NerkoOne-Regular.ttf");
+    src: url("../ressources/NerkoOne-Regular.ttf");
 }
 
 @font-face {
     font-family: "Montserrat";
-    src: url("/ressources/Montserrat-Regular.ttf");
+    src: url("../ressources/Montserrat-Regular.ttf");
 }
 *{
     font-family: "Montserrat", Arial, Helvetica, sans-serif;
