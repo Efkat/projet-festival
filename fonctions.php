@@ -226,6 +226,13 @@ Flight::route("POST /candidature", function(){
                 $nomGroupe = htmlspecialchars(trim($_POST['nom_groupe']));
             }else{ $erreur = "Le nom du groupe est trop long"; }
 
+            $group_check=$db->query("SELECT nom_groupe FROM candidature WHERE nom_groupe='$nomGroupe'");
+            $group_check=$group_check->fetchAll();
+            if($group_check!=array())
+            {
+                $erreur="Nom de groupe déjà pris.";
+            }
+
             //Vérifie l'année de création
             if(strlen($_POST['annee_creation']) == 4){
                 $anneeCreation = htmlspecialchars($_POST['annee_creation']);
