@@ -356,17 +356,22 @@ Flight::route("POST /candidature", function(){
  * Name = "profil_consulter"
  */
 Flight::route("/c_consulter", function (){
+    $db=Flight::db();
     if(isset($_SESSION['nom'])) //seulement si connecté
     {
-        if($_SESSION['nom']=='admin'){
-            Flight::redirect('/liste');
+        if($_SESSION['nom']=='admin'){ //si c'est l'admin
+            Flight::redirect('/liste'); //on affiche la liste des candidatures
         }else{
+            $user=$_SESSION['nom'];
+            $candidature_check=$db->query("SELECT have_candidature,nom_groupe FROM utilisateur,candidature WHERE nom_user='$user' AND id_user=id_representant");
+            $candidature_check=$candidature_check->fetch();
+
+
             //si la candidature a été faite : on peut consulter
             //sinon : redirection au formulaire de la candidature 
-            if(isset($_SESSION['candidature'])){
-                $db=Flight::db();
-                $candidature=$_SESSION['candidature'];
-                $candidature=$db->query("SELECT * FROM candidature,style,departement,scene WHERE scene.num_type=candidature.id_scene AND num_dept=id_departement AND style.id_style=candidature.id_style AND nom_groupe='$candidature';");
+            if($candidature_check!=array()){
+                $nomGroupe=$candidature_check['nom_groupe'];
+                $candidature=$db->query("SELECT * FROM candidature,style,departement,scene WHERE scene.num_type=candidature.id_scene AND num_dept=id_departement AND style.id_style=candidature.id_style AND nom_groupe='$nomGroupe';");
                 $candidature=$candidature->fetch();
 
                 //Gestion condition statut_assoc,sacem,producteur
