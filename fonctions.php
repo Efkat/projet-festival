@@ -371,7 +371,7 @@ Flight::route("/c_consulter", function (){
             //sinon : redirection au formulaire de la candidature 
             if($candidature_check!=array()){
                 $nomGroupe=$candidature_check['nom_groupe'];
-                $candidature=$db->query("SELECT * FROM candidature,style,departement,scene WHERE scene.num_type=candidature.id_scene AND num_dept=id_departement AND style.id_style=candidature.id_style AND nom_groupe='$nomGroupe';");
+                $candidature=$db->query("SELECT * FROM candidature,style,departement,scene WHERE scene.num_type=candidature.id_scene AND num_dept=id_departement AND style.id_style=candidature.id_style AND candidature.nom_groupe='$nomGroupe';");
                 $candidature=$candidature->fetch();
 
                 //Gestion condition statut_assoc,sacem,producteur
@@ -399,8 +399,18 @@ Flight::route("/c_consulter", function (){
                         $i++;
                     }
                 }
-
-                Flight::render('templates/c_consulter.tpl', array('name'=>$_SESSION['nom'],'candidature'=>$candidature,'images'=>null,'pistes'=>null,'membres'=>$membres)); 
+                //Récupération noms fichiers
+                $files=$db->query("SELECT * FROM fichier WHERE nom_groupe='$nomGroupe'");
+                $files=$files->fetchAll();
+                $images=$pistes=array(null);
+                foreach($files as $file)
+                {
+                    if($file['nom_fichier']=='image1' || $file['nom_fichier']=='image2')
+                        array_push($images,$file);
+                    else array_push($pistes,$file);
+                }
+                print_r($pistes);
+                Flight::render('templates/c_consulter.tpl', array('name'=>$_SESSION['nom'],'candidature'=>$candidature,'images'=>$images,'pistes'=>$pistes,'membres'=>$membres)); 
             }else{ Flight::redirect('/candidature'); }
         }
     }

@@ -9,6 +9,13 @@
 
                 <h3>
                     <section>
+                        <img src="./data/{$candidature['nom_groupe']}/{$images[1]['nom_fichier']}.{$images[1]['format']}" style="width:250px;">
+                        <img src="./data/{$candidature['nom_groupe']}/{$images[2]['nom_fichier']}.{$images[2]['format']}" style="width:250px;" alt="pas d'image 2">
+                        <div>
+                            <audio controls src="./data/{$candidature['nom_groupe']}/{$pistes[1]['nom_fichier']}.{$pistes[1]['format']}"></audio>
+                            <audio controls src="./data/{$candidature['nom_groupe']}/{$pistes[2]['nom_fichier']}.{$pistes[2]['format']}"></audio>
+                            <audio controls src="./data/{$candidature['nom_groupe']}/{$pistes[3]['nom_fichier']}.{$pistes[3]['format']}"></audio>
+                        </div>
                         <dl>
                                 <dt>Nom Groupe</dt>
                                 <dd>{$candidature['nom_groupe']}</dd>
@@ -62,27 +69,6 @@
                                     </ul>
                                 
                                 </dd>
-
-
-                                {* ???
-                                <dt>Fiche Technique</dt>
-                                <dd>{$candidature['fiche_technique']}</dd>
-                                *}
-
-                                {*Files
-
-                                <dt>Image</dt>
-                                <dd>{$files[16]}</dd>
-
-                                <dt>Piste 1</dt>
-                                <dd>{$files[17]}</dd>
-
-                                <dt>Piste 2</dt>
-                                <dd>{$files[18]}</dd>
-
-                                <dt>Piste 3</dt>
-                                <dd>{$files[19]}</dd>
-                                *}
                             </dl>
                             
 
