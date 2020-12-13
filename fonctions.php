@@ -190,7 +190,7 @@ Flight::route("GET /candidature", function (){
         else{
             $db=Flight::db();
             $depts=$db->query("SELECT departement,num_dept FROM departement;");
-            $depts=$depts->fetchAll(PDO::FETCH_COLUMN);
+            $depts=$depts->fetchAll(PDO::FETCH_ASSOC);
 
             $styles=$db->query("SELECT nom_style FROM style;");
             $styles=$styles->fetchAll(PDO::FETCH_COLUMN);
@@ -293,7 +293,7 @@ Flight::route("POST /candidature", function(){
         if($erreur == ""){
             //candidature
             $insertCandidRequest = $db->prepare('INSERT INTO candidature VALUES(:nomGroupe,:idDepartement,:idScene,:idRepresentant,:idStyle,:anneeCreation,:presentation,:experience,:siteWeb,:soundcloud,:youtube,:statutAssoc,:isSacem,:haveProducer,:membres)');
-            $insertCandidRequest->execute(array(':nomGroupe' => $nomGroupe,':idDepartement' => (int)$_POST['departement']+1,':idScene' => (int)$_POST['scene']+1,':idRepresentant' => (int)$_SESSION['id'],':idStyle' => (int)$_POST['style']+1,':anneeCreation' => (int)$anneeCreation,':presentation' => $presentation,':experience' => $experience,':siteWeb' => $siteWeb,':soundcloud' => $soundcloud,':youtube' => $youtube,':statutAssoc' => (int)$statutAssoc,':isSacem' => (int)$isSacem,':haveProducer' => (int)$haveProducer,            ':membres' => $_POST['membres']));
+            $insertCandidRequest->execute(array(':nomGroupe' => $nomGroupe,':idDepartement' => (int)$_POST['departement'],':idScene' => (int)$_POST['scene']+1,':idRepresentant' => (int)$_SESSION['id'],':idStyle' => (int)$_POST['style']+1,':anneeCreation' => (int)$anneeCreation,':presentation' => $presentation,':experience' => $experience,':siteWeb' => $siteWeb,':soundcloud' => $soundcloud,':youtube' => $youtube,':statutAssoc' => (int)$statutAssoc,':isSacem' => (int)$isSacem,':haveProducer' => (int)$haveProducer,            ':membres' => $_POST['membres']));
             
             //récupérations des extensions
             $blocs=explode('/',$_FILES['image1']['type']);
@@ -328,7 +328,7 @@ Flight::route("POST /candidature", function(){
             Flight::render('templates/success.tpl',array(null));
         }else{
             $depts=$db->query("SELECT departement,num_dept FROM departement;");
-            $depts=$depts->fetchAll(PDO::FETCH_COLUMN);
+            $depts=$depts->fetchAll(PDO::FETCH_ASSOC);
             $styles=$db->query("SELECT nom_style,id_style FROM style;");
             $styles=$styles->fetchAll(PDO::FETCH_COLUMN);
             $scenes=$db->query("SELECT nom_type,num_type FROM scene;");

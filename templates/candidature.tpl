@@ -36,8 +36,8 @@
                     <div class="my-3">
                         <label for="departement-input">Département d'origine : </label>
                         <select class="custom-select" name="departement" id="departement-input" required>
-                            {foreach from=$depts key=num item=nom}
-                                <option value="{$num}" {if $num==$old_form['departement']} selected {/if}>{$nom}</option>
+                            {foreach from=$depts item=dept}
+                                <option value="{$dept['num_dept']}" {if $dept['num_dept']==$old_form['departement']} selected {/if}>{$dept['departement']}</option>
                             {/foreach}
                         </select>
                     </div>
