@@ -4,23 +4,46 @@
 {/block}
 {block name="content"}
         <main>
-            <h1>Consulter Candidature</h1>
-            <section>
+        <div class="jumbotron  w-75 mx-auto">
+            <h1 class="display-5 text-center">Consultation de la candidature</h1>
+            <p class="lead fs-1 text-center">{$candidature['nom_groupe']}</p>
+            <hr class="my-4">
+            <div class="d-flex justify-content-around">
+                <img src="./data/{$candidature['nom_groupe']}/{$images[1]['nom_fichier']}.{$images[1]['format']}" style="width:250px;">
+                <img src="./data/{$candidature['nom_groupe']}/{$images[2]['nom_fichier']}.{$images[2]['format']}" style="width:250px;" alt="pas d'image 2">
+            </div>
+            <hr class="my-3">
+            <div class="d-flex justify-content-around">
+                <div class="column">
+                    <div class="row">
+                        <p class="m-0">Morceau 1</p>
+                    </div>
+                    <div class="row">
+                        <audio controls src="./data/{$candidature['nom_groupe']}/{$pistes[1]['nom_fichier']}.{$pistes[1]['format']}"></audio>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="row">
+                        <p class="m-0">Morceau 2</p>
+                    </div>
+                    <div class="row">
+                    <audio controls src="./data/{$candidature['nom_groupe']}/{$pistes[2]['nom_fichier']}.{$pistes[2]['format']}"></audio>
 
-                <h3>
-                    <section>
-                        <img src="./data/{$candidature['nom_groupe']}/{$images[1]['nom_fichier']}.{$images[1]['format']}" style="width:250px;">
-                        <img src="./data/{$candidature['nom_groupe']}/{$images[2]['nom_fichier']}.{$images[2]['format']}" style="width:250px;" alt="pas d'image 2">
-                        <div>
-                            <audio controls src="./data/{$candidature['nom_groupe']}/{$pistes[1]['nom_fichier']}.{$pistes[1]['format']}"></audio>
-                            <audio controls src="./data/{$candidature['nom_groupe']}/{$pistes[2]['nom_fichier']}.{$pistes[2]['format']}"></audio>
-                            <audio controls src="./data/{$candidature['nom_groupe']}/{$pistes[3]['nom_fichier']}.{$pistes[3]['format']}"></audio>
-                        </div>
-                        <dl>
-                                <dt>Nom Groupe</dt>
-                                <dd>{$candidature['nom_groupe']}</dd>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="row">
+                        <p class="m-0">Morceau 3</p>
+                    </div>
+                    <div class="row">
+                        <audio controls src="./data/{$candidature['nom_groupe']}/{$pistes[3]['nom_fichier']}.{$pistes[3]['format']}"></audio>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-3">
 
-                                <dt>Département</dt>
+            <dl class="w-75 mx-auto text-center">
+                                <dt class="">Département</dt>
                                 <dd>{$candidature['departement']}</dd>
 
                                 <dt>Style</dt>
@@ -60,6 +83,16 @@
                                 <dd>
                                     <ul>
                                     {foreach from=$membres item=membre}
+                                        <li class="card w-25">
+                                            <p>{$membre[0]}</p>
+                                            <p>{$membre[1]}</p>
+                                            <p>{$membre[2]}</p>
+                                        </li>
+                                        <li>
+                                            <p>{$membre[0]}</p>
+                                            <p>{$membre[1]}</p>
+                                            <p>{$membre[2]}</p>
+                                        </li>
                                         <li>
                                             <p>{$membre[0]}</p>
                                             <p>{$membre[1]}</p>
@@ -70,6 +103,13 @@
                                 
                                 </dd>
                             </dl>
+        </div>
+            <h1 class="text-center"></h1>
+            <section>
+
+                <h3>
+                    <section>
+                        
                             
 
                     </section>
