@@ -81,19 +81,9 @@
 
                                 <dt>Membres</dt>
                                 <dd>
-                                    <ul>
+                                    <ul class="card w-25 mx-auto mt-3 text-left">
                                     {foreach from=$membres item=membre}
-                                        <li class="card w-25">
-                                            <p>{$membre[0]}</p>
-                                            <p>{$membre[1]}</p>
-                                            <p>{$membre[2]}</p>
-                                        </li>
-                                        <li>
-                                            <p>{$membre[0]}</p>
-                                            <p>{$membre[1]}</p>
-                                            <p>{$membre[2]}</p>
-                                        </li>
-                                        <li>
+                                        <li >
                                             <p>{$membre[0]}</p>
                                             <p>{$membre[1]}</p>
                                             <p>{$membre[2]}</p>
