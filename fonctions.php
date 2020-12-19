@@ -63,7 +63,7 @@ Flight::route("/details/@nom_groupe", function ($nom_groupe){
         //Gestion membres
         if($candidature['membres']!=null){   //dodo1_nom/dodo1_prenom/violon,dodo2_nom/dodo2_prenom/triangle
             $i=0;
-            foreach(explode(',',$candidature['membres']) as $membre){
+            foreach(explode('\\',$candidature['membres']) as $membre){
                 $membres[$i]=explode('/',$membre);
                 $i++;
             }
