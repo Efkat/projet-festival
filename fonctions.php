@@ -434,7 +434,7 @@ Flight::route("/c_edit", function (){
             Flight::redirect('/liste');
         }else{
             $user=$_SESSION['nom'];
-            $candidature_check=$db->query("SELECT have_candidature FROM utilisateur WHERE nom_user='$user'");
+            $candidature_check=$db->query("SELECT have_candidature,nom_groupe FROM utilisateur,candidature WHERE nom_user='$user' AND id_representant=id_user");
             $candidature_check=$candidature_check->fetch();
 
             if($candidature_check[0]==1) //seulement si candidature faite
