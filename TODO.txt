@@ -1,12 +1,7 @@
--gérer les fichiers (dans détails etc)
- (dans les routes : aller les chercher 
-  et les passer au template)
-
--vérifier conditions des routes selon qui est connecté
- (admin : peut pas candidature etc)
-
 -redirection apres POST candidature validé
 
-[HUGO, en cours]
--améliorer saisie des membres dans formulaire candidature
--style(s) (avec site)
+-enlever vérif // membres (chaque ajout & validation final)
+  <=> c'était // débug
+-mini bug // si erreur // required => pb // saisie membres (concat)
+
+-sacem / fiche technique
