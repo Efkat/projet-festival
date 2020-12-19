@@ -427,7 +427,7 @@ Flight::route("/c_consulter", function (){
 /**
  * Name = "profil_edit"
  */
-Flight::route("/c_edit", function (){
+Flight::route("GET /c_edit", function (){
     $db=Flight::db();
     if(isset($_SESSION['nom'])){ //seulement si connecté
         if($_SESSION['nom']=='admin'){

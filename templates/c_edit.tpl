@@ -96,15 +96,15 @@
                     </div>
                     <div>
                         <label for="statut_assoc-input">Statut Association</label>
-                        <input id="statut_assoc-input" name="statut_assoc" type="checkbox" required>
+                        <input id="statut_assoc-input" name="statut_assoc" type="checkbox" {if $candidature['statut_assoc']==1}checked{/if}>
                     </div>
                     <div>
                         <label for="is_sacem-input">Sacem</label>
-                        <input id="is_sacem-input" name="is_sacem" type="checkbox" required>
+                        <input id="is_sacem-input" name="is_sacem" type="checkbox" {if $candidature['is_sacem']==1}checked{/if}>
                     </div>
                     <div>
                         <label for="have_producteur-input">Producteur</label>
-                        <input id="have_producteur-input" name="have_producteur" type="checkbox" required>
+                        <input id="have_producteur-input" name="have_producer" type="checkbox" {if $candidature['have_producer']==1}checked{/if}>
                     </div>
                     <div> {*Préciser orthographe à suivre ? Vérification ?*}
                         <label for="membres-input">Membres</label>
