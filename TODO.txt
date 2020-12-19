@@ -4,4 +4,6 @@
   <=> c'était // débug
 -mini bug // si erreur // required => pb // saisie membres (concat)
 
--sacem / fiche technique
+-sacem / fiche technique fichiers à voir s'ils faut les gérer
+
+-dans c_edit : gérer l'ajout de nouveux membres ? leur suppression ? 
