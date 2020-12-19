@@ -106,10 +106,35 @@
                         <label for="have_producteur-input">Producteur</label>
                         <input id="have_producteur-input" name="have_producer" type="checkbox" {if $candidature['have_producer']==1}checked{/if}>
                     </div>
-                    <div> {*Préciser orthographe à suivre ? Vérification ?*}
-                        <label for="membres-input">Membres</label>
-                        <textarea id="membres-input" name="membres" maxlength="500">{$candidature['membres']}</textarea>
+                    <div> {*Vérification ?*}
+                        <div>
+                            <button id="add" class="btn btn-success" type="button">Ajouter</button>
+                            <button id="delete" class="btn btn-danger" type="button">Supprimer</button>
+                        </div>
+                        <div id="container" class="d-flex flex-wrap">
+                            {foreach from=$membres item=$membre}
+                                <section class="card border-secondary m-2" style="width: 12rem">
+                                    <div class="card-header">MEMBRE</div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control my-1 nom-input" placeholder="Nom" value={$membre[0]}>
+                                            <input type="text" class="form-control my-1 prenom-input" placeholder="Prénom" value={$membre[1]}>
+                                            <input type="text" class="form-control my-1 instrument-input"
+                                                placeholder="Instrument" value={$membre[2]}>
+                                        </div>
+                                    </div>
+                                </section>
+                            {/foreach}
+                        </div>
+                        <input id="membresVariables" type="text" value="" name="membres" style="display: none">
                     </div>
+                    {*<div> TEST DE PASSAGE AU TEMPLATE
+                        {foreach from=$membres item=membre}
+                            <p>{$membre[0]}</p>
+                            <p>{$membre[1]}</p>
+                            <p>{$membre[2]}</p>
+                        {/foreach}
+                    </div>*}
                     <div>
                         <label for="technique-input">Fiche technique</label>
                         <input type="file" id="technique-input" name="technique">
@@ -126,5 +151,6 @@
 
             </section>
         </main>
+        <script src="./script/gestionMembres.js"></script> 
 
 {/block}
