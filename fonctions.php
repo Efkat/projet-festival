@@ -545,29 +545,30 @@ Flight::route("POST /c_edit",function (){
                         }else{ $erreur = "Le lien soundcloud est trop long";}
                     }else{ $soundcloud = ""; }
                 
-                /*
+                
                     //Vérifie les images
-                    if(isset($_FILES['image1']))
+                    //test : si le nom temporaire est nul => pas de fichier selectionné
+                    if($_FILES['image1']['tmp_name']!=null)
                         if(!($_FILES['image1']['type'] == "image/jpeg" || $_FILES['image1']['type'] == "image/png"))
                             $erreur = "Le format de l'image 1 n'est pas correct (jpeg ou png)";
 
-                    if(isset($_FILES['image2']))
+                    if($_FILES['image2']['tmp_name']!=null)
                         if(!($_FILES['image2']['type'] == "image/jpeg" || $_FILES['image2']['type'] == "image/png"))
                             $erreur = "Le format de l'image 2 n'est pas correct (jpeg ou png)";
                     
-                    if(isset($_FILES['piste1']))
+                    if($_FILES['piste1']['tmp_name']!=null)
                         if(!($_FILES['piste1']['type'] == "audio/mpeg" || $_FILES['piste1']['type'] == "audio/mpeg"))
                             $erreur = "Le format de la piste 1 n'est pas correct (mp3)";
 
 
-                    if(isset($_FILES['piste2']))
+                    if($_FILES['piste2']['tmp_name']!=null)
                         if(!($_FILES['piste2']['type'] == "audio/mpeg" || $_FILES['piste2']['type'] == "audio/mpeg"))
                             $erreur = "Le format de la piste 2 n'est pas correct (mp3)";
 
-                    if(isset($_FILES['piste3']))
+                    if($_FILES['piste3']['tmp_name']!=null)
                         if(!($_FILES['piste3']['type'] == "audio/mpeg" || $_FILES['piste3']['type'] == "audio/mpeg"))
                             $erreur = "Le format de la piste 3 n'est pas correct (mp3)";   
-                 */
+                
                 }
                 else $erreur = "Tous les champs nécessaires ne sont pas renseignés !";
 
@@ -576,40 +577,81 @@ Flight::route("POST /c_edit",function (){
                     $old_nomGroupe = $db->query("SELECT nom_groupe FROM candidature,utilisateur WHERE nom_user='$user' AND id_representant=id_user");
                     $old_nomGroupe = $old_nomGroupe->fetch();
 
-                    //RECUPERATION 
+                    //RECUPERATION CHAMPS // les insérer requete
                     $dept = $_POST['departement'];
                     $scene = $_POST['scene']+1;
                     $style = $_POST['style']+1;
                     $membres = $_POST['membres'];
-                    //RECUPERATION MEMBRES A GERER
-                    //PAR RAPPORT A L'INPUT INVISIBLE <=> SCRIPT
-                    
 
-                    //GERER FICHIERS
-
+                    //MODIFICATION CHAMPS DE LA BASE
                     $db->query("SET FOREIGN_KEY_CHECKS=0");
-                    $db->query("UPDATE fichier SET nom_groupe='$nomGroupe' WHERE nom_groupe='$old_nomGroupe[0]'");
-                    $db->query("UPDATE candidature SET 
-                    nom_groupe='$nomGroupe' ,
-                    id_departement = $dept,
-                    id_scene = $scene,
-                    /*id_representant = , NE CHANGE PAS*/
-                    id_style = $style,
-                    annee_creation = $anneeCreation,
-                    presentation = '$presentation',
-                    experience = '$experience',
-                    site_web = '$siteWeb',
-                    soundcloud = '$soundcloud',
-                    youtube = '$youtube',
-                    statut_assoc = $statutAssoc,
-                    is_sacem = $isSacem,
-                    have_producer = $haveProducer,
-                    membres = '$membres'
-                    WHERE nom_groupe='$old_nomGroupe[0]'");
-                    //TODO RESTE DES MODIFS
+                        $db->query("UPDATE fichier SET nom_groupe='$nomGroupe' WHERE nom_groupe='$old_nomGroupe[0]'");
+                        $db->query("UPDATE candidature SET 
+                        nom_groupe='$nomGroupe' ,
+                        id_departement = $dept,
+                        id_scene = $scene,
+                        id_style = $style,
+                        annee_creation = $anneeCreation,
+                        presentation = '$presentation',
+                        experience = '$experience',
+                        site_web = '$siteWeb',
+                        soundcloud = '$soundcloud',
+                        youtube = '$youtube',
+                        statut_assoc = $statutAssoc,
+                        is_sacem = $isSacem,
+                        have_producer = $haveProducer,
+                        membres = '$membres'
+                        WHERE nom_groupe='$old_nomGroupe[0]'");
                     $db->query("SET FOREIGN_KEY_CHECKS=1");
 
+
+                    //MODIFICATION FICHIERS SUR LE SERVEUR
+                    //ATTENTION DETAIL A GERER : 
+                     /*
+                     * Si le nouveau fichier n'a pas la même extension que l'ancien
+                     * ça n'ecrasera pas l'ancien 
+                     * faut qu'on gere pour supprimer l'ancien fichier 
+                     * donc on recup son extension dans la BDD
+                     */
                     rename("data/$old_nomGroupe[0]","data/$nomGroupe");
+                    $insertFileName = $db->prepare("INSERT INTO fichier(format,nom_fichier,nom_groupe) VALUES(:format, :nomFichier, :nomGroupe)");
+            
+                    //test : si le nom temporaire est nul => pas de fichier selectionné
+                    if($_FILES['image1']['tmp_name']!=null)
+                    {
+                        $blocs=explode('/',$_FILES['image1']['type']);
+                        $extensions[0]=$blocs[count($blocs)-1];
+                        $insertFileName->execute(array(':format'=>$extensions[0], ':nomFichier'=>'image1', ':nomGroupe'=>$nomGroupe));
+                        move_uploaded_file($_FILES['image1']['tmp_name'],"data/$nomGroupe/image1.$extensions[0]");
+                    }
+                    if($_FILES['image2']['tmp_name']!=null)
+                    {
+                        $blocs=explode('/',$_FILES['image2']['type']);
+                        $extensions[1]=$blocs[count($blocs)-1];
+                        $insertFileName->execute(array(':format'=>$extensions[1], ':nomFichier'=>'image2', ':nomGroupe'=>$nomGroupe));
+                        move_uploaded_file($_FILES['image2']['tmp_name'],"data/$nomGroupe/image2.$extensions[1]");
+                    }
+                    if($_FILES['piste1']['tmp_name']!=null)
+                    {
+                        $blocs=explode('/',$_FILES['piste1']['type']);
+                        $extensions[2]=$blocs[count($blocs)-1];
+                        $insertFileName->execute(array(':format'=>$extensions[2], ':nomFichier'=>'piste1', ':nomGroupe'=>$nomGroupe));
+                        move_uploaded_file($_FILES['piste1']['tmp_name'],"data/$nomGroupe/piste1.$extensions[2]");
+                    }
+                    if($_FILES['piste2']['tmp_name']!=null)
+                    {
+                        $blocs=explode('/',$_FILES['piste2']['type']);
+                        $extensions[3]=$blocs[count($blocs)-1];
+                        $insertFileName->execute(array(':format'=>$extensions[3], ':nomFichier'=>'piste2', ':nomGroupe'=>$nomGroupe));
+                        move_uploaded_file($_FILES['piste2']['tmp_name'],"data/$nomGroupe/piste2.$extensions[3]");
+                    }
+                    if($_FILES['piste3']['tmp_name']!=null)
+                    {
+                        $blocs=explode('/',$_FILES['piste3']['type']);
+                        $extensions[4]=$blocs[count($blocs)-1];
+                        $insertFileName->execute(array(':format'=>$extensions[4], ':nomFichier'=>'piste3', ':nomGroupe'=>$nomGroupe));
+                        move_uploaded_file($_FILES['piste3']['tmp_name'],"data/$nomGroupe/piste3.$extensions[4]");
+                    }
                     Flight::render('templates/success.tpl',array(null));
                 }
                 else 
