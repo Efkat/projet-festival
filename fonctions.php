@@ -572,10 +572,41 @@ Flight::route("POST /c_edit",function (){
                     $user=$_SESSION['nom'];
                     $old_nomGroupe = $db->query("SELECT nom_groupe FROM candidature,utilisateur WHERE nom_user='$user' AND id_representant=id_user");
                     $old_nomGroupe = $old_nomGroupe->fetch();
-                    
+
+                    //RECUPERATION 
+                    $dept = $_POST['departement'];
+                    $scene = $_POST['scene'];
+                    $style = $_POST['style'];
+
+                    //RECUPERATION MEMBRES A GERER
+                    //PAR RAPPORT A L'INPUT INVISIBLE <=> SCRIPT
+                    $i=0;
+                    foreach(explode('\\',$_POST['membres']) as $membre){
+                        $membres[$i]=explode('/',$membre);
+                        $i++;
+                    }
+
+                    //GERER FICHIERS
+
                     $db->query("SET FOREIGN_KEY_CHECKS=0");
                     $db->query("UPDATE fichier SET nom_groupe='$nomGroupe' WHERE nom_groupe='$old_nomGroupe[0]'");
-                    $db->query("UPDATE candidature SET nom_groupe='$nomGroupe' WHERE nom_groupe='$old_nomGroupe[0]'");
+                    $db->query("UPDATE candidature SET 
+                    nom_groupe='$nomGroupe' ,
+                    id_departement = $dept,
+                    id_scene = $scene,
+                    /*id_representant = , NE CHANGE PAS*/
+                    id_style = $style,
+                    annee_creation = $anneeCreation,
+                    presentation = $presentation,
+                    experience = $experience,
+                    site_web = $siteWeb,
+                    soundcloud = $soundcloud,
+                    youtube = $youtube,
+                    statut_assoc = $statutAssoc,
+                    is_sacem = $isSacem,
+                    have_producer = $haveProducer,
+                    membres = $membres
+                    WHERE nom_groupe='$old_nomGroupe[0]'");
                     //TODO RESTE DES MODIFS
                     $db->query("SET FOREIGN_KEY_CHECKS=1");
                     Flight::render('templates/success.tpl',array(null));
