@@ -544,7 +544,8 @@ Flight::route("POST /c_edit",function (){
                             $soundcloud = htmlspecialchars(trim($_POST['soundcloud']));
                         }else{ $erreur = "Le lien soundcloud est trop long";}
                     }else{ $soundcloud = ""; }
-
+                
+                /*
                     //Vérifie les images
                     if(isset($_FILES['image1']))
                         if(!($_FILES['image1']['type'] == "image/jpeg" || $_FILES['image1']['type'] == "image/png"))
@@ -566,6 +567,7 @@ Flight::route("POST /c_edit",function (){
                     if(isset($_FILES['piste3']))
                         if(!($_FILES['piste3']['type'] == "audio/mpeg" || $_FILES['piste3']['type'] == "audio/mpeg"))
                             $erreur = "Le format de la piste 3 n'est pas correct (mp3)";   
+                 */
                 }
                 else $erreur = "Tous les champs nécessaires ne sont pas renseignés !";
 
