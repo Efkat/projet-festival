@@ -147,13 +147,13 @@
                         <label for="sacem-input">Document SACEM ou tracklist détaillée</label>
                         <input type="file" id="sacem-input" name="sacem">
                     </div>
-                    <input type="submit" id="submit" value="Envoyer">
+                    <input type="submit" id="submit_edit" value="Envoyer">
                 </form>
                 <a class="cancel" href="./">Annuler</a>
                 <p>{$erreurs}</p>
 
             </section>
         </main>
-        <script src="./script/gestionMembres.js"></script> 
+        <script src="./script/gestionMembres_edit.js"></script> 
 
 {/block}

@@ -578,7 +578,7 @@ Flight::route("POST /c_edit",function (){
                     $dept = $_POST['departement'];
                     $scene = $_POST['scene']+1;
                     $style = $_POST['style']+1;
-
+                    $membres = $_POST['membres'];
                     //RECUPERATION MEMBRES A GERER
                     //PAR RAPPORT A L'INPUT INVISIBLE <=> SCRIPT
                     
@@ -602,7 +602,7 @@ Flight::route("POST /c_edit",function (){
                     statut_assoc = $statutAssoc,
                     is_sacem = $isSacem,
                     have_producer = $haveProducer,
-                    membres = 'tmp_p/tmp_n/tmp_i'
+                    membres = '$membres'
                     WHERE nom_groupe='$old_nomGroupe[0]'");
                     //TODO RESTE DES MODIFS
                     $db->query("SET FOREIGN_KEY_CHECKS=1");
@@ -616,8 +616,8 @@ Flight::route("POST /c_edit",function (){
                     $candidature=$db->query("SELECT * FROM candidature,style,departement,scene WHERE scene.num_type=candidature.id_scene AND num_dept=id_departement AND style.id_style=candidature.id_style AND nom_groupe='$nomGroupe';");
                     $candidature=$candidature->fetch();
                     
-                    $nom_depts=$db->query("SELECT departement FROM departement;");
-                    $nom_depts=$nom_depts->fetchAll(PDO::FETCH_COLUMN);
+                    $depts=$db->query("SELECT departement,num_dept FROM departement;");
+                    $depts=$depts->fetchAll(PDO::FETCH_ASSOC);
                     $styles=$db->query("SELECT nom_style FROM style;");
                     $styles=$styles->fetchAll(PDO::FETCH_COLUMN);
                     $scenes=$db->query("SELECT nom_type FROM scene;");
@@ -648,7 +648,7 @@ Flight::route("POST /c_edit",function (){
                         $_POST['have_producer'] = 0;
                     }
 
-                    Flight::render('templates/c_edit.tpl', array('erreurs'=>$erreur,'candidature'=>$_POST,'nom_depts'=>$nom_depts,'styles'=>$styles,'scenes'=>$scenes,'membres'=>$membres));
+                    Flight::render('templates/c_edit.tpl', array('erreurs'=>$erreur,'candidature'=>$_POST,'depts'=>$depts,'styles'=>$styles,'scenes'=>$scenes,'membres'=>$membres));
                 }
             }
             else 
