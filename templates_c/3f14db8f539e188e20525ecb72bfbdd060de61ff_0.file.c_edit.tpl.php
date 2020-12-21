@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-11-08 20:59:47
+/* Smarty version 3.1.36, created on 2020-12-21 17:37:44
   from 'C:\laragon\www\projet-festival\templates\c_edit.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fa85c43c82647_82521440',
+  'unifunc' => 'content_5fe0dd6898a331_40870001',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3f14db8f539e188e20525ecb72bfbdd060de61ff' => 
     array (
       0 => 'C:\\laragon\\www\\projet-festival\\templates\\c_edit.tpl',
-      1 => 1604791088,
+      1 => 1608572243,
       2 => 'file',
     ),
   ),
@@ -20,23 +20,52 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fa85c43c82647_82521440 (Smarty_Internal_Template $_smarty_tpl) {
-?><!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="./styles/style.css">
-        <title>Candidature_Edit</title>
-    </head>
-    <body>
-        <header>
-            
+function content_5fe0dd6898a331_40870001 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_loadInheritance();
+$_smarty_tpl->inheritance->init($_smarty_tpl, true);
+?>
 
-        </header>
+<?php 
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_19609046755fe0dd689651f6_75247314', "title");
+?>
+
+<?php 
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_7053766525fe0dd689662b6_90486123', "content");
+$_smarty_tpl->inheritance->endChild($_smarty_tpl, "base.tpl");
+}
+/* {block "title"} */
+class Block_19609046755fe0dd689651f6_75247314 extends Smarty_Internal_Block
+{
+public $subBlocks = array (
+  'title' => 
+  array (
+    0 => 'Block_19609046755fe0dd689651f6_75247314',
+  ),
+);
+public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
+?>
+
+    Editer Candidature
+<?php
+}
+}
+/* {/block "title"} */
+/* {block "content"} */
+class Block_7053766525fe0dd689662b6_90486123 extends Smarty_Internal_Block
+{
+public $subBlocks = array (
+  'content' => 
+  array (
+    0 => 'Block_7053766525fe0dd689662b6_90486123',
+  ),
+);
+public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
+?>
+
         <main>
             <h1>Editer Candidature</h1>
             <section>
+            
             
                 <form action="./c_edit" method="POST" enctype="multipart/form-data">
                     <div>
@@ -46,21 +75,16 @@ function content_5fa85c43c82647_82521440 (Smarty_Internal_Template $_smarty_tpl)
                     </div>
                     <div>
                         <label for="departement-input">Département d'origine</label>
-                        <select name="departement" id="departement-input" value="<?php echo $_smarty_tpl->tpl_vars['candidature']->value['departement'];?>
-">
+                        <select class="custom-select" name="departement" id="departement-input" required>
                             <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['nom_depts']->value, 'nom_dept');
-$_smarty_tpl->tpl_vars['nom_dept']->do_else = true;
-if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['nom_dept']->value) {
-$_smarty_tpl->tpl_vars['nom_dept']->do_else = false;
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['depts']->value, 'dept');
+$_smarty_tpl->tpl_vars['dept']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['dept']->value) {
+$_smarty_tpl->tpl_vars['dept']->do_else = false;
 ?>
-                                
-                                <option value="<?php echo $_smarty_tpl->tpl_vars['nom_dept']->value;?>
-" 
-                                <?php if ($_smarty_tpl->tpl_vars['nom_dept']->value == $_smarty_tpl->tpl_vars['candidature']->value['departement']) {?> 
-                                    selected                                        <?php }?>><?php echo $_smarty_tpl->tpl_vars['nom_dept']->value;?>
+                                <option value="<?php echo $_smarty_tpl->tpl_vars['dept']->value['num_dept'];?>
+" <?php if ($_smarty_tpl->tpl_vars['dept']->value['departement'] == $_smarty_tpl->tpl_vars['candidature']->value['departement']) {?> selected <?php }?>><?php echo $_smarty_tpl->tpl_vars['dept']->value['departement'];?>
 </option>
-
                             <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
@@ -70,17 +94,23 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <label for="style-input">Style du groupe</label>
                         <select name="style" id="style-input">
                              <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['styles']->value, 'style');
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['styles']->value, 'style', false, 'num');
 $_smarty_tpl->tpl_vars['style']->do_else = true;
-if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['style']->value) {
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['num']->value => $_smarty_tpl->tpl_vars['style']->value) {
 $_smarty_tpl->tpl_vars['style']->do_else = false;
 ?>
                                 
-                                <option value="<?php echo $_smarty_tpl->tpl_vars['style']->value;?>
-" 
-                                <?php if ($_smarty_tpl->tpl_vars['style']->value == $_smarty_tpl->tpl_vars['candidature']->value['style']) {?> 
-                                    selected                                        <?php }?>><?php echo $_smarty_tpl->tpl_vars['style']->value;?>
+                                <option value="<?php echo $_smarty_tpl->tpl_vars['num']->value;?>
+"
+                                <?php if ((isset($_smarty_tpl->tpl_vars['candidature']->value['id_style']))) {?>
+                                    <?php if ($_smarty_tpl->tpl_vars['num']->value == $_smarty_tpl->tpl_vars['candidature']->value['id_style']) {?> 
+                                        selected                                            <?php }?>><?php echo $_smarty_tpl->tpl_vars['style']->value;?>
 </option>
+                                <?php } else { ?>
+                                    <?php if ($_smarty_tpl->tpl_vars['num']->value == $_smarty_tpl->tpl_vars['candidature']->value['style']) {?> 
+                                        selected                                            <?php }?>><?php echo $_smarty_tpl->tpl_vars['style']->value;?>
+</option>
+                                <?php }?>
                             <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
@@ -90,17 +120,23 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <label for="scene-input">Scène du groupe</label>
                         <select name="scene" id="scene-input">
                             <?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['scenes']->value, 'scene');
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['scenes']->value, 'scene', false, 'num');
 $_smarty_tpl->tpl_vars['scene']->do_else = true;
-if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['scene']->value) {
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['num']->value => $_smarty_tpl->tpl_vars['scene']->value) {
 $_smarty_tpl->tpl_vars['scene']->do_else = false;
 ?>
                                 
-                                <option value="<?php echo $_smarty_tpl->tpl_vars['scene']->value;?>
+                                <option value="<?php echo $_smarty_tpl->tpl_vars['num']->value;?>
 " 
-                                <?php if ($_smarty_tpl->tpl_vars['scene']->value == $_smarty_tpl->tpl_vars['candidature']->value['scene']) {?> 
-                                    selected                                        <?php }?>><?php echo $_smarty_tpl->tpl_vars['scene']->value;?>
+                                <?php if ((isset($_smarty_tpl->tpl_vars['candidature']->value['id_scene']))) {?>
+                                    <?php if ($_smarty_tpl->tpl_vars['num']->value == $_smarty_tpl->tpl_vars['candidature']->value['id_scene']) {?> 
+                                        selected                                            <?php }?>><?php echo $_smarty_tpl->tpl_vars['scene']->value;?>
 </option>
+                                <?php } else { ?>
+                                    <?php if ($_smarty_tpl->tpl_vars['num']->value == $_smarty_tpl->tpl_vars['candidature']->value['scene']) {?> 
+                                        selected                                            <?php }?>><?php echo $_smarty_tpl->tpl_vars['scene']->value;?>
+</option>
+                                <?php }?>
                             <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
@@ -108,23 +144,23 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         </select>
                     </div>
                     <div>
-                        <label for="image1-input">Photo du groupe n°1</label>
+                        <label for="image1-input">Nouvelle photo du groupe n°1</label>
                         <input type="file" id="image1-input" name="image1">
                     </div>
                     <div>
-                        <label for="image2-input">Photo du groupe n°2</label>
+                        <label for="image2-input">Nouvelle photo du groupe n°2</label>
                         <input type="file" id="image2-input" name="image2">
                     </div>
                     <div>
-                        <label for="piste1-input">Piste MP3 n°1</label>
+                        <label for="piste1-input">Nouvelle piste MP3 n°1</label>
                         <input name="piste1" id="piste1-input" type="file">
                     </div>
                     <div>
-                        <label for="piste2-input">Piste MP3 n°2</label>
+                        <label for="piste2-input">Nouvelle piste MP3 n°2</label>
                         <input name="piste2" id="piste2-input" type="file">
                     </div>
                     <div>
-                        <label for="piste3-input">Piste MP3 n°3</label>
+                        <label for="piste3-input">Nouvelle piste MP3 n°3</label>
                         <input name="piste3" id="piste3-input" type="file">
                     </div>
                     <div>
@@ -157,21 +193,45 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     </div>
                     <div>
                         <label for="statut_assoc-input">Statut Association</label>
-                        <input id="statut_assoc-input" name="statut_assoc" type="checkbox" required>
+                        <input id="statut_assoc-input" name="statut_assoc" type="checkbox" <?php if ($_smarty_tpl->tpl_vars['candidature']->value['statut_assoc'] == 1) {?>checked<?php }?>>
                     </div>
                     <div>
                         <label for="is_sacem-input">Sacem</label>
-                        <input id="is_sacem-input" name="is_sacem" type="checkbox" required>
+                        <input id="is_sacem-input" name="is_sacem" type="checkbox" <?php if ($_smarty_tpl->tpl_vars['candidature']->value['is_sacem'] == 1) {?>checked<?php }?>>
                     </div>
                     <div>
                         <label for="have_producteur-input">Producteur</label>
-                        <input id="have_producteur-input" name="have_producteur" type="checkbox" required>
+                        <input id="have_producteur-input" name="have_producer" type="checkbox" <?php if ($_smarty_tpl->tpl_vars['candidature']->value['have_producer'] == 1) {?>checked<?php }?>>
                     </div>
-                    <div>                         <label for="membres-input">Membres</label>
-                        <textarea id="membres-input" name="membres" maxlength="500"><?php echo $_smarty_tpl->tpl_vars['candidature']->value['membres'];?>
-</textarea>
+                    <div>                         <div id="container" class="d-flex flex-wrap">
+                            <?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['membres']->value, 'membre', false, 'num');
+$_smarty_tpl->tpl_vars['membre']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['num']->value => $_smarty_tpl->tpl_vars['membre']->value) {
+$_smarty_tpl->tpl_vars['membre']->do_else = false;
+?>
+                                <section class="card border-secondary m-2" style="width: 12rem">
+                                    <div class="card-header">MEMBRE <?php echo $_smarty_tpl->tpl_vars['num']->value+1;?>
+</div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control my-1 nom-input" placeholder="Nom" value=<?php echo $_smarty_tpl->tpl_vars['membre']->value[0];?>
+>
+                                            <input type="text" class="form-control my-1 prenom-input" placeholder="Prénom" value=<?php echo $_smarty_tpl->tpl_vars['membre']->value[1];?>
+>
+                                            <input type="text" class="form-control my-1 instrument-input"
+                                                placeholder="Instrument" value=<?php echo $_smarty_tpl->tpl_vars['membre']->value[2];?>
+>
+                                        </div>
+                                    </div>
+                                </section>
+                            <?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+                        </div>
+                        <input id="membresVariables" type="text" value="" name="membres" style="display: none">
                     </div>
-                    <div>
+                                        <div>
                         <label for="technique-input">Fiche technique</label>
                         <input type="file" id="technique-input" name="technique">
                     </div>
@@ -179,8 +239,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <label for="sacem-input">Document SACEM ou tracklist détaillée</label>
                         <input type="file" id="sacem-input" name="sacem">
                     </div>
-                    <input type="submit" value="Envoyer">
-
+                    <input type="submit" id="submit_edit" value="Envoyer">
                 </form>
                 <a class="cancel" href="./">Annuler</a>
                 <p><?php echo $_smarty_tpl->tpl_vars['erreurs']->value;?>
@@ -188,15 +247,12 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
             </section>
         </main>
-        <footer>
-            <p>Nino BELIC & Hugo BENAB DEL K</p>
+        <?php echo '<script'; ?>
+ src="./script/gestionMembres_edit.js"><?php echo '</script'; ?>
+> 
 
-        </footer>
-
-    </body>
-
-
-
-
-</html><?php }
+<?php
+}
+}
+/* {/block "content"} */
 }

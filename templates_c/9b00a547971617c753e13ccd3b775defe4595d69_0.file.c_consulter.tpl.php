@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-12-14 20:57:48
+/* Smarty version 3.1.36, created on 2020-12-19 13:12:37
   from 'C:\laragon\www\projet-festival\templates\c_consulter.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fd7d1cc7424f7_31558428',
+  'unifunc' => 'content_5fddfc457860a2_75796927',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9b00a547971617c753e13ccd3b775defe4595d69' => 
     array (
       0 => 'C:\\laragon\\www\\projet-festival\\templates\\c_consulter.tpl',
-      1 => 1607979467,
+      1 => 1608383556,
       2 => 'file',
     ),
   ),
@@ -20,26 +20,26 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fd7d1cc7424f7_31558428 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fddfc457860a2_75796927 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_5401562385fd7d1cc725795_26653348', "title");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_15919487655fddfc4576c010_72039974', "title");
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_8920092305fd7d1cc7268b0_26554376', "content");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_5047706795fddfc4576d560_20073277', "content");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "base.tpl");
 }
 /* {block "title"} */
-class Block_5401562385fd7d1cc725795_26653348 extends Smarty_Internal_Block
+class Block_15919487655fddfc4576c010_72039974 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'title' => 
   array (
-    0 => 'Block_5401562385fd7d1cc725795_26653348',
+    0 => 'Block_15919487655fddfc4576c010_72039974',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -51,12 +51,12 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block "title"} */
 /* {block "content"} */
-class Block_8920092305fd7d1cc7268b0_26554376 extends Smarty_Internal_Block
+class Block_5047706795fddfc4576d560_20073277 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_8920092305fd7d1cc7268b0_26554376',
+    0 => 'Block_5047706795fddfc4576d560_20073277',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -168,30 +168,14 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 
                                 <dt>Membres</dt>
                                 <dd>
-                                    <ul>
+                                    <ul class="card w-25 mx-auto mt-3 text-left">
                                     <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['membres']->value, 'membre');
 $_smarty_tpl->tpl_vars['membre']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['membre']->value) {
 $_smarty_tpl->tpl_vars['membre']->do_else = false;
 ?>
-                                        <li class="card w-25">
-                                            <p><?php echo $_smarty_tpl->tpl_vars['membre']->value[0];?>
-</p>
-                                            <p><?php echo $_smarty_tpl->tpl_vars['membre']->value[1];?>
-</p>
-                                            <p><?php echo $_smarty_tpl->tpl_vars['membre']->value[2];?>
-</p>
-                                        </li>
-                                        <li>
-                                            <p><?php echo $_smarty_tpl->tpl_vars['membre']->value[0];?>
-</p>
-                                            <p><?php echo $_smarty_tpl->tpl_vars['membre']->value[1];?>
-</p>
-                                            <p><?php echo $_smarty_tpl->tpl_vars['membre']->value[2];?>
-</p>
-                                        </li>
-                                        <li>
+                                        <li >
                                             <p><?php echo $_smarty_tpl->tpl_vars['membre']->value[0];?>
 </p>
                                             <p><?php echo $_smarty_tpl->tpl_vars['membre']->value[1];?>
