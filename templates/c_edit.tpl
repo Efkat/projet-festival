@@ -7,6 +7,7 @@
             <h1>Editer Candidature</h1>
             <section>
             
+            
                 <form action="./c_edit" method="POST" enctype="multipart/form-data">
                     <div>
                         <label for="nom_groupe-input">Nom du groupe</label>
@@ -30,10 +31,16 @@
                         <select name="style" id="style-input">
                              {foreach from=$styles key=num item=style}
                                 
-                                <option value="{$num}" 
-                                {if $num==$candidature['id_style']} 
-                                    selected        {*à tester*}
-                                {/if}>{$style}</option>
+                                <option value="{$num}"
+                                {if isset($candidature['id_style'])}
+                                    {if $num==$candidature['id_style']} 
+                                        selected        {*à tester*}
+                                    {/if}>{$style}</option>
+                                {else}
+                                    {if $num==$candidature['style']} 
+                                        selected        {*à tester*}
+                                    {/if}>{$style}</option>
+                                {/if}
                             {/foreach}
                         </select>
                     </div>
@@ -43,31 +50,37 @@
                             {foreach from=$scenes key=num item=scene}
                                 
                                 <option value="{$num}" 
-                                {if $num==$candidature['id_scene']} 
-                                    selected        {*à tester*}
-                                {/if}>{$scene}</option>
+                                {if isset($candidature['id_scene'])}
+                                    {if $num==$candidature['id_scene']} 
+                                        selected        {*à tester*}
+                                    {/if}>{$scene}</option>
+                                {else}
+                                    {if $num==$candidature['scene']} 
+                                        selected        {*à tester*}
+                                    {/if}>{$scene}</option>
+                                {/if}
                             {/foreach}
                         </select>
                         </select>
                     </div>
                     <div>
-                        <label for="image1-input">Photo du groupe n°1</label>
+                        <label for="image1-input">Nouvelle photo du groupe n°1</label>
                         <input type="file" id="image1-input" name="image1">
                     </div>
                     <div>
-                        <label for="image2-input">Photo du groupe n°2</label>
+                        <label for="image2-input">Nouvelle photo du groupe n°2</label>
                         <input type="file" id="image2-input" name="image2">
                     </div>
                     <div>
-                        <label for="piste1-input">Piste MP3 n°1</label>
+                        <label for="piste1-input">Nouvelle piste MP3 n°1</label>
                         <input name="piste1" id="piste1-input" type="file">
                     </div>
                     <div>
-                        <label for="piste2-input">Piste MP3 n°2</label>
+                        <label for="piste2-input">Nouvelle piste MP3 n°2</label>
                         <input name="piste2" id="piste2-input" type="file">
                     </div>
                     <div>
-                        <label for="piste3-input">Piste MP3 n°3</label>
+                        <label for="piste3-input">Nouvelle piste MP3 n°3</label>
                         <input name="piste3" id="piste3-input" type="file">
                     </div>
                     <div>
@@ -107,14 +120,10 @@
                         <input id="have_producteur-input" name="have_producer" type="checkbox" {if $candidature['have_producer']==1}checked{/if}>
                     </div>
                     <div> {*Vérification ?*}
-                        <div>
-                            <button id="add" class="btn btn-success" type="button">Ajouter</button>
-                            <button id="delete" class="btn btn-danger" type="button">Supprimer</button>
-                        </div>
                         <div id="container" class="d-flex flex-wrap">
-                            {foreach from=$membres item=$membre}
+                            {foreach from=$membres item=$membre key=$num}
                                 <section class="card border-secondary m-2" style="width: 12rem">
-                                    <div class="card-header">MEMBRE</div>
+                                    <div class="card-header">MEMBRE {$num+1}</div>
                                     <div class="card-body">
                                         <div class="form-group">
                                             <input type="text" class="form-control my-1 nom-input" placeholder="Nom" value={$membre[0]}>
@@ -143,8 +152,7 @@
                         <label for="sacem-input">Document SACEM ou tracklist détaillée</label>
                         <input type="file" id="sacem-input" name="sacem">
                     </div>
-                    <input type="submit" value="Envoyer">
-
+                    <input type="submit" id="submit" value="Envoyer">
                 </form>
                 <a class="cancel" href="./">Annuler</a>
                 <p>{$erreurs}</p>
