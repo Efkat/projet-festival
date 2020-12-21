@@ -381,20 +381,20 @@ Flight::route("/c_consulter", function (){
                 $nomGroupe=$candidature_check['nom_groupe'];
                 $candidature=$db->query("SELECT * FROM candidature,style,departement,scene WHERE scene.num_type=candidature.id_scene AND num_dept=id_departement AND style.id_style=candidature.id_style AND candidature.nom_groupe='$nomGroupe';");
                 $candidature=$candidature->fetch();
-
-                //Gestion condition statut_assoc,sacem,producteur
+                
+                 //Gestion condition statut_assoc,sacem,producteur
                 //on peut le faire aussi sur smarty (dans le tpl)
-                if($candidature['statut_assoc']==0){
+                if(empty($candidature['statut_assoc'])||$candidature['statut_assoc']==0){
                     $candidature['statut_assoc']="Non";
                 }
                 else $candidature['statut_assoc']="Oui";
 
-                if($candidature['is_sacem']==0){
+                if(empty($candidature['is_sacem'])||($candidature['is_sacem'])){
                     $candidature['is_sacem']="Non";
                 }
                 else $candidature['is_sacem']="Oui";
 
-                if($candidature['have_producer']==0){
+                if(empty($candidature['have_producer'])||$candidature['have_producer']==0){
                     $candidature['have_producer']="Non";
                 }
                 else $candidature['have_producer']="Oui";
@@ -418,7 +418,8 @@ Flight::route("/c_consulter", function (){
                     else array_push($pistes,$file);
                 }
                 Flight::render('templates/c_consulter.tpl', array('name'=>$_SESSION['nom'],'candidature'=>$candidature,'images'=>$images,'pistes'=>$pistes,'membres'=>$membres)); 
-            }else{ Flight::redirect('/candidature'); }
+            
+               }else{ Flight::redirect('/candidature'); }
         }
     }
     else {Flight::redirect('/login');   }
@@ -443,8 +444,8 @@ Flight::route("GET /c_edit", function (){
                 $candidature=$db->query("SELECT * FROM candidature,style,departement,scene WHERE scene.num_type=candidature.id_scene AND num_dept=id_departement AND style.id_style=candidature.id_style AND nom_groupe='$nomGroupe';");
                 $candidature=$candidature->fetch();
                 
-                $nom_depts=$db->query("SELECT departement FROM departement;");
-                $nom_depts=$nom_depts->fetchAll(PDO::FETCH_COLUMN);
+                $depts=$db->query("SELECT departement,num_dept FROM departement;");
+                $depts=$depts->fetchAll(PDO::FETCH_ASSOC);
                 $styles=$db->query("SELECT nom_style FROM style;");
                 $styles=$styles->fetchAll(PDO::FETCH_COLUMN);
                 $scenes=$db->query("SELECT nom_type FROM scene;");
@@ -456,7 +457,7 @@ Flight::route("GET /c_edit", function (){
                     $membres[$i]=explode('/',$membre);
                     $i++;
                 }
-                Flight::render('templates/c_edit.tpl', array('erreurs'=>null,'candidature'=>$candidature,'nom_depts'=>$nom_depts,'styles'=>$styles,'scenes'=>$scenes,'membres'=>$membres));
+                Flight::render('templates/c_edit.tpl', array('erreurs'=>null,'candidature'=>$candidature,'depts'=>$depts,'styles'=>$styles,'scenes'=>$scenes,'membres'=>$membres));
             }else {Flight::redirect('/candidature');}
             //sinon : redirection au formulaire de la candidature
         }
@@ -575,16 +576,12 @@ Flight::route("POST /c_edit",function (){
 
                     //RECUPERATION 
                     $dept = $_POST['departement'];
-                    $scene = $_POST['scene'];
-                    $style = $_POST['style'];
+                    $scene = $_POST['scene']+1;
+                    $style = $_POST['style']+1;
 
                     //RECUPERATION MEMBRES A GERER
                     //PAR RAPPORT A L'INPUT INVISIBLE <=> SCRIPT
-                    $i=0;
-                    foreach(explode('\\',$_POST['membres']) as $membre){
-                        $membres[$i]=explode('/',$membre);
-                        $i++;
-                    }
+                    
 
                     //GERER FICHIERS
 
@@ -597,18 +594,20 @@ Flight::route("POST /c_edit",function (){
                     /*id_representant = , NE CHANGE PAS*/
                     id_style = $style,
                     annee_creation = $anneeCreation,
-                    presentation = $presentation,
-                    experience = $experience,
-                    site_web = $siteWeb,
-                    soundcloud = $soundcloud,
-                    youtube = $youtube,
+                    presentation = '$presentation',
+                    experience = '$experience',
+                    site_web = '$siteWeb',
+                    soundcloud = '$soundcloud',
+                    youtube = '$youtube',
                     statut_assoc = $statutAssoc,
                     is_sacem = $isSacem,
                     have_producer = $haveProducer,
-                    membres = $membres
+                    membres = 'tmp_p/tmp_n/tmp_i'
                     WHERE nom_groupe='$old_nomGroupe[0]'");
                     //TODO RESTE DES MODIFS
                     $db->query("SET FOREIGN_KEY_CHECKS=1");
+
+                    rename("data/$old_nomGroupe[0]","data/$nomGroupe");
                     Flight::render('templates/success.tpl',array(null));
                 }
                 else 

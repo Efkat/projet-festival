@@ -15,14 +15,9 @@
                     </div>
                     <div>
                         <label for="departement-input">Département d'origine</label>
-                        <select name="departement" id="departement-input" value="{$candidature['departement']}">
-                            {foreach from=$nom_depts item=nom_dept}
-                                
-                                <option value="{$nom_dept}" 
-                                {if $nom_dept==$candidature['departement']} 
-                                    selected        {*à tester*}
-                                {/if}>{$nom_dept}</option>
-
+                        <select class="custom-select" name="departement" id="departement-input" required>
+                            {foreach from=$depts item=dept}
+                                <option value="{$dept['num_dept']}" {if $dept['departement']==$candidature['departement']} selected {/if}>{$dept['departement']}</option>
                             {/foreach}
                         </select>
                     </div>
