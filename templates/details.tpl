@@ -43,71 +43,57 @@
             <hr class="my-3">
 
             <dl class="w-75 mx-auto text-center">
-                                <dt class="">Département</dt>
+                                <dt class="h3 my-2">Département</dt>
                                 <dd>{$candidature['departement']}</dd>
 
-                                <dt>Style</dt>
+                                <dt class="h3 my-2">Style</dt>
                                 <dd>{$candidature['nom_style']}</dd>
 
-                                <dt>Scène</dt>
+                                <dt class="h3 my-2">Scène</dt>
                                 <dd>{$candidature['nom_type']}</dd>
 
-                                <dt>Année de Création</dt>
+                                <dt class="h3 my-2">Année de Création</dt>
                                 <dd>{$candidature['annee_creation']}</dd>
 
-                                <dt>Présentation</dt>
+                                <dt class="h3 my-2">Présentation</dt>
                                 <dd>{$candidature['presentation']}</dd>
 
-                                <dt>Expérience</dt>
+                                <dt class="h3 my-2">Expérience</dt>
                                 <dd>{$candidature['experience']}</dd>
 
-                                <dt>Site Web</dt>
+                                <dt class="h3 my-2">Site Web</dt>
                                 <dd>{$candidature['site_web']}</dd>
 
-                                <dt>Soundcloud</dt>
+                                <dt  class="h3 my-2">Soundcloud</dt>
                                 <dd>{$candidature['soundcloud']}</dd>
 
-                                <dt>Youtube</dt>
+                                <dt class="h3  my-2">Youtube</dt>
                                 <dd>{$candidature['youtube']}</dd>
 
-                                <dt>Statut Association</dt>
+                                <dt class="h3 my-2">Statut Association</dt>
                                 <dd>{$candidature['statut_assoc']}</dd>
 
-                                <dt>Sacem</dt>
+                                <dt class="h3 my-2">Sacem</dt>
                                 <dd>{$candidature['is_sacem']}</dd>
 
-                                <dt>Producteur</dt>
+                                <dt class="h3 my-2">Producteur</dt>
                                 <dd>{$candidature['have_producer']}</dd>
 
-                                <dt>Membres</dt>
+                                <dt class="h3 my-2">Membres</dt>
                                 <dd>
-                                    <ul class="card w-25 mx-auto mt-3 text-left">
+                                    <ul class="d-flex flex-wrap">
                                     {foreach from=$membres item=membre}
-                                        <li >
+                                        <li class="card w-25 mx-auto p-2 text-left">
                                             <p>{$membre[0]}</p>
                                             <p>{$membre[1]}</p>
                                             <p>{$membre[2]}</p>
                                         </li>
+                                        
                                     {/foreach}
                                     </ul>
                                 
                                 </dd>
                             </dl>
         </div>
-            <h1 class="text-center"></h1>
-            <section>
-
-                <h3>
-                    <section>
-                        
-                            
-
-                    </section>
-                 </h3>
-                 
-
-            </section>
-
-            
         </main>   
 {/block}
