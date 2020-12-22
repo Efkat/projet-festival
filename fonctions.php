@@ -619,6 +619,10 @@ Flight::route("POST /c_edit",function (){
                     //test : si le nom temporaire est nul => pas de fichier selectionné
                     if($_FILES['image1']['tmp_name']!=null)
                     {
+                        $format=$db->query("SELECT format FROM fichier WHERE nom_groupe='$nomGroupe' AND nom_fichier='image1'");
+                        $format=$format->fetch();
+                        unlink("data/$nomGroupe/image1.$format[0]");
+                        $db->query("DELETE FROM fichier WHERE nom_groupe='$nomGroupe' AND nom_fichier='image1'");
                         $blocs=explode('/',$_FILES['image1']['type']);
                         $extensions[0]=$blocs[count($blocs)-1];
                         $insertFileName->execute(array(':format'=>$extensions[0], ':nomFichier'=>'image1', ':nomGroupe'=>$nomGroupe));
@@ -626,6 +630,10 @@ Flight::route("POST /c_edit",function (){
                     }
                     if($_FILES['image2']['tmp_name']!=null)
                     {
+                        $format=$db->query("SELECT format FROM fichier WHERE nom_groupe='$nomGroupe' AND nom_fichier='image2'");
+                        $format=$format->fetch();
+                        unlink("data/$nomGroupe/image2.$format[0]");
+                        $db->query("DELETE FROM fichier WHERE nom_groupe='$nomGroupe' AND nom_fichier='image2'");
                         $blocs=explode('/',$_FILES['image2']['type']);
                         $extensions[1]=$blocs[count($blocs)-1];
                         $insertFileName->execute(array(':format'=>$extensions[1], ':nomFichier'=>'image2', ':nomGroupe'=>$nomGroupe));
@@ -633,6 +641,10 @@ Flight::route("POST /c_edit",function (){
                     }
                     if($_FILES['piste1']['tmp_name']!=null)
                     {
+                        $format=$db->query("SELECT format FROM fichier WHERE nom_groupe='$nomGroupe' AND nom_fichier='piste1'");
+                        $format=$format->fetch();
+                        unlink("data/$nomGroupe/piste1.$format[0]");
+                        $db->query("DELETE FROM fichier WHERE nom_groupe='$nomGroupe' AND nom_fichier='piste1'");
                         $blocs=explode('/',$_FILES['piste1']['type']);
                         $extensions[2]=$blocs[count($blocs)-1];
                         $insertFileName->execute(array(':format'=>$extensions[2], ':nomFichier'=>'piste1', ':nomGroupe'=>$nomGroupe));
@@ -640,6 +652,10 @@ Flight::route("POST /c_edit",function (){
                     }
                     if($_FILES['piste2']['tmp_name']!=null)
                     {
+                        $format=$db->query("SELECT format FROM fichier WHERE nom_groupe='$nomGroupe' AND nom_fichier='piste2'");
+                        $format=$format->fetch();
+                        unlink("data/$nomGroupe/piste2.$format[0]");
+                        $db->query("DELETE FROM fichier WHERE nom_groupe='$nomGroupe' AND nom_fichier='piste2'");
                         $blocs=explode('/',$_FILES['piste2']['type']);
                         $extensions[3]=$blocs[count($blocs)-1];
                         $insertFileName->execute(array(':format'=>$extensions[3], ':nomFichier'=>'piste2', ':nomGroupe'=>$nomGroupe));
@@ -647,6 +663,10 @@ Flight::route("POST /c_edit",function (){
                     }
                     if($_FILES['piste3']['tmp_name']!=null)
                     {
+                        $format=$db->query("SELECT format FROM fichier WHERE nom_groupe='$nomGroupe' AND nom_fichier='piste3'");
+                        $format=$format->fetch();
+                        unlink("data/$nomGroupe/piste3.$format[0]");
+                        $db->query("DELETE FROM fichier WHERE nom_groupe='$nomGroupe' AND nom_fichier='piste3'");
                         $blocs=explode('/',$_FILES['piste3']['type']);
                         $extensions[4]=$blocs[count($blocs)-1];
                         $insertFileName->execute(array(':format'=>$extensions[4], ':nomFichier'=>'piste3', ':nomGroupe'=>$nomGroupe));
