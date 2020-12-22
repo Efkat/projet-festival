@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-12-22 13:17:38
+/* Smarty version 3.1.36, created on 2020-12-22 16:45:52
   from 'C:\laragon\www\projet-festival\templates\c_consulter.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fe1f1f2c8a492_35398255',
+  'unifunc' => 'content_5fe222c0ccf2b2_67605243',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9b00a547971617c753e13ccd3b775defe4595d69' => 
     array (
       0 => 'C:\\laragon\\www\\projet-festival\\templates\\c_consulter.tpl',
-      1 => 1608643056,
+      1 => 1608655551,
       2 => 'file',
     ),
   ),
@@ -20,26 +20,26 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fe1f1f2c8a492_35398255 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fe222c0ccf2b2_67605243 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_9251935985fe1f1f2c62af4_19315417', "title");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_5701442305fe222c0c88be6_07691219', "title");
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_18518670035fe1f1f2c63bf3_69001903', "content");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_6451326585fe222c0c8ab22_14249619', "content");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "base.tpl");
 }
 /* {block "title"} */
-class Block_9251935985fe1f1f2c62af4_19315417 extends Smarty_Internal_Block
+class Block_5701442305fe222c0c88be6_07691219 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'title' => 
   array (
-    0 => 'Block_9251935985fe1f1f2c62af4_19315417',
+    0 => 'Block_5701442305fe222c0c88be6_07691219',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -51,12 +51,12 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block "title"} */
 /* {block "content"} */
-class Block_18518670035fe1f1f2c63bf3_69001903 extends Smarty_Internal_Block
+class Block_6451326585fe222c0c8ab22_14249619 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_18518670035fe1f1f2c63bf3_69001903',
+    0 => 'Block_6451326585fe222c0c8ab22_14249619',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -68,7 +68,6 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
             <p class="lead fs-1 text-center"><?php echo $_smarty_tpl->tpl_vars['candidature']->value['nom_groupe'];?>
 </p>
             <hr class="my-4">
-            
             <div class="d-flex justify-content-around">
                 <img src="./data/<?php echo $_smarty_tpl->tpl_vars['candidature']->value['nom_groupe'];?>
 /<?php echo $_smarty_tpl->tpl_vars['images']->value[1]['nom_fichier'];?>
@@ -116,68 +115,67 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
                     </div>
                 </div>
             </div>
-            
             <hr class="my-3">
 
             <dl class="w-75 mx-auto text-center">
-                                <dt class="">Département</dt>
+                                <dt class="h3 my-2">Département</dt>
                                 <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['departement'];?>
 </dd>
 
-                                <dt>Style</dt>
+                                <dt class="h3 my-2">Style</dt>
                                 <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['nom_style'];?>
 </dd>
 
-                                <dt>Scène</dt>
+                                <dt class="h3 my-2">Scène</dt>
                                 <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['nom_type'];?>
 </dd>
 
-                                <dt>Année de Création</dt>
+                                <dt class="h3 my-2">Année de Création</dt>
                                 <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['annee_creation'];?>
 </dd>
 
-                                <dt>Présentation</dt>
+                                <dt class="h3 my-2">Présentation</dt>
                                 <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['presentation'];?>
 </dd>
 
-                                <dt>Expérience</dt>
+                                <dt class="h3 my-2">Expérience</dt>
                                 <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['experience'];?>
 </dd>
 
-                                <dt>Site Web</dt>
+                                <dt class="h3 my-2">Site Web</dt>
                                 <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['site_web'];?>
 </dd>
 
-                                <dt>Soundcloud</dt>
+                                <dt  class="h3 my-2">Soundcloud</dt>
                                 <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['soundcloud'];?>
 </dd>
 
-                                <dt>Youtube</dt>
+                                <dt class="h3  my-2">Youtube</dt>
                                 <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['youtube'];?>
 </dd>
 
-                                <dt>Statut Association</dt>
+                                <dt class="h3 my-2">Statut Association</dt>
                                 <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['statut_assoc'];?>
 </dd>
 
-                                <dt>Sacem</dt>
+                                <dt class="h3 my-2">Sacem</dt>
                                 <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['is_sacem'];?>
 </dd>
 
-                                <dt>Producteur</dt>
+                                <dt class="h3 my-2">Producteur</dt>
                                 <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['have_producer'];?>
 </dd>
 
-                                <dt>Membres</dt>
+                                <dt class="h3 my-2">Membres</dt>
                                 <dd>
-                                    <ul class="card w-25 mx-auto mt-3 text-left">
+                                    <ul class="d-flex flex-wrap">
                                     <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['membres']->value, 'membre');
 $_smarty_tpl->tpl_vars['membre']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['membre']->value) {
 $_smarty_tpl->tpl_vars['membre']->do_else = false;
 ?>
-                                        <li >
+                                        <li class="card w-25 mx-auto p-2 text-left">
                                             <p><?php echo $_smarty_tpl->tpl_vars['membre']->value[0];?>
 </p>
                                             <p><?php echo $_smarty_tpl->tpl_vars['membre']->value[1];?>
@@ -185,6 +183,7 @@ $_smarty_tpl->tpl_vars['membre']->do_else = false;
                                             <p><?php echo $_smarty_tpl->tpl_vars['membre']->value[2];?>
 </p>
                                         </li>
+                                        
                                     <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
@@ -193,21 +192,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                                 </dd>
                             </dl>
         </div>
-            <h1 class="text-center"></h1>
-            <section>
-
-                <h3>
-                    <section>
-                        
-                            
-
-                    </section>
-                 </h3>
-                 
-
-            </section>
-
-            
         </main>   
 <?php
 }
