@@ -4,15 +4,46 @@
 {/block}
 {block name="content"}
         <main>
-            <h1>Détails</h1>
-            <section>
-                    <h3>
-                        <section>
-                            <dl>
-                                <dt>Nom Groupe</dt>
-                                <dd>{$candidature['nom_groupe']}</dd>
+        <div class="jumbotron  w-75 mx-auto">
+            <h1 class="display-5 text-center">Détails Candidature</h1>
+            <p class="lead fs-1 text-center">{$candidature['nom_groupe']}</p>
+            <hr class="my-4">
+            <div class="d-flex justify-content-around">
+                <img src="../data/{$candidature['nom_groupe']}/{$images[1]['nom_fichier']}.{$images[1]['format']}" style="width:250px;">
+                <img src="../data/{$candidature['nom_groupe']}/{$images[2]['nom_fichier']}.{$images[2]['format']}" style="width:250px;" alt="pas d'image 2">
+            </div>
+            <hr class="my-3">
+            <div class="d-flex justify-content-around">
+                <div class="column">
+                    <div class="row">
+                        <p class="m-0">Morceau 1</p>
+                    </div>
+                    <div class="row">
+                        <audio controls src="../data/{$candidature['nom_groupe']}/{$pistes[1]['nom_fichier']}.{$pistes[1]['format']}"></audio>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="row">
+                        <p class="m-0">Morceau 2</p>
+                    </div>
+                    <div class="row">
+                    <audio controls src="../data/{$candidature['nom_groupe']}/{$pistes[2]['nom_fichier']}.{$pistes[2]['format']}"></audio>
 
-                                <dt>Département</dt>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="row">
+                        <p class="m-0">Morceau 3</p>
+                    </div>
+                    <div class="row">
+                        <audio controls src="../data/{$candidature['nom_groupe']}/{$pistes[3]['nom_fichier']}.{$pistes[3]['format']}"></audio>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-3">
+
+            <dl class="w-75 mx-auto text-center">
+                                <dt class="">Département</dt>
                                 <dd>{$candidature['departement']}</dd>
 
                                 <dt>Style</dt>
@@ -50,9 +81,9 @@
 
                                 <dt>Membres</dt>
                                 <dd>
-                                    <ul>
+                                    <ul class="card w-25 mx-auto mt-3 text-left">
                                     {foreach from=$membres item=membre}
-                                        <li>
+                                        <li >
                                             <p>{$membre[0]}</p>
                                             <p>{$membre[1]}</p>
                                             <p>{$membre[2]}</p>
@@ -61,32 +92,20 @@
                                     </ul>
                                 
                                 </dd>
-
-
-                                {* ???
-                                <dt>Fiche Technique</dt>
-                                <dd>{$candidature['fiche_technique']}</dd>
-                                *}
-
-                                {*Files
-
-                                <dt>Image</dt>
-                                <dd>{$files[16]}</dd>
-
-                                <dt>Piste 1</dt>
-                                <dd>{$files[17]}</dd>
-
-                                <dt>Piste 2</dt>
-                                <dd>{$files[18]}</dd>
-
-                                <dt>Piste 3</dt>
-                                <dd>{$files[19]}</dd>
-                                *}
                             </dl>
+        </div>
+            <h1 class="text-center"></h1>
+            <section>
+
+                <h3>
+                    <section>
+                        
                             
 
-                        </section>
-                    </h3>
+                    </section>
+                 </h3>
+                 
+
             </section>
 
             

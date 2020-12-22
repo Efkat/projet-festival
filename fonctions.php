@@ -60,6 +60,17 @@ Flight::route("/details/@nom_groupe", function ($nom_groupe){
             $candidature['have_producer']="Non";
         } else $candidature['have_producer']="Oui";
         
+        //Récupération noms fichiers
+        $files=$db->query("SELECT * FROM fichier WHERE nom_groupe='$nom_groupe'");
+        $files=$files->fetchAll();
+        $images=$pistes=array(null);
+        foreach($files as $file)
+        {
+            if($file['nom_fichier']=='image1' || $file['nom_fichier']=='image2')
+                array_push($images,$file);
+            else array_push($pistes,$file);
+        }
+
         //Gestion membres
         if($candidature['membres']!=null){   //dodo1_nom/dodo1_prenom/violon,dodo2_nom/dodo2_prenom/triangle
             $i=0;
@@ -68,7 +79,7 @@ Flight::route("/details/@nom_groupe", function ($nom_groupe){
                 $i++;
             }
         }
-        Flight::render('templates/details.tpl', array('candidature'=>$candidature,'membres'=>$membres));
+        Flight::render('templates/details.tpl', array('candidature'=>$candidature,'membres'=>$membres,'images'=>$images,'pistes'=>$pistes));
     }
     else 
         Flight::redirect('/');
