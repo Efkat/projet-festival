@@ -4,26 +4,6 @@
 {/block}
 {block name="content"}
     <main>
-        {*
-        Clés:
-        nom_groupe
-        id_departement
-        id_scene
-        id_representant
-        id_style
-
-        A saisir:
-        annee_creation
-        presentation
-        experience
-        site_web
-        soundcloud
-        youtube
-        statut_assoc
-        is_sacem
-        have_producteur
-        membres
-        *}
         <section class="jumbotron w-50 mx-auto my-4">
             <h1 class="display-1 text-center m-0">Candidature</h1>
             <hr class="my-4"/>
