@@ -10,7 +10,8 @@ let membersCount = members.length;
 submitEditButton.addEventListener("click",function(event)
 {
     for(let i=0;i<membersCount;i++)
-    {
+    {  
+        if(i>0){ membersInformations+='\\\\' }
         membersInformations += getCardInformation(members[i])
         membersDisableInput.setAttribute("value", membersInformations)
     }
