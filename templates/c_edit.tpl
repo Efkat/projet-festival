@@ -1,7 +1,7 @@
 {extends file="base.tpl"}
 {block name="title"}
     Editer Candidature
-{/block}
+{/block}  
 {block name="content"}
         <main>
             <section class="jumbotron w-50 mx-auto my-4">
@@ -101,10 +101,10 @@
                                         <div class="card-header">MEMBRE {$num+1}</div>
                                         <div class="card-body">
                                             <div class="form-group">
-                                                <input type="text" class="form-control my-1 nom-input" placeholder="Nom" value={$membre[0]}>
-                                                <input type="text" class="form-control my-1 prenom-input" placeholder="Prénom" value={$membre[1]}>
+                                                <input type="text" class="form-control my-1 nom-input" placeholder="Nom" value="{$membre[0]}">
+                                                <input type="text" class="form-control my-1 prenom-input" placeholder="Prénom" value="{$membre[1]}">
                                                 <input type="text" class="form-control my-1 instrument-input"
-                                                    placeholder="Instrument" value={$membre[2]}>
+                                                    placeholder="Instrument" value="{$membre[2]}">
                                             </div>
                                         </div>
                                     </section>
@@ -141,7 +141,7 @@
                             <input class="form-control-file" name="piste3" id="piste3-input" type="file">
                         </div>
                         <div class="text-center">
-                        <input type="submit" id="submit" value="Envoyer" class="btn btn-success btn-lg">
+                        <input type="submit" id="submit_edit" value="Envoyer" class="btn btn-success btn-lg">
                         </div>
                     </div>
                 </form>
