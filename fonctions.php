@@ -621,7 +621,8 @@ Flight::route("POST /c_edit",function (){
                     {
                         $format=$db->query("SELECT format FROM fichier WHERE nom_groupe='$nomGroupe' AND nom_fichier='image1'");
                         $format=$format->fetch();
-                        unlink("data/$nomGroupe/image1.$format[0]");
+                        if(file_exists("data/$nomGroupe/image1.$format[0]")) 
+                            unlink("data/$nomGroupe/image1.$format[0]");
                         $db->query("DELETE FROM fichier WHERE nom_groupe='$nomGroupe' AND nom_fichier='image1'");
                         $blocs=explode('/',$_FILES['image1']['type']);
                         $extensions[0]=$blocs[count($blocs)-1];
@@ -632,7 +633,8 @@ Flight::route("POST /c_edit",function (){
                     {
                         $format=$db->query("SELECT format FROM fichier WHERE nom_groupe='$nomGroupe' AND nom_fichier='image2'");
                         $format=$format->fetch();
-                        unlink("data/$nomGroupe/image2.$format[0]");
+                        if(file_exists("data/$nomGroupe/image2.$format[0]")) 
+                            unlink("data/$nomGroupe/image2.$format[0]");
                         $db->query("DELETE FROM fichier WHERE nom_groupe='$nomGroupe' AND nom_fichier='image2'");
                         $blocs=explode('/',$_FILES['image2']['type']);
                         $extensions[1]=$blocs[count($blocs)-1];
@@ -643,7 +645,9 @@ Flight::route("POST /c_edit",function (){
                     {
                         $format=$db->query("SELECT format FROM fichier WHERE nom_groupe='$nomGroupe' AND nom_fichier='piste1'");
                         $format=$format->fetch();
-                        unlink("data/$nomGroupe/piste1.$format[0]");
+                        if(file_exists("data/$nomGroupe/piste1.$format[0]")) 
+                            unlink("data/$nomGroupe/piste1.$format[0]");
+
                         $db->query("DELETE FROM fichier WHERE nom_groupe='$nomGroupe' AND nom_fichier='piste1'");
                         $blocs=explode('/',$_FILES['piste1']['type']);
                         $extensions[2]=$blocs[count($blocs)-1];
@@ -654,7 +658,9 @@ Flight::route("POST /c_edit",function (){
                     {
                         $format=$db->query("SELECT format FROM fichier WHERE nom_groupe='$nomGroupe' AND nom_fichier='piste2'");
                         $format=$format->fetch();
-                        unlink("data/$nomGroupe/piste2.$format[0]");
+                        if(file_exists("data/$nomGroupe/piste2.$format[0]")) 
+                            unlink("data/$nomGroupe/piste2.$format[0]");
+
                         $db->query("DELETE FROM fichier WHERE nom_groupe='$nomGroupe' AND nom_fichier='piste2'");
                         $blocs=explode('/',$_FILES['piste2']['type']);
                         $extensions[3]=$blocs[count($blocs)-1];
@@ -663,8 +669,8 @@ Flight::route("POST /c_edit",function (){
                     }
                     if($_FILES['piste3']['tmp_name']!=null)
                     {
-                        $format=$db->query("SELECT format FROM fichier WHERE nom_groupe='$nomGroupe' AND nom_fichier='piste3'");
-                        $format=$format->fetch();
+                        if(file_exists("data/$nomGroupe/piste3.$format[0]")) 
+                            unlink("data/$nomGroupe/piste3.$format[0]");
                         unlink("data/$nomGroupe/piste3.$format[0]");
                         $db->query("DELETE FROM fichier WHERE nom_groupe='$nomGroupe' AND nom_fichier='piste3'");
                         $blocs=explode('/',$_FILES['piste3']['type']);
