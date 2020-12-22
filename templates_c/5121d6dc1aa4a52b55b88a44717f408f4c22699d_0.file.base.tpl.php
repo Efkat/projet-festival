@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-12-06 19:21:42
+/* Smarty version 3.1.36, created on 2020-12-22 16:21:34
   from 'C:\laragon\www\projet-festival\templates\base.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fcd2f4696f991_49765693',
+  'unifunc' => 'content_5fe21d0e345734_38803588',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '5121d6dc1aa4a52b55b88a44717f408f4c22699d' => 
     array (
       0 => 'C:\\laragon\\www\\projet-festival\\templates\\base.tpl',
-      1 => 1607282501,
+      1 => 1608654087,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fcd2f4696f991_49765693 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fe21d0e345734_38803588 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 ?>
@@ -30,9 +30,9 @@ $_smarty_tpl->inheritance->init($_smarty_tpl, false);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://bootswatch.com/4/journal/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="./styles/style.css">
     <title><?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_3328747375fcd2f4696b681_57952860', "title");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1958986725fe21d0e3421e7_02938423', "title");
 ?>
 </title>
 </head>
@@ -41,7 +41,7 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_3328747375fcd2f469
         <h1 class="text-center my-4 text-primary">🎸 Good Rockin' Festival 🎸</h1>
     </header>
     <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1748582615fcd2f4696eed8_85686372', "content");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_9484549965fe21d0e344c89_91305320', "content");
 ?>
 
     <footer class="footer-page font-small blue pt-4 border-top">
@@ -71,12 +71,12 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_1748582615fcd2f469
 </body>
 </html><?php }
 /* {block "title"} */
-class Block_3328747375fcd2f4696b681_57952860 extends Smarty_Internal_Block
+class Block_1958986725fe21d0e3421e7_02938423 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'title' => 
   array (
-    0 => 'Block_3328747375fcd2f4696b681_57952860',
+    0 => 'Block_1958986725fe21d0e3421e7_02938423',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -86,12 +86,12 @@ Default Title<?php
 }
 /* {/block "title"} */
 /* {block "content"} */
-class Block_1748582615fcd2f4696eed8_85686372 extends Smarty_Internal_Block
+class Block_9484549965fe21d0e344c89_91305320 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_1748582615fcd2f4696eed8_85686372',
+    0 => 'Block_9484549965fe21d0e344c89_91305320',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {

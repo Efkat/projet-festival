@@ -1,9 +1,7 @@
--redirection apres POST candidature validé
+-redirection apres POST candidature validï¿½
 
--enlever vérif // membres (chaque ajout & validation final)
-  <=> c'était // débug
+-enlever vï¿½rif // membres (chaque ajout & validation final)
+  <=> c'ï¿½tait // dï¿½bug
 -mini bug // si erreur // required => pb // saisie membres (concat)
 
--sacem / fiche technique fichiers à voir s'ils faut les gérer
-
--dans c_edit : gérer l'ajout de nouveux membres ? leur suppression ? 
+-sacem / fiche technique fichiers ï¿½ voir s'ils faut les gï¿½rer
