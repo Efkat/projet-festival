@@ -18,15 +18,15 @@ addButton.addEventListener("click", function (event) {
         //CONFIRMATION
         let inputs = cards[membersCount-1].querySelectorAll('input')
         let atLeastOneIsEmpty = false;
-        for (let j = 0; j < inputs.length; j++) {
-            if(inputs[j].value==""){ atLeastOneIsEmpty=true; }
-            else{
+        if(inputs[0].value=="" || inputs[1].value=="" || inputs[2].value=="")
+            atLeastOneIsEmpty=true;
+
+        if(!atLeastOneIsEmpty)
+        {
+            for (let j = 0; j < inputs.length; j++) {
                 inputs[j].setAttribute('disabled', "")
                 inputs[j].setAttribute('style', "color:rgb(170, 169, 169);font-style:italic;")
             }
-        }
-        if(!atLeastOneIsEmpty)
-        {
             if(membersCount>1){ membersInformations+="\\" }
             membersInformations += getCardInformation(cards[membersCount-1])
             membersDisableInput.setAttribute("value", membersInformations)
@@ -62,8 +62,27 @@ delButton.addEventListener("click", function (event) {
     if (membersCount > 1) {
         membersCount--
         cardContainer.removeChild(cardContainer.lastElementChild)
+
+        //On retire un membres
+        const membersInformations_tmp = membersInformations.split('\\');
+        membersInformations = "";
+        for(let i=0; i<membersInformations_tmp.length-1; i++)
+        {
+            if(i>0){ membersInformations+="\\"}
+            membersInformations+=membersInformations_tmp[i];
+        }
+        membersDisableInput.setAttribute("value", membersInformations)
+
+        //style
+        let inputs = cards[membersCount-1].querySelectorAll('input')
+        for (let j = 0; j < inputs.length; j++) {
+            inputs[j].removeAttribute('disabled', "")
+            inputs[j].removeAttribute('style', "color:rgb(170, 169, 169);font-style:italic;")
+        }
+
         updateCardsNumber()
     } else {
+
         alert("Un membre au minimum !")
     }
 })
@@ -73,11 +92,14 @@ submitButton.addEventListener("click",function (event) {
     let inputs = cards[membersCount-1].querySelectorAll('input')
     if(inputs[0].value!="" && inputs[1].value!="" && inputs[2].value!="")
     {
-        if(membersCount>1){ membersInformations+="\\" }
-        membersInformations += getCardInformation(cards[membersCount-1])
-        membersDisableInput.setAttribute("value", membersInformations)
+        membersDisableInput.setAttribute("value", membersInformations + ((membersCount>1)?"\\":"") + getCardInformation(cards[membersCount-1]))
     }
-    //alert(membersInformations);
+    else 
+    {   
+        if(membersCount>1)
+            membersDisableInput.setAttribute("value",membersInformations);
+    }
+    alert(membersInformations);
 })
 
 /* FUNCTIONS */
