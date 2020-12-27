@@ -27,3 +27,13 @@ img{
 dd{
     word-wrap: break-word;
 }
+td{
+    max-width: 10em;
+    overflow:hidden;
+    padding:15px;
+}
+tr:after{
+    display: block;
+    content:"";
+    margin:60px;
+}
