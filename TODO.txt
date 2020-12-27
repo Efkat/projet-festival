@@ -1,7 +1,1 @@
--redirection apres POST candidature valid�
-
--enlever v�rif // membres (chaque ajout & validation final)
-  <=> c'�tait // d�bug
--mini bug // si erreur // required => pb // saisie membres (concat)
-
--sacem / fiche technique fichiers � voir s'ils faut les g�rer
+-SACEM / FICHE TECHNIQUE (obligatoire / non ?)
