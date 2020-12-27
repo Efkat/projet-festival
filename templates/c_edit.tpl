@@ -113,33 +113,39 @@
                             </div>
                             <input id="membresVariables" type="text" value="" name="membres" style="display: none">
                         </div>
-                        <div class="my-3">
-                            <label for="technique-input">Fiche technique</label>
-                            <input class="form-control-file" type="file" id="technique-input" name="technique">
+                        <div>
+                            <div class="my-3">
+                                <label for="technique-input">Fiche technique</label>
+                                <input class="form-control-file" type="file" id="technique-input" name="technique">
+                            </div>
+                            <div class="my-3">
+                                <label for="sacem-input">Document SACEM ou tracklist détaillée</label>
+                                <input class="form-control-file" type="file" id="sacem-input" name="sacem">
+                            </div>
                         </div>
-                        <div class="my-3">
-                            <label for="sacem-input">Document SACEM ou tracklist détaillée</label>
-                            <input class="form-control-file" type="file" id="sacem-input" name="sacem">
+                        <div class="mt-5">
+                            <div class="my-3">
+                                <label for="image1-input">Nouvelle photo du groupe n°1</label>
+                                <input class="form-control-file" type="file" id="image1-input" name="image1">
+                            </div>
+                            <div class="my-3">
+                                <label for="image2-input">Nouvelle photo du groupe n°2</label>
+                                <input class="form-control-file" type="file" id="image2-input" name="image2">
+                            </div>
                         </div>
-                        <div class="my-3">
-                            <label for="image1-input">Nouvelle photo du groupe n°1</label>
-                            <input class="form-control-file" type="file" id="image1-input" name="image1">
-                        </div>
-                        <div class="my-3">
-                            <label for="image2-input">Nouvelle photo du groupe n°2</label>
-                            <input class="form-control-file" type="file" id="image2-input" name="image2">
-                        </div>
-                        <div class="my-3">
-                            <label for="piste1-input">Nouvelle piste MP3 n°1</label>
-                            <input class="form-control-file" name="piste1" id="piste1-input" type="file">
-                        </div>
-                        <div class="my-3">
-                            <label for="piste2-input">Nouvelle piste MP3 n°2</label>
-                            <input class="form-control-file" name="piste2" id="piste2-input" type="file">
-                        </div>
-                        <div class="my-3">
-                            <label for="piste3-input">Nouvelle piste MP3 n°3</label>
-                            <input class="form-control-file" name="piste3" id="piste3-input" type="file">
+                        <div class="mt-5">
+                            <div class="my-3">
+                                <label for="piste1-input">Nouvelle piste MP3 n°1</label>
+                                <input class="form-control-file" name="piste1" id="piste1-input" type="file">
+                            </div>
+                            <div class="my-3">
+                                <label for="piste2-input">Nouvelle piste MP3 n°2</label>
+                                <input class="form-control-file" name="piste2" id="piste2-input" type="file">
+                            </div>
+                            <div class="my-3">
+                                <label for="piste3-input">Nouvelle piste MP3 n°3</label>
+                                <input class="form-control-file" name="piste3" id="piste3-input" type="file">
+                            </div>
                         </div>
                         <div class="text-center">
                         <input type="submit" id="submit_edit" value="Envoyer" class="btn btn-success btn-lg">

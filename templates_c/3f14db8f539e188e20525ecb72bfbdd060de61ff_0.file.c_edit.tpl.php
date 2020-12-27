@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-12-22 19:40:29
+/* Smarty version 3.1.36, created on 2020-12-27 19:41:20
   from 'C:\laragon\www\projet-festival\templates\c_edit.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fe24badde9148_59027801',
+  'unifunc' => 'content_5fe8e3601145f4_11989908',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3f14db8f539e188e20525ecb72bfbdd060de61ff' => 
     array (
       0 => 'C:\\laragon\\www\\projet-festival\\templates\\c_edit.tpl',
-      1 => 1608665985,
+      1 => 1609098079,
       2 => 'file',
     ),
   ),
@@ -20,26 +20,26 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fe24badde9148_59027801 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fe8e3601145f4_11989908 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_15996902775fe24baddc9353_97626531', "title");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_6488060985fe8e3600f92b5_12312774', "title");
 ?>
   
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_20239247805fe24baddca453_87116951', "content");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_7804527625fe8e3600fa159_20640914', "content");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "base.tpl");
 }
 /* {block "title"} */
-class Block_15996902775fe24baddc9353_97626531 extends Smarty_Internal_Block
+class Block_6488060985fe8e3600f92b5_12312774 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'title' => 
   array (
-    0 => 'Block_15996902775fe24baddc9353_97626531',
+    0 => 'Block_6488060985fe8e3600f92b5_12312774',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -51,12 +51,12 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block "title"} */
 /* {block "content"} */
-class Block_20239247805fe24baddca453_87116951 extends Smarty_Internal_Block
+class Block_7804527625fe8e3600fa159_20640914 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_20239247805fe24baddca453_87116951',
+    0 => 'Block_7804527625fe8e3600fa159_20640914',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -66,6 +66,8 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
             <section class="jumbotron w-50 mx-auto my-4">
                 <h1 class="display-1 text-center m-0">Edition de la Candidature</h1>
                 <hr class="my-4"/>
+                <p class="h3 text-primary font-weight-bold"><?php echo $_smarty_tpl->tpl_vars['erreurs']->value;?>
+</p>
                 <form action="./c_edit" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <div class="my-3">
@@ -211,33 +213,39 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                             </div>
                             <input id="membresVariables" type="text" value="" name="membres" style="display: none">
                         </div>
-                        <div class="my-3">
-                            <label for="technique-input">Fiche technique</label>
-                            <input class="form-control-file" type="file" id="technique-input" name="technique">
+                        <div>
+                            <div class="my-3">
+                                <label for="technique-input">Fiche technique</label>
+                                <input class="form-control-file" type="file" id="technique-input" name="technique">
+                            </div>
+                            <div class="my-3">
+                                <label for="sacem-input">Document SACEM ou tracklist détaillée</label>
+                                <input class="form-control-file" type="file" id="sacem-input" name="sacem">
+                            </div>
                         </div>
-                        <div class="my-3">
-                            <label for="sacem-input">Document SACEM ou tracklist détaillée</label>
-                            <input class="form-control-file" type="file" id="sacem-input" name="sacem">
+                        <div class="mt-5">
+                            <div class="my-3">
+                                <label for="image1-input">Nouvelle photo du groupe n°1</label>
+                                <input class="form-control-file" type="file" id="image1-input" name="image1">
+                            </div>
+                            <div class="my-3">
+                                <label for="image2-input">Nouvelle photo du groupe n°2</label>
+                                <input class="form-control-file" type="file" id="image2-input" name="image2">
+                            </div>
                         </div>
-                        <div class="my-3">
-                            <label for="image1-input">Nouvelle photo du groupe n°1</label>
-                            <input class="form-control-file" type="file" id="image1-input" name="image1">
-                        </div>
-                        <div class="my-3">
-                            <label for="image2-input">Nouvelle photo du groupe n°2</label>
-                            <input class="form-control-file" type="file" id="image2-input" name="image2">
-                        </div>
-                        <div class="my-3">
-                            <label for="piste1-input">Nouvelle piste MP3 n°1</label>
-                            <input class="form-control-file" name="piste1" id="piste1-input" type="file">
-                        </div>
-                        <div class="my-3">
-                            <label for="piste2-input">Nouvelle piste MP3 n°2</label>
-                            <input class="form-control-file" name="piste2" id="piste2-input" type="file">
-                        </div>
-                        <div class="my-3">
-                            <label for="piste3-input">Nouvelle piste MP3 n°3</label>
-                            <input class="form-control-file" name="piste3" id="piste3-input" type="file">
+                        <div class="mt-5">
+                            <div class="my-3">
+                                <label for="piste1-input">Nouvelle piste MP3 n°1</label>
+                                <input class="form-control-file" name="piste1" id="piste1-input" type="file">
+                            </div>
+                            <div class="my-3">
+                                <label for="piste2-input">Nouvelle piste MP3 n°2</label>
+                                <input class="form-control-file" name="piste2" id="piste2-input" type="file">
+                            </div>
+                            <div class="my-3">
+                                <label for="piste3-input">Nouvelle piste MP3 n°3</label>
+                                <input class="form-control-file" name="piste3" id="piste3-input" type="file">
+                            </div>
                         </div>
                         <div class="text-center">
                         <input type="submit" id="submit_edit" value="Envoyer" class="btn btn-success btn-lg">
@@ -245,8 +253,6 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                     </div>
                 </form>
                 <a class="cancel float-right" href="./">Annuler...</a>
-                <p><?php echo $_smarty_tpl->tpl_vars['erreurs']->value;?>
-</p>
             </section>
         </main>
         <?php echo '<script'; ?>

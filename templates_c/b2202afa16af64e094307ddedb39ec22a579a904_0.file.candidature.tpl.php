@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-12-27 16:06:45
+/* Smarty version 3.1.36, created on 2020-12-27 19:43:03
   from 'C:\laragon\www\projet-festival\templates\candidature.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fe8b11512c8e8_67236859',
+  'unifunc' => 'content_5fe8e3c7e56993_70516552',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b2202afa16af64e094307ddedb39ec22a579a904' => 
     array (
       0 => 'C:\\laragon\\www\\projet-festival\\templates\\candidature.tpl',
-      1 => 1609085194,
+      1 => 1609098150,
       2 => 'file',
     ),
   ),
@@ -20,26 +20,26 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fe8b11512c8e8_67236859 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fe8e3c7e56993_70516552 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_14682111865fe8b115112fa7_03340083', "title");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_10985971345fe8e3c7e40c51_14875578', "title");
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_15359590485fe8b115113ff2_12012522', "content");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_13814917615fe8e3c7e41808_89048987', "content");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "base.tpl");
 }
 /* {block "title"} */
-class Block_14682111865fe8b115112fa7_03340083 extends Smarty_Internal_Block
+class Block_10985971345fe8e3c7e40c51_14875578 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'title' => 
   array (
-    0 => 'Block_14682111865fe8b115112fa7_03340083',
+    0 => 'Block_10985971345fe8e3c7e40c51_14875578',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -51,12 +51,12 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block "title"} */
 /* {block "content"} */
-class Block_15359590485fe8b115113ff2_12012522 extends Smarty_Internal_Block
+class Block_13814917615fe8e3c7e41808_89048987 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_15359590485fe8b115113ff2_12012522',
+    0 => 'Block_13814917615fe8e3c7e41808_89048987',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -193,33 +193,39 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
                     <hr class="my-4">
 
-                    <div class="my-3">
-                        <label for="technique-input">Fiche technique</label>
-                        <input type="file" class="form-control-file" name="technique" id="technique-input">
+                    <div>
+                        <div class="my-3">
+                            <label for="technique-input">Fiche technique</label>
+                            <input type="file" class="form-control-file" name="technique" id="technique-input">
+                        </div>
+                        <div class="my-3">
+                            <label for="sacem-input">Document SACEM ou tracklist détaillée</label>
+                            <input type="file" name="sacem" id="sacem-input" class="form-control-file">
+                        </div>
                     </div>
-                    <div class="my-3">
-                        <label for="sacem-input">Document SACEM ou tracklist détaillée</label>
-                        <input type="file" name="sacem" id="sacem-input" class="form-control-file">
+                    <div class="mt-5">
+                        <div class="my-3">
+                            <label for="image1-input">Photo du groupe n°1 : </label>
+                            <input type="file" class="form-control-file" id="image1-input" name="image1">
+                        </div>
+                        <div class="my-3">
+                            <label for="image2-input">Photo du groupe n°2 : </label>
+                            <input type="file" class="form-control-file" id="image2-input" name="image2">
+                        </div>
                     </div>
-                    <div class="my-3">
-                        <label for="image1-input">Photo du groupe n°1 : </label>
-                        <input type="file" class="form-control-file" id="image1-input" name="image1">
-                    </div>
-                    <div class="my-3">
-                        <label for="image2-input">Photo du groupe n°2 : </label>
-                        <input type="file" class="form-control-file" id="image2-input" name="image2">
-                    </div>
-                    <div class="my-3">
-                        <label for="piste1-input">Piste MP3 n°1 : </label>
-                        <input name="piste1" class="form-control-file" id="piste1-input" type="file">
-                    </div>
-                    <div class="my-3">
-                        <label for="piste2-input">Piste MP3 n°2 : </label>
-                        <input name="piste2" class="form-control-file" id="piste2-input" type="file">
-                    </div>
-                    <div class="my-3">
-                        <label for="piste3-input">Piste MP3 n°3 : </label>
-                        <input name="piste3" class="form-control-file" id="piste3-input" type="file">
+                    <div class="mt-5">
+                        <div class="my-3">
+                            <label for="piste1-input">Piste MP3 n°1 : </label>
+                            <input name="piste1" class="form-control-file" id="piste1-input" type="file">
+                        </div>
+                        <div class="my-3">
+                            <label for="piste2-input">Piste MP3 n°2 : </label>
+                            <input name="piste2" class="form-control-file" id="piste2-input" type="file">
+                        </div>
+                        <div class="my-3">
+                            <label for="piste3-input">Piste MP3 n°3 : </label>
+                            <input name="piste3" class="form-control-file" id="piste3-input" type="file">
+                        </div>
                     </div>
                     <div class="text-center">
                         <input type="submit" id="submit" value="Envoyer" class="btn btn-success btn-lg">
