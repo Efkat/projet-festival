@@ -6,6 +6,7 @@
         <main>
             <h1 class="text-center">Se Connecter</h1>
             <div class="card w-25 mx-auto p-3 m-5">
+            <p class="h4 text-primary font-weight-bold m-3 p-2">{$erreurs}</p>
                 <form action="./login" method="POST">
                     <div class="form-group row">
                         <label for="nom-input" class="col-sm-2 col-form-label">Nom</label>
@@ -20,8 +21,6 @@
                     </div>
                 </form>
                     <a class="cancel " href="./">Annuler...</a>
-                <p class="text-primary m-3 font-weight-bold p-2">{$erreurs}</p>
-
             </div>
         </main>
 {/block}

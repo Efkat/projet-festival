@@ -7,6 +7,7 @@
         <section class="jumbotron w-50 mx-auto my-4">
             <h1 class="display-1 text-center m-0">Candidature</h1>
             <hr class="my-4"/>
+            <p class="h3 text-primary font-weight-bold">{$erreurs}</p>
             <form action="./candidature" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <div class="my-3">
@@ -134,7 +135,6 @@
                 </div>
             </form>
             <a class="cancel float-right" href="./">Annuler...</a>
-            <p>{$erreurs}</p>
         </section>
     </main>
     <script src="./script/gestionMembres.js"></script>
