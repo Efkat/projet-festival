@@ -65,12 +65,16 @@
                                 <dt class="h3 my-2">Site Web</dt>
                                 <dd>{$candidature['site_web']}</dd>
 
-                                <dt  class="h3 my-2">Soundcloud</dt>
-                                <dd>{$candidature['soundcloud']}</dd>
+                                {if $candidature['soundcloud']!=""}
+                                    <dt  class="h3 my-2">Soundcloud</dt>
+                                    <dd>{$candidature['soundcloud']}</dd>
+                                {/if}
 
-                                <dt class="h3  my-2">Youtube</dt>
-                                <dd>{$candidature['youtube']}</dd>
-
+                                {if $candidature['youtube']!=""}
+                                    <dt class="h3  my-2">Youtube</dt>
+                                    <dd>{$candidature['youtube']}</dd> 
+                                {/if}
+                                
                                 <dt class="h3 my-2">Statut Association</dt>
                                 <dd>{$candidature['statut_assoc']}</dd>
 

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-12-27 14:23:29
+/* Smarty version 3.1.36, created on 2020-12-27 14:32:16
   from 'C:\laragon\www\projet-festival\templates\c_consulter.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fe898e14c7376_98761040',
+  'unifunc' => 'content_5fe89af08f1370_80682436',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9b00a547971617c753e13ccd3b775defe4595d69' => 
     array (
       0 => 'C:\\laragon\\www\\projet-festival\\templates\\c_consulter.tpl',
-      1 => 1609079008,
+      1 => 1609079535,
       2 => 'file',
     ),
   ),
@@ -20,26 +20,26 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fe898e14c7376_98761040 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fe89af08f1370_80682436 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_3964581735fe898e14b0311_89752049', "title");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_12135735335fe89af08d65c0_44133606', "title");
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_16420105795fe898e14b0ef1_38273384', "content");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_625214415fe89af08d74c6_67622534', "content");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "base.tpl");
 }
 /* {block "title"} */
-class Block_3964581735fe898e14b0311_89752049 extends Smarty_Internal_Block
+class Block_12135735335fe89af08d65c0_44133606 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'title' => 
   array (
-    0 => 'Block_3964581735fe898e14b0311_89752049',
+    0 => 'Block_12135735335fe89af08d65c0_44133606',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -51,12 +51,12 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block "title"} */
 /* {block "content"} */
-class Block_16420105795fe898e14b0ef1_38273384 extends Smarty_Internal_Block
+class Block_625214415fe89af08d74c6_67622534 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_16420105795fe898e14b0ef1_38273384',
+    0 => 'Block_625214415fe89af08d74c6_67622534',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -146,13 +146,17 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
                                 <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['site_web'];?>
 </dd>
 
-                                <dt  class="h3 my-2">Soundcloud</dt>
-                                <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['soundcloud'];?>
+                                <?php if ($_smarty_tpl->tpl_vars['candidature']->value['soundcloud'] != '') {?>
+                                    <dt  class="h3 my-2">Soundcloud</dt>
+                                    <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['soundcloud'];?>
 </dd>
+                                <?php }?>
 
-                                <dt class="h3  my-2">Youtube</dt>
-                                <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['youtube'];?>
-</dd>
+                                <?php if ($_smarty_tpl->tpl_vars['candidature']->value['youtube'] != '') {?>
+                                    <dt class="h3  my-2">Youtube</dt>
+                                    <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['youtube'];?>
+</dd> 
+                                <?php }?>
 
                                 <dt class="h3 my-2">Statut Association</dt>
                                 <dd><?php echo $_smarty_tpl->tpl_vars['candidature']->value['statut_assoc'];?>
