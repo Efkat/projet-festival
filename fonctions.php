@@ -682,7 +682,6 @@ Flight::route("POST /c_edit",function (){
                     {
                         if(file_exists("data/$nomGroupe/piste3.$format[0]")) 
                             unlink("data/$nomGroupe/piste3.$format[0]");
-                        unlink("data/$nomGroupe/piste3.$format[0]");
                         $db->query("DELETE FROM fichier WHERE nom_groupe='$nomGroupe' AND nom_fichier='piste3'");
                         $blocs=explode('/',$_FILES['piste3']['type']);
                         $extensions[4]=$blocs[count($blocs)-1];
