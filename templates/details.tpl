@@ -3,6 +3,7 @@
     Détails
 {/block}
 {block name="content"}
+<link rel="stylesheet" href="../styles/style.css">
         <main>
         <div class="jumbotron  w-75 mx-auto">
             <h1 class="display-5 text-center">Détails Candidature</h1>
@@ -21,7 +22,7 @@
                     <div class="row">
                         <audio controls src="../data/{$candidature['nom_groupe']}/{$pistes[1]['nom_fichier']}.{$pistes[1]['format']}"></audio>
                     </div>
-                </div>
+                </div> 
                 <div class="column">
                     <div class="row">
                         <p class="m-0">Morceau 2</p>

@@ -24,3 +24,6 @@ img{
     width: 100vw;
     height: auto;
 }
+dd{
+    word-wrap: break-word;
+}

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-12-22 17:15:11
+/* Smarty version 3.1.36, created on 2020-12-27 14:25:57
   from 'C:\laragon\www\projet-festival\templates\details.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fe2299fd503c5_79182520',
+  'unifunc' => 'content_5fe899755bc351_62280265',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '83000a8e566d7f4ebb8dce9eaa69519da065dec3' => 
     array (
       0 => 'C:\\laragon\\www\\projet-festival\\templates\\details.tpl',
-      1 => 1608657211,
+      1 => 1609079156,
       2 => 'file',
     ),
   ),
@@ -20,26 +20,26 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fe2299fd503c5_79182520 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fe899755bc351_62280265 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_4354940885fe2299fd34f25_80720317', "title");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_7243049285fe899755a2836_00347511', "title");
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_16098610655fe2299fd35cb3_05935871', "content");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_13188900255fe899755a3397_24131661', "content");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "base.tpl");
 }
 /* {block "title"} */
-class Block_4354940885fe2299fd34f25_80720317 extends Smarty_Internal_Block
+class Block_7243049285fe899755a2836_00347511 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'title' => 
   array (
-    0 => 'Block_4354940885fe2299fd34f25_80720317',
+    0 => 'Block_7243049285fe899755a2836_00347511',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -51,17 +51,18 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block "title"} */
 /* {block "content"} */
-class Block_16098610655fe2299fd35cb3_05935871 extends Smarty_Internal_Block
+class Block_13188900255fe899755a3397_24131661 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_16098610655fe2299fd35cb3_05935871',
+    0 => 'Block_13188900255fe899755a3397_24131661',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
+<link rel="stylesheet" href="../styles/style.css">
         <main>
         <div class="jumbotron  w-75 mx-auto">
             <h1 class="display-5 text-center">Détails Candidature</h1>
@@ -90,7 +91,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 .<?php echo $_smarty_tpl->tpl_vars['pistes']->value[1]['format'];?>
 "></audio>
                     </div>
-                </div>
+                </div> 
                 <div class="column">
                     <div class="row">
                         <p class="m-0">Morceau 2</p>
