@@ -311,13 +311,13 @@ Flight::route("POST /candidature", function(){
             if((($_FILES['image1']['type'] == "image/jpeg") || ($_FILES['image1']['type'] == "image/png")) && (($_FILES['image2']['type'] == "image/jpeg") || ($_FILES['image2']['type'] == "image/png"))){
                 $_FILES['image1']['name'] = $nomGroupe . "_image1";
                 $_FILES['image2']['name'] = $nomGroupe . "_image2";
-            }else{ $erreur = "Le format des images n'est pas correct (jpeg ou png)"; }
+            }else{ $erreur = "Il faut 2 images au format JPG ou PNG !"; }
 
             if((($_FILES['piste1']['type'] == "audio/mpeg") && ($_FILES['piste2']['type'] == "audio/mpeg") && ($_FILES['piste3']['type'] == "audio/mpeg"))){
                 $_FILES['piste3']['name'] = $nomGroupe . "_piste1";
                 $_FILES['piste2']['name'] = $nomGroupe . "_piste2";
                 $_FILES['piste1']['name'] = $nomGroupe . "_piste3";
-            }else{ $erreur = "Le format des pistes audio n'est pas correct (MP3)"; }
+            }else{ $erreur = "Il faut 2 pistes audio au format MP3 !"; }
         }else{ $erreur = "Tous les champs nécessaires ne sont pas renseignés !"; }
         if($erreur == ""){
             //candidature
