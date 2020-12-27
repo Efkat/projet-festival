@@ -44,13 +44,13 @@ addButton.addEventListener("click", function (event) {
                 '                                        </div>\n' +
                 '                                    </div>\n' +
                 '                                </section>')
-            alert(membersInformations)
+            //alert(membersInformations)
             updateCardsNumber()
         }
-        else{ alert("Veuillez saisir tous les champs")}
+        else{ alert("Veuillez saisir tous les champs du membre pour en ajouter un!")}
         
     } else {
-        alert("Nombre de membres maximale atteint")
+        alert("Nombre de membres maximale atteint!")
     }
     
     
@@ -77,7 +77,7 @@ submitButton.addEventListener("click",function (event) {
         membersInformations += getCardInformation(cards[membersCount-1])
         membersDisableInput.setAttribute("value", membersInformations)
     }
-    alert(membersInformations);
+    //alert(membersInformations);
 })
 
 /* FUNCTIONS */
