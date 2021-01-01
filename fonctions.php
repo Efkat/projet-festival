@@ -255,6 +255,13 @@ Flight::route("POST /candidature", function(){
                 $erreur="Nom de groupe déjà pris.";
             }
 
+            //Vérifie le code postal
+            $codepostal=$_POST['codepostal'][0].$_POST['codepostal'][1];
+            if($codepostal != $_POST['departement'])
+            {
+                $erreur="Code postal incohérent.";
+            }
+
             //Vérifie l'année de création
             if(strlen($_POST['annee_creation']) == 4){
                 $anneeCreation = htmlspecialchars($_POST['annee_creation']);
@@ -317,7 +324,7 @@ Flight::route("POST /candidature", function(){
                 $_FILES['piste3']['name'] = $nomGroupe . "_piste1";
                 $_FILES['piste2']['name'] = $nomGroupe . "_piste2";
                 $_FILES['piste1']['name'] = $nomGroupe . "_piste3";
-            }else{ $erreur = "Il faut 2 pistes audio au format MP3 !"; }
+            }else{ $erreur = "Il faut 3 pistes audio au format MP3 !"; }
         }else{ $erreur = "Tous les champs nécessaires ne sont pas renseignés !"; }
         if($erreur == ""){
             //candidature
