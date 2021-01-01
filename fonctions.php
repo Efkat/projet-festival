@@ -261,6 +261,18 @@ Flight::route("POST /candidature", function(){
             {
                 $erreur="Code postal incohérent.";
             }
+            if(strlen((int)filter_var($_POST['codepostal'],FILTER_SANITIZE_NUMBER_INT))!=5)
+            {
+                $erreur="Format de code postal incorrecte (5 chiffres)";
+            }
+
+            //Vérification téléphone
+            $phone=(string)(int)filter_var($_POST['phone'],FILTER_SANITIZE_NUMBER_INT);
+            if(strlen($phone)!=9)
+            {
+                $erreur="Numéro de téléphone incorrecte (10 chiffres)";
+            }
+            $phone="0".$phone;
 
             //Vérifie l'année de création
             if(strlen($_POST['annee_creation']) == 4){
