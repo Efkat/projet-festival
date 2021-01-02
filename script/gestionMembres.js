@@ -99,7 +99,6 @@ submitButton.addEventListener("click",function (event) {
         if(membersCount>1)
             membersDisableInput.setAttribute("value",membersInformations);
     }
-    alert(membersInformations);
 })
 
 /* FUNCTIONS */
