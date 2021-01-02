@@ -661,17 +661,14 @@ Flight::route("POST /c_edit",function (){
                         if($_FILES['technique']['type'] != "application/pdf")
                             $erreur = "Le format de la fiche technique n'est pas correct (pdf)";
 
-                    if($_POST['is_sacem']){
+                    if(isset($_POST['is_sacem'])){
                         if($_FILES ['sacem']['tmp_name'] == null){
                             $erreur = "Vous devez insérer votre document de la SACEM (case cochée) !";
                         }
                             
                         if($_FILES['sacem']['type'] != "application/pdf"){
                             $erreur = "Votre document SACEM doit être au format PDF !";
-                        }
-                            
-                    }else{
-                        $erreur = "Vous devez insérer votre document de la SACEM (case cochée) !";
+                        }   
                     }
                 
                 }else{$erreur = "Tous les champs nécessaires ne sont pas renseignés !";} 
