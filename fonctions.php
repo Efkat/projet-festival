@@ -823,6 +823,37 @@ Flight::route("/delete/@nom_groupe/@action",function($nom_groupe,$action){
                 $db->query("SET FOREIGN_KEY_CHECKS=1");
 
 
+                //fichiers
+                $formats=$db->query("SELECT format FROM fichier WHERE nom_groupe='$nom_groupe'");
+                $formats=$formats->fetchAll();
+
+            
+                if($formats!=array())
+                {
+                    $tmp=$formats[0][0];
+                    if(file_exists("data/$nom_groupe/image1.$tmp")) 
+                        unlink("data/$nom_groupe/image1.$tmp");
+                    
+                    $tmp=$formats[1][0];
+                    if(file_exists("data/$nom_groupe/image2.$tmp")) 
+                        unlink("data/$nom_groupe/image2.$tmp");
+        
+                    $tmp=$formats[2][0];
+                    if(file_exists("data/$nom_groupe/piste1.$tmp")) 
+                        unlink("data/$nom_groupe/piste1.$tmp");
+        
+                    $tmp=$formats[3][0];
+                    if(file_exists("data/$nom_groupe/piste2.$tmp")) 
+                        unlink("data/$nom_groupe/piste2.$tmp");
+        
+                    $tmp=$formats[4][0];
+                    if(file_exists("data/$nom_groupe/piste3.$tmp")) 
+                        unlink("data/$nom_groupe/piste3.$tmp");
+                    
+                    if(file_exists("data/$nom_groupe")) 
+                        rmdir("data/$nom_groupe");
+                }
+
                 $db->query("DELETE FROM fichier WHERE nom_groupe='$nom_groupe'");
                 Flight::redirect('/liste'); 
             }
