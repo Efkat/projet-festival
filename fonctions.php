@@ -855,10 +855,8 @@ Flight::route("/delete/@nom_groupe/@action",function($nom_groupe,$action){
                     if(file_exists("data/$nom_groupe/technique.pdf")) 
                         unlink("data/$nom_groupe/technique.pdf");
 
-                    /*SACEM
                     if(file_exists("data/$nom_groupe/sacem.pdf")) 
                         unlink("data/$nom_groupe/sacem.pdf");
-                    */
 
                     if(file_exists("data/$nom_groupe")) 
                         rmdir("data/$nom_groupe");
