@@ -46,6 +46,12 @@
                                 <dt class="h3 my-2">Département</dt>
                                 <dd>{$candidature['departement']}</dd>
 
+                                <dt class="h3 my-2">Code Postal</dt>
+                                <dd>{$candidature['codepostal']}</dd>
+
+                                <dt class="h3 my-2">Numéro de téléphone</dt>
+                                <dd>{$candidature['phone']}</dd>
+
                                 <dt class="h3 my-2">Style</dt>
                                 <dd>{$candidature['nom_style']}</dd>
 
