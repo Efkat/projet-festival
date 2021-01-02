@@ -798,26 +798,35 @@ Flight::route("/delete/@nom_groupe/@action",function($nom_groupe,$action){
      -vérification nom du groupe existe
      -etc?
     */
+
     $db=Flight::db();
 
-    if($action=="check")
-    {
-        $candidature = $db->query("SELECT * FROM candidature,utilisateur,departement,style,scene WHERE candidature.id_style=style.id_style AND candidature.id_scene=num_type AND id_user=id_representant AND id_departement=num_dept AND nom_groupe='$nom_groupe'");
-        $candidature = $candidature->fetch();
-        Flight::render("templates/delete.tpl",array('nom_groupe'=>$nom_groupe,'candidature'=>$candidature));
-    }
-    else 
-    {
-        if($action=="drop")
+    if(isset($_SESSION['nom']) && $_SESSION['nom']=='admin') //seul l'admin peut accèder
+    { 
+        if($action=="check")
         {
-            $db->query("SET FOREIGN_KEY_CHECKS=0");
-            $db->query("DELETE FROM candidature WHERE candidature.nom_groupe ='$nom_groupe'");
-            $db->query("DELETE FROM fichier WHERE nom_groupe='$nom_groupe'");
-            $user=$_SESSION['nom'];
-            $db->query("UPDATE utilisateur SET have_candidature='0' WHERE nom_user='$user'");
-            $db->query("SET FOREIGN_KEY_CHECKS=1");
+            $candidature = $db->query("SELECT * FROM candidature,utilisateur,departement,style,scene WHERE candidature.id_style=style.id_style AND candidature.id_scene=num_type AND id_user=id_representant AND id_departement=num_dept AND nom_groupe='$nom_groupe'");
+            $candidature = $candidature->fetch();
 
-            Flight::redirect('/liste');
+            if($candidature!=null)
+                Flight::render("templates/delete.tpl",array('nom_groupe'=>$nom_groupe,'candidature'=>$candidature));
+            else Flight::redirect('liste');    
+        }
+        else 
+        {
+            if($action=="drop")
+            {
+                $db->query("SET FOREIGN_KEY_CHECKS=0");
+                $db->query("DELETE FROM candidature WHERE candidature.nom_groupe ='$nom_groupe'");
+                $user=$_SESSION['nom'];
+                $db->query("UPDATE utilisateur SET have_candidature='0' WHERE nom_user='$user'");
+                $db->query("SET FOREIGN_KEY_CHECKS=1");
+
+
+                $db->query("DELETE FROM fichier WHERE nom_groupe='$nom_groupe'");
+                Flight::redirect('/liste'); 
+            }
         }
     }
-   });
+    else Flight::redirect('/');
+});
