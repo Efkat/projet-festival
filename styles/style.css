@@ -28,9 +28,11 @@ dd{
     word-wrap: break-word;
 }
 td{
-    max-width: 10em;
+    table-layout: fixed;
+    white-space: nowrap;
     overflow:hidden;
-    padding:15px;
+    padding:20px;
+    max-width:300px;
 }
 tr:after{
     display: block;

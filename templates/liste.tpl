@@ -3,6 +3,7 @@
     Liste
 {/block}
 {block name="content"}
+<link rel="stylesheet" href="./styles/style.css">
         <main>
             <h1>Liste</h1>
             <section>
