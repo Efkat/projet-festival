@@ -338,6 +338,10 @@ Flight::route("POST /candidature", function(){
                 $_FILES['piste2']['name'] = $nomGroupe . "_piste2";
                 $_FILES['piste1']['name'] = $nomGroupe . "_piste3";
             }else{ $erreur = "Il faut 3 pistes audio au format MP3 !"; }
+
+            if(($_FILES['technique']['type'] == "application/pdf")){
+                $_FILES['technique']['name'] = $nomGroupe."_technique";
+            }else{ $erreur = "La fiche technique du groupe doit être au format PDF !";}
         }else{ $erreur = "Tous les champs nécessaires ne sont pas renseignés !"; }
         if($erreur == ""){
             //candidature
@@ -355,6 +359,8 @@ Flight::route("POST /candidature", function(){
             $extensions[3]=$blocs[count($blocs)-1];
             $blocs=explode('/',$_FILES['piste3']['type']);
             $extensions[4]=$blocs[count($blocs)-1];
+            $blocs=explode('/', $_FILES['technique']['type']);
+            $extensions[5]=$blocs[count($blocs)-1];
         
             
             $insertFileName = $db->prepare("INSERT INTO fichier(format,nom_fichier,nom_groupe) VALUES(:format, :nomFichier, :nomGroupe)");
@@ -363,6 +369,7 @@ Flight::route("POST /candidature", function(){
             $insertFileName->execute(array(':format'=>$extensions[2], ':nomFichier'=>'piste1', ':nomGroupe'=>$nomGroupe));
             $insertFileName->execute(array(':format'=>$extensions[3], ':nomFichier'=>'piste2', ':nomGroupe'=>$nomGroupe));
             $insertFileName->execute(array(':format'=>$extensions[4], ':nomFichier'=>'piste3', ':nomGroupe'=>$nomGroupe));
+            $insertFileName->execute(array(':format'=>$extensions[5], ':nomFichier'=>'technique', ':nomGroupe'=>$nomGroupe));
 
             mkdir("data/$nomGroupe");
             move_uploaded_file($_FILES['image1']['tmp_name'],"data/$nomGroupe/image1.$extensions[0]");
@@ -370,6 +377,8 @@ Flight::route("POST /candidature", function(){
             move_uploaded_file($_FILES['piste1']['tmp_name'],"data/$nomGroupe/piste1.$extensions[2]");
             move_uploaded_file($_FILES['piste2']['tmp_name'],"data/$nomGroupe/piste2.$extensions[3]");
             move_uploaded_file($_FILES['piste3']['tmp_name'],"data/$nomGroupe/piste3.$extensions[4]");
+            move_uploaded_file($_FILES['technique']['tmp_name'], "data/$nomGroupe/technique.$extensions[5]");
+
             
             $_SESSION['candidature'] = $nomGroupe;
             $user=$_SESSION['nom'];
