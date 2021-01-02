@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2020-12-27 19:41:20
+/* Smarty version 3.1.36, created on 2021-01-02 09:12:18
   from 'C:\laragon\www\projet-festival\templates\c_edit.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5fe8e3601145f4_11989908',
+  'unifunc' => 'content_5ff038f24cfd06_20462987',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '3f14db8f539e188e20525ecb72bfbdd060de61ff' => 
     array (
       0 => 'C:\\laragon\\www\\projet-festival\\templates\\c_edit.tpl',
-      1 => 1609098079,
+      1 => 1609578718,
       2 => 'file',
     ),
   ),
@@ -20,26 +20,26 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5fe8e3601145f4_11989908 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ff038f24cfd06_20462987 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_6488060985fe8e3600f92b5_12312774', "title");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_11450445265ff038f24b13d6_49569680', "title");
 ?>
   
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_7804527625fe8e3600fa159_20640914', "content");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_13624815695ff038f24b1f77_77083693', "content");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "base.tpl");
 }
 /* {block "title"} */
-class Block_6488060985fe8e3600f92b5_12312774 extends Smarty_Internal_Block
+class Block_11450445265ff038f24b13d6_49569680 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'title' => 
   array (
-    0 => 'Block_6488060985fe8e3600f92b5_12312774',
+    0 => 'Block_11450445265ff038f24b13d6_49569680',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -51,12 +51,12 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block "title"} */
 /* {block "content"} */
-class Block_7804527625fe8e3600fa159_20640914 extends Smarty_Internal_Block
+class Block_13624815695ff038f24b1f77_77083693 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_7804527625fe8e3600fa159_20640914',
+    0 => 'Block_13624815695ff038f24b1f77_77083693',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -91,6 +91,16 @@ $_smarty_tpl->tpl_vars['dept']->do_else = false;
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                             </select>
+                        </div>
+                        <div class="my-3">
+                            <label for="codepostal-input">Code Postal : </label>
+                            <input type="text" class="form-control" id="codepostal-input" placeholder="Entrez votre code postal" value="<?php echo $_smarty_tpl->tpl_vars['candidature']->value['codepostal'];?>
+" name="codepostal" required>
+                        </div>
+                        <div class="my-3">
+                            <label for="phone-input">Numéro de téléphone : </label>
+                            <input type="text" class="form-control" id="phone-input" placeholder="Entrez votre téléphone" value="<?php echo $_smarty_tpl->tpl_vars['candidature']->value['phone'];?>
+" name="phone" required>
                         </div>
                         <div class="my-3">
                             <label for="style-input">Style du groupe</label>

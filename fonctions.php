@@ -523,6 +523,26 @@ Flight::route("POST /c_edit",function (){
                         $nomGroupe = htmlspecialchars(trim($_POST['nom_groupe']));
                     }else{ $erreur = "Le nom du groupe est trop long"; }
 
+                    //Vérifie le code postal
+                    $codepostal=$_POST['codepostal'][0].$_POST['codepostal'][1];
+                    if($codepostal != $_POST['departement'])
+                    {
+                        $erreur="Code postal incohérent.";
+                    }
+                    $codepostal=(int)filter_var($_POST['codepostal'],FILTER_SANITIZE_NUMBER_INT);
+                    if(strlen($codepostal)!=5)
+                    {
+                        $erreur="Format de code postal incorrecte (5 chiffres)";
+                    }
+
+                    //Vérification téléphone
+                    $phone=(string)(int)filter_var($_POST['phone'],FILTER_SANITIZE_NUMBER_INT);
+                    if(strlen($phone)!=9)
+                    {
+                        $erreur="Numéro de téléphone incorrecte (10 chiffres)";
+                    }
+                    $phone="0".$phone;
+
 
                     //Vérifie l'année de création
                     if(strlen($_POST['annee_creation']) == 4){
@@ -619,6 +639,8 @@ Flight::route("POST /c_edit",function (){
                         $db->query("UPDATE fichier SET nom_groupe='$nomGroupe' WHERE nom_groupe='$old_nomGroupe[0]'");
                         $db->query("UPDATE candidature SET 
                         nom_groupe='$nomGroupe' ,
+                        codepostal='$codepostal',
+                        phone='$phone',
                         id_departement = $dept,
                         id_scene = $scene,
                         id_style = $style,

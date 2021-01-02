@@ -23,6 +23,14 @@
                             </select>
                         </div>
                         <div class="my-3">
+                            <label for="codepostal-input">Code Postal : </label>
+                            <input type="text" class="form-control" id="codepostal-input" placeholder="Entrez votre code postal" value="{$candidature['codepostal']}" name="codepostal" required>
+                        </div>
+                        <div class="my-3">
+                            <label for="phone-input">Numéro de téléphone : </label>
+                            <input type="text" class="form-control" id="phone-input" placeholder="Entrez votre téléphone" value="{$candidature['phone']}" name="phone" required>
+                        </div>
+                        <div class="my-3">
                             <label for="style-input">Style du groupe</label>
                             <select class="custom-select" name="style" id="style-input">
                                 {foreach from=$styles key=num item=style}
