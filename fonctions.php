@@ -415,7 +415,7 @@ Flight::route("POST /candidature", function(){
 });
 
 /**
- * Name = "profil_consulter"
+ * Name = "candidature_consulter"
  */
 Flight::route("/c_consulter", function (){
     $db=Flight::db();
@@ -461,14 +461,19 @@ Flight::route("/c_consulter", function (){
                 //Récupération noms fichiers
                 $files=$db->query("SELECT * FROM fichier WHERE nom_groupe='$nomGroupe'");
                 $files=$files->fetchAll();
-                $images=$pistes=array(null);
+                $images=$pistes=$pdf=array(null);
                 foreach($files as $file)
                 {
-                    if($file['nom_fichier']=='image1' || $file['nom_fichier']=='image2')
+                    if($file['nom_fichier']=='image1' || $file['nom_fichier']=='image2'){
                         array_push($images,$file);
-                    else array_push($pistes,$file);
+                    }else if($file['nom_fichier']=='technique' || $file['nom_fichier']=='sacem'){
+                        array_push($pdf, $file);
+                        array_push($pdf, $file);
+                    }else{
+                       array_push($pistes,$file); 
+                    }
                 }
-                Flight::render('templates/c_consulter.tpl', array('name'=>$_SESSION['nom'],'candidature'=>$candidature,'images'=>$images,'pistes'=>$pistes,'membres'=>$membres)); 
+                Flight::render('templates/c_consulter.tpl', array('name'=>$_SESSION['nom'],'candidature'=>$candidature,'images'=>$images,'pistes'=>$pistes,'membres'=>$membres, 'pdf'=>$pdf)); 
             
                }else{ Flight::redirect('/candidature'); }
         }
@@ -477,7 +482,7 @@ Flight::route("/c_consulter", function (){
 });
 
 /**
- * Name = "profil_edit"
+ * Name = "candidature_edition"
  */
 Flight::route("GET /c_edit", function (){
     $db=Flight::db();
@@ -517,6 +522,9 @@ Flight::route("GET /c_edit", function (){
         Flight::redirect('/login');   
 });
 
+/**
+ * Name = "candidature_edition-traitement"
+ */
 Flight::route("POST /c_edit",function (){
     $db=Flight::db();
     $erreur="";
@@ -639,6 +647,10 @@ Flight::route("POST /c_edit",function (){
                     if($_FILES['piste3']['tmp_name']!=null)
                         if(!($_FILES['piste3']['type'] == "audio/mpeg" || $_FILES['piste3']['type'] == "audio/mpeg"))
                             $erreur = "Le format de la piste 3 n'est pas correct (mp3)";   
+
+                    if($_FILES['technique']['tmp_name']!=null)
+                        if($_FILES['technique']['type'] != "application/pdf")
+                            $erreur = "Le format de la fiche technique n'est pas correct (pdf)";
                 
                 }
                 else $erreur = "Tous les champs nécessaires ne sont pas renseignés !";
@@ -749,6 +761,15 @@ Flight::route("POST /c_edit",function (){
                         $extensions[4]=$blocs[count($blocs)-1];
                         $insertFileName->execute(array(':format'=>$extensions[4], ':nomFichier'=>'piste3', ':nomGroupe'=>$nomGroupe));
                         move_uploaded_file($_FILES['piste3']['tmp_name'],"data/$nomGroupe/piste3.$extensions[4]");
+                    }
+                    if($_FILES['technique']['tmp_name']!=null){
+                        if(file_exists("data/$nomGroupe/technique.pdf"))
+                            unlink("data/$nomGroupe/technique.pdf");
+                        $db->query("DELETE FROM fichier WHERE nom_groupe='$nomGroupe' AND nom_fichier='technique'");
+                        $blocs=explode('/', $_FILES['technique']['type']);
+                        $extensions[5]=$blocs[count($blocs)-1];
+                        $insertFileName->execute(array(':format'=>$extensions[5], ':nomFichier'=>'technique', ':nomGroupe'=>$nomGroupe));
+                        move_uploaded_file($_FILES['technique']['tmp_name'], "data/$nomGroupe/technique.$extensions[5]");
                     }
                     Flight::render('templates/success.tpl',array(null));
                 }
