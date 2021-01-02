@@ -822,3 +822,82 @@ Flight::route("POST /c_edit",function (){
     else 
         Flight::redirect('/login');   
 });
+
+Flight::route("/delete/@nom_groupe/@action",function($nom_groupe,$action){
+    //SECURITE
+    /*
+     -vérification admin
+     -vérification nom du groupe existe
+     -etc?
+    */
+
+    $db=Flight::db();
+
+    if(isset($_SESSION['nom']) && $_SESSION['nom']=='admin') //seul l'admin peut accèder
+    { 
+        if($action=="check")
+        {
+            $candidature = $db->query("SELECT * FROM candidature,utilisateur,departement,style,scene WHERE candidature.id_style=style.id_style AND candidature.id_scene=num_type AND id_user=id_representant AND id_departement=num_dept AND nom_groupe='$nom_groupe'");
+            $candidature = $candidature->fetch();
+
+            if($candidature!=null)
+                Flight::render("templates/delete.tpl",array('nom_groupe'=>$nom_groupe,'candidature'=>$candidature));
+            else Flight::redirect('liste');    
+        }
+        else 
+        {
+            if($action=="drop")
+            {
+                $db->query("SET FOREIGN_KEY_CHECKS=0");
+                $user = $db->query("SELECT nom_user FROM utilisateur,candidature WHERE nom_groupe='$nom_groupe' AND id_user=id_representant");
+                $user = $user->fetch();
+                $db->query("DELETE FROM candidature WHERE candidature.nom_groupe ='$nom_groupe'");
+                
+                $db->query("UPDATE utilisateur SET have_candidature=0 WHERE nom_user='$user[0]'");
+                $db->query("SET FOREIGN_KEY_CHECKS=1");
+
+
+                //fichiers
+                $formats=$db->query("SELECT format FROM fichier WHERE nom_groupe='$nom_groupe'");
+                $formats=$formats->fetchAll();
+
+            
+                if($formats!=array())
+                {
+                    $tmp=$formats[0][0];
+                    if(file_exists("data/$nom_groupe/image1.$tmp")) 
+                        unlink("data/$nom_groupe/image1.$tmp");
+                    
+                    $tmp=$formats[1][0];
+                    if(file_exists("data/$nom_groupe/image2.$tmp")) 
+                        unlink("data/$nom_groupe/image2.$tmp");
+        
+                    $tmp=$formats[2][0];
+                    if(file_exists("data/$nom_groupe/piste1.$tmp")) 
+                        unlink("data/$nom_groupe/piste1.$tmp");
+        
+                    $tmp=$formats[3][0];
+                    if(file_exists("data/$nom_groupe/piste2.$tmp")) 
+                        unlink("data/$nom_groupe/piste2.$tmp");
+        
+                    $tmp=$formats[4][0];
+                    if(file_exists("data/$nom_groupe/piste3.$tmp")) 
+                        unlink("data/$nom_groupe/piste3.$tmp");
+                    
+                    if(file_exists("data/$nom_groupe/technique.pdf")) 
+                        unlink("data/$nom_groupe/technique.pdf");
+
+                    if(file_exists("data/$nom_groupe/sacem.pdf")) 
+                        unlink("data/$nom_groupe/sacem.pdf");
+
+                    if(file_exists("data/$nom_groupe")) 
+                        rmdir("data/$nom_groupe");
+                }
+
+                $db->query("DELETE FROM fichier WHERE nom_groupe='$nom_groupe'");
+                Flight::redirect('/liste'); 
+            }
+        }
+    }
+    else Flight::redirect('/');
+});
