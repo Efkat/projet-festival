@@ -817,9 +817,11 @@ Flight::route("/delete/@nom_groupe/@action",function($nom_groupe,$action){
             if($action=="drop")
             {
                 $db->query("SET FOREIGN_KEY_CHECKS=0");
+                $user = $db->query("SELECT nom_user FROM utilisateur,candidature WHERE nom_groupe='$nom_groupe' AND id_user=id_representant");
+                $user = $user->fetch();
                 $db->query("DELETE FROM candidature WHERE candidature.nom_groupe ='$nom_groupe'");
-                $user=$_SESSION['nom'];
-                $db->query("UPDATE utilisateur SET have_candidature='0' WHERE nom_user='$user'");
+                
+                $db->query("UPDATE utilisateur SET have_candidature=0 WHERE nom_user='$user[0]'");
                 $db->query("SET FOREIGN_KEY_CHECKS=1");
 
 
@@ -850,6 +852,14 @@ Flight::route("/delete/@nom_groupe/@action",function($nom_groupe,$action){
                     if(file_exists("data/$nom_groupe/piste3.$tmp")) 
                         unlink("data/$nom_groupe/piste3.$tmp");
                     
+                    if(file_exists("data/$nom_groupe/technique.pdf")) 
+                        unlink("data/$nom_groupe/technique.pdf");
+
+                    /*SACEM
+                    if(file_exists("data/$nom_groupe/sacem.pdf")) 
+                        unlink("data/$nom_groupe/sacem.pdf");
+                    */
+
                     if(file_exists("data/$nom_groupe")) 
                         rmdir("data/$nom_groupe");
                 }
