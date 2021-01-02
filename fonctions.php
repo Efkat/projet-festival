@@ -472,7 +472,15 @@ Flight::route("GET /c_edit", function (){
     $db=Flight::db();
     if(isset($_SESSION['nom'])){ //seulement si connecté
         if($_SESSION['nom']=='admin'){
-            Flight::redirect('/liste');
+            if(isset($_SESSION['candidature']))
+            {
+                $nom_groupe=$_SESSION['candidature'];
+                $user_edited=$db->query("SELECT nom_user FROM candidature,utilisateur WHERE nom_groupe='$nom_groupe' AND id_user=id_representant");
+                $user_edited=$user_edited->fetch();
+                $_SESSION['nom']=$user_edited[0];
+                Flight::redirect('/c_edit');
+            }
+            else Flight::redirect('/liste');
         }else{
             $user=$_SESSION['nom'];
             $candidature_check=$db->query("SELECT have_candidature,nom_groupe FROM utilisateur,candidature WHERE nom_user='$user' AND id_representant=id_user");
@@ -503,7 +511,8 @@ Flight::route("GET /c_edit", function (){
         }
     }
     else 
-        Flight::redirect('/login');   
+        Flight::redirect('/login');  
+     
 });
 
 Flight::route("POST /c_edit",function (){
@@ -739,6 +748,10 @@ Flight::route("POST /c_edit",function (){
                         $insertFileName->execute(array(':format'=>$extensions[4], ':nomFichier'=>'piste3', ':nomGroupe'=>$nomGroupe));
                         move_uploaded_file($_FILES['piste3']['tmp_name'],"data/$nomGroupe/piste3.$extensions[4]");
                     }
+                    if(isset($_SESSION['candidature']))
+                    {
+                        $_SESSION['nom']='admin';
+                    }
                     Flight::render('templates/success.tpl',array(null));
                 }
                 else 
@@ -792,13 +805,6 @@ Flight::route("POST /c_edit",function (){
 });
 
 Flight::route("/delete/@nom_groupe/@action",function($nom_groupe,$action){
-    //SECURITE
-    /*
-     -vérification admin
-     -vérification nom du groupe existe
-     -etc?
-    */
-
     $db=Flight::db();
 
     if(isset($_SESSION['nom']) && $_SESSION['nom']=='admin') //seul l'admin peut accèder
@@ -868,4 +874,10 @@ Flight::route("/delete/@nom_groupe/@action",function($nom_groupe,$action){
         }
     }
     else Flight::redirect('/');
+});
+
+Flight::route("/c_edit/@nom_groupe",function($nom_groupe){
+    $db=Flight::db();
+    $_SESSION['candidature']=$nom_groupe;
+    Flight::redirect('/c_edit');
 });

@@ -21,7 +21,10 @@
 
                     {foreach from=$lignes item=$ligne}
                         <tr>
-                            <td><a style="padding-right:10px;" href="./delete/{$ligne['nom_groupe']}/check">🗑️</a><a href="./details/{$ligne['nom_groupe']}">Détails</a></td>
+                            <td>
+                            <a style="padding-right:10px;" href="./delete/{$ligne['nom_groupe']}/check">🗑️</a>
+                            <a style="padding-right:10px;" href="./c_edit/{$ligne['nom_groupe']}">🖊️</a>
+                            <a href="./details/{$ligne['nom_groupe']}">Détails</a></td>
                             <td class="text-info font-weight-bold">{$ligne['nom_groupe']}</td> {*nom groupe*}
                             <td>{$ligne['departement']}</td>
                             <td>{$ligne['nom_type']}</td> {*scene*}
