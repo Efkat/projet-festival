@@ -1,2 +1,10 @@
--SACEM / FICHE TECHNIQUE (obligatoire / non ?)
--STATISTIQUES (fonctionnalité bonus)
+-STATISTIQUES (API)
+    -Nombre candidatures   
+    -Candidatures par département - Général
+    -Candidatures par département - Département en particulier
+    -Candidatures hauts de france
+    -Candidatures HORS haut de france
+    -Candidatures par scene - Général
+    -Candidatures par scène - Scène en particulier
+
+-MODIFICATION candidature par admin
