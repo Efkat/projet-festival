@@ -342,6 +342,10 @@ Flight::route("POST /candidature", function(){
             if(($_FILES['technique']['type'] == "application/pdf")){
                 $_FILES['technique']['name'] = $nomGroupe."_technique";
             }else{ $erreur = "La fiche technique du groupe doit être au format PDF !";}
+
+            if((isset($_POST['is_sacem']) && ($_FILES['sacem']['type'] == "application/pdf"))){
+                $_FILES['sacem']['name'] = $nomGroupe . "_sacem";
+            }else{ $erreur = "Le document de la SACEM doit être fourni (case cochée) (Format PDF) !";}
         }else{ $erreur = "Tous les champs nécessaires ne sont pas renseignés !"; }
         if($erreur == ""){
             //candidature
@@ -379,6 +383,13 @@ Flight::route("POST /candidature", function(){
             move_uploaded_file($_FILES['piste3']['tmp_name'],"data/$nomGroupe/piste3.$extensions[4]");
             move_uploaded_file($_FILES['technique']['tmp_name'], "data/$nomGroupe/technique.$extensions[5]");
 
+            //Si SACEM cochée
+            if((isset($_POST['is_sacem']))){
+                $blocs=explode('/', $_FILES['sacem']['type']);
+                $extensions[6]=$blocs[count($blocs)-1];
+                $insertFileName->execute(array(':format'=>$extensions[6], ':nomFichier'=>'sacem', ':nomGroupe'=>$nomGroupe));
+                move_uploaded_file($_FILES['sacem']['tmp_name'], "data/$nomGroupe/sacem.$extensions[6]");
+            }
             
             $_SESSION['candidature'] = $nomGroupe;
             $user=$_SESSION['nom'];
