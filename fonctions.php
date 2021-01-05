@@ -940,15 +940,12 @@ Flight::route("GET /stats",function(){
 Flight::route("POST /stats",function(){
     if($_SESSION['nom']=="admin")
     {
-        if($_POST['departement']==-1 & $_POST['style']==-1 & $_POST['scene']==-1)
-        {
-            if($_POST['viewBy']=="dept")
-                Flight::redirect('stats/candidatures-par-departement');
-            if($_POST['viewBy']=="style")
-                Flight::redirect('stats/candidatures-par-style');
-            if($_POST['viewBy']=="scene")
-                Flight::redirect('stats/candidatures-par-scene');
-        }
+        if($_POST['viewBy']=="dept")
+            Flight::redirect('stats/candidatures-par-departement');
+        if($_POST['viewBy']=="style")
+            Flight::redirect('stats/candidatures-par-style');
+        if($_POST['viewBy']=="scene")
+            Flight::redirect('stats/candidatures-par-scene');
     }
     else Flight::redirect('/');
 });

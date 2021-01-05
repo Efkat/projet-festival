@@ -7,7 +7,7 @@
             <h1>Statistiques</h1>
             <section>
                 <form action="./stats" method="POST">
-                    <div class="my-3 mx-5">
+                    {* <div class="my-3 mx-5">
                         <label for="departement-input">Département : </label>
                         <select class="custom-select" name="departement" id="departement-input" required>
                             <option value="-1" selected>Tous</option>
@@ -34,7 +34,7 @@
                                 <option value="{$num}">{$nom}</option>
                             {/foreach}
                         </select>
-                    </div>
+                    </div> *}
                     <div class="my-3 mx-5">
                         <legend>Voir par :</legend>
                         <div>
