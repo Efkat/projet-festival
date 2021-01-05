@@ -911,3 +911,8 @@ Flight::route("/c_edit/@nom_groupe",function($nom_groupe){
     $_SESSION['candidature']=$nom_groupe;
     Flight::redirect('/c_edit');
 });
+
+Flight::route("/stats",function(){
+    Flight::render("templates/stats.tpl",array('stats'=>null));
+
+});

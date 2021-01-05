@@ -19,7 +19,8 @@
                     {else}
                         {*Si admin*}
                         {if $name==admin}
-                            <a class="btn btn-primary btn-lg " href="./liste">Liste Candidatures</a>
+                            <a class="btn btn-primary btn-lg" href="./liste">Liste Candidatures</a>
+                            <a class="btn btn-primary btn-lg mt-3" href="./stats">Statistiques</a>
                         {else}
                             {*Si déjà candidature*}
                             <a class="btn btn-primary btn-lg mt-2" href="./c_consulter">Consulter Candidature</a>
