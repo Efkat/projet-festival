@@ -925,18 +925,33 @@ Flight::route("/stats/@param", function($param){
 
         echo json_encode($array);
     }else if($param == "candidatures-par-departement"){
-        $departement = $db->query("SELECT num_dept FROM departement");
-        $departement = $departement->fetchAll(PDO::FETCH_ASSOC);
+        $departements = $db->query("SELECT num_dept FROM departement");
+        $departements = $departements->fetchAll(PDO::FETCH_ASSOC);
         $result = array();
-        for($index = 0; $index < count($departement); $index++){
+        for($index = 0; $index < count($departements); $index++){
             $candidatureByDept = $db->prepare("SELECT COUNT(*) FROM candidature WHERE id_departement = :id_departement");
-            $candidatureByDept->bindParam(':id_departement', $departement[$index]['num_dept']);
+            $candidatureByDept->bindParam(':id_departement', $departements[$index]['num_dept']);
             $candidatureByDept->execute();
             $total = $candidatureByDept->fetch();
             if($total[0] != 0){
-                $result += [ $departement[$index]['num_dept'] => $total[0]];
+                $result += [ $departements[$index]['num_dept'] => $total[0]];
             }
             $candidatureByDept->closeCursor();
+        }
+        echo json_encode($result);
+    }else if($param == "candidatures-par-scene"){
+        $scenes = $db->query("SELECT * FROM scene");
+        $scenes = $scenes->fetchAll(PDO::FETCH_ASSOC);
+        $result = array();
+        for($index = 0; $index < count($scenes); $index++){
+            $candidatureByScene = $db->prepare("SELECT COUNT(*) FROM candidature WHERE id_scene = :id_scene");
+            $candidatureByScene->bindParam(':id_scene', $scenes[$index]['num_type']);
+            $candidatureByScene->execute();
+            $total = $candidatureByScene->fetch();
+            if($total[0] != 0){
+                $result += [ $scenes[$index]['nom_type'] => $total[0]];
+            }
+            $candidatureByScene->closeCursor();
         }
         echo json_encode($result);
     }
