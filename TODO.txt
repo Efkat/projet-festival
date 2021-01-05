@@ -4,7 +4,7 @@
     -Candidatures par département - Département en particulier
     -Candidatures hauts de france
     -Candidatures HORS hauts de france
-    -Candidatures par scene - Général
+    -Candidatures par scene - Général FAIT
     -Candidatures par scène - Scène en particulier
 
 -MODIFICATION candidature par admin
