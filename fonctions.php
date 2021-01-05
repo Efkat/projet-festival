@@ -938,42 +938,55 @@ Flight::route("GET /stats",function(){
 });
 
 Flight::route("POST /stats",function(){
-
-    if($param == "nombre-candidatures"){
-        $result = $db->query("SELECT COUNT(*) FROM candidature");
-        $result = $result->fetch();
-        $array = array('totalCandidatures' => $result[0]);
-
-        echo json_encode($array);
-    }else if($param == "candidatures-par-departement"){
-        $departements = $db->query("SELECT num_dept FROM departement");
-        $departements = $departements->fetchAll(PDO::FETCH_ASSOC);
-        $result = array();
-        for($index = 0; $index < count($departements); $index++){
-            $candidatureByDept = $db->prepare("SELECT COUNT(*) FROM candidature WHERE id_departement = :id_departement");
-            $candidatureByDept->bindParam(':id_departement', $departements[$index]['num_dept']);
-            $candidatureByDept->execute();
-            $total = $candidatureByDept->fetch();
-            if($total[0] != 0){
-                $result += [ $departements[$index]['num_dept'] => $total[0]];
-            }
-            $candidatureByDept->closeCursor();
-        }
-        echo json_encode($result);
-    }else if($param == "candidatures-par-scene"){
-        $scenes = $db->query("SELECT * FROM scene");
-        $scenes = $scenes->fetchAll(PDO::FETCH_ASSOC);
-        $result = array();
-        for($index = 0; $index < count($scenes); $index++){
-            $candidatureByScene = $db->prepare("SELECT COUNT(*) FROM candidature WHERE id_scene = :id_scene");
-            $candidatureByScene->bindParam(':id_scene', $scenes[$index]['num_type']);
-            $candidatureByScene->execute();
-            $total = $candidatureByScene->fetch();
-            if($total[0] != 0){
-                $result += [ $scenes[$index]['nom_type'] => $total[0]];
-            }
-            $candidatureByScene->closeCursor();
-        }
-        echo json_encode($result);
+    if($_SESSION['nom']=="admin")
+    {
+        //code redirections
     }
+    else Flight::redirect('/');
+});
+
+Flight::route("/stats/@param",function($param)
+{
+    if($_SESSION['nom']=="admin")
+    {
+        $db=Flight::db();
+        if($param == "nombre-candidatures"){
+            $result = $db->query("SELECT COUNT(*) FROM candidature");
+            $result = $result->fetch();
+            $array = array('totalCandidatures' => $result[0]);
+
+            echo json_encode($array);
+        }else if($param == "candidatures-par-departement"){
+            $departements = $db->query("SELECT num_dept FROM departement");
+            $departements = $departements->fetchAll(PDO::FETCH_ASSOC);
+            $result = array();
+            for($index = 0; $index < count($departements); $index++){
+                $candidatureByDept = $db->prepare("SELECT COUNT(*) FROM candidature WHERE id_departement = :id_departement");
+                $candidatureByDept->bindParam(':id_departement', $departements[$index]['num_dept']);
+                $candidatureByDept->execute();
+                $total = $candidatureByDept->fetch();
+                if($total[0] != 0){
+                    $result += [ $departements[$index]['num_dept'] => $total[0]];
+                }
+                $candidatureByDept->closeCursor();
+            }
+            echo json_encode($result);
+        }else if($param == "candidatures-par-scene"){
+            $scenes = $db->query("SELECT * FROM scene");
+            $scenes = $scenes->fetchAll(PDO::FETCH_ASSOC);
+            $result = array();
+            for($index = 0; $index < count($scenes); $index++){
+                $candidatureByScene = $db->prepare("SELECT COUNT(*) FROM candidature WHERE id_scene = :id_scene");
+                $candidatureByScene->bindParam(':id_scene', $scenes[$index]['num_type']);
+                $candidatureByScene->execute();
+                $total = $candidatureByScene->fetch();
+                if($total[0] != 0){
+                    $result += [ $scenes[$index]['nom_type'] => $total[0]];
+                }
+                $candidatureByScene->closeCursor();
+            }
+            echo json_encode($result);
+        }
+    }
+    else Flight::redirect('/');
 });
