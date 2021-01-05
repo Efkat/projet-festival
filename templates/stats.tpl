@@ -38,15 +38,15 @@
                     <div class="my-3 mx-5">
                         <legend>Voir par :</legend>
                         <div>
-                            <input type="checkbox" name="viewBy" value="dept">
+                            <input type="radio" name="viewBy" value="dept">
                             <label for="dept">Départements</label>
                         </div>
                         <div>
-                            <input type="checkbox" name="viewBy" value="style">
+                            <input type="radio" name="viewBy" value="style">
                             <label for="style">Styles</label>
                         </div>
                         <div>
-                            <input type="checkbox" name="viewBy" value="scene">
+                            <input type="radio" name="viewBy" value="scene">
                             <label for="scene">Scènes</label>
                         </div>
                     </div>
