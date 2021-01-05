@@ -913,23 +913,27 @@ Flight::route("/c_edit/@nom_groupe",function($nom_groupe){
 });
 
 Flight::route("GET /stats",function(){
-    //vérif admin
-    $db=Flight::db();
+    if($_SESSION['nom']=="admin")
+    {
+        $db=Flight::db();
 
-    $depts=$db->query("SELECT departement,num_dept FROM departement;");
-    $depts=$depts->fetchAll(PDO::FETCH_ASSOC);
-
-    $styles=$db->query("SELECT nom_style FROM style;");
-    $styles=$styles->fetchAll(PDO::FETCH_COLUMN);
-
-    $scenes=$db->query("SELECT nom_type FROM scene;");
-    $scenes=$scenes->fetchAll(PDO::FETCH_COLUMN);
+        $depts=$db->query("SELECT departement,num_dept FROM departement;");
+        $depts=$depts->fetchAll(PDO::FETCH_ASSOC);
     
-    Flight::render('templates/stats.tpl', array(
-        'depts'=>$depts,
-        'styles'=>$styles,
-        'scenes'=>$scenes,
-    ));
+        $styles=$db->query("SELECT nom_style FROM style;");
+        $styles=$styles->fetchAll(PDO::FETCH_COLUMN);
+    
+        $scenes=$db->query("SELECT nom_type FROM scene;");
+        $scenes=$scenes->fetchAll(PDO::FETCH_COLUMN);
+        
+        Flight::render('templates/stats.tpl', array(
+            'depts'=>$depts,
+            'styles'=>$styles,
+            'scenes'=>$scenes,
+        ));
+    }
+    else Flight::redirect('/');
+    
 
 });
 
