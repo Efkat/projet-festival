@@ -1,10 +1,8 @@
 -STATISTIQUES (API)
     -Nombre candidatures  FAIT 
     -Candidatures par département - Général    FAIT
-    -Candidatures par département - Département en particulier
+    -Candidatures par département - Département en particulier FAIT
     -Candidatures hauts de france
     -Candidatures HORS hauts de france
     -Candidatures par scene - Général FAIT
-    -Candidatures par scène - Scène en particulier
-
--MODIFICATION candidature par admin
+    -Candidatures par scène - Scène en particulier FAIT
