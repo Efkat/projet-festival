@@ -995,3 +995,51 @@ Flight::route("/stats/@param",function($param)
     }
     else Flight::redirect('/');
 });
+
+Flight::route("/stats/candidatures-par-departement/@dept",function($dept){
+    $db=Flight::db();
+    if($_SESSION['nom']=="admin")
+    {
+        //vérif validité dept au cas où
+        //si url entré en brut
+        //pas obligatoire ? => juste : pas de résultat !
+            $departements = $db->query("SELECT num_dept FROM departement WHERE num_dept=$dept");
+            $departements = $departements->fetchAll(PDO::FETCH_ASSOC);
+            $result = array();
+            for($index = 0; $index < count($departements); $index++){
+                $candidatureByDept = $db->prepare("SELECT COUNT(*) FROM candidature WHERE id_departement = :id_departement");
+                $candidatureByDept->bindParam(':id_departement', $departements[$index]['num_dept']);
+                $candidatureByDept->execute();
+                $total = $candidatureByDept->fetch();
+                if($total[0] != 0){
+                    $result += [ $departements[$index]['num_dept'] => $total[0]];
+                }
+                $candidatureByDept->closeCursor();
+            }
+            echo json_encode($result);
+    }
+    else Flight::redirect('/');
+});
+
+Flight::route("/stats/candidatures-par-scene/@scene",function($scene){
+    $db=Flight::db();
+    if($_SESSION['nom']=="admin")
+    {
+        //même idée de vérif ? à voir
+            $scenes = $db->query("SELECT * FROM scene WHERE nom_type='$scene'"); //attention NOM et pas NOMBRE
+            $scenes = $scenes->fetchAll(PDO::FETCH_ASSOC);
+            $result = array();
+            for($index = 0; $index < count($scenes); $index++){
+                $candidatureByScene = $db->prepare("SELECT COUNT(*) FROM candidature WHERE id_scene = :id_scene");
+                $candidatureByScene->bindParam(':id_scene', $scenes[$index]['num_type']);
+                $candidatureByScene->execute();
+                $total = $candidatureByScene->fetch();
+                if($total[0] != 0){
+                    $result += [ $scenes[$index]['nom_type'] => $total[0]];
+                }
+                $candidatureByScene->closeCursor();
+            }
+            echo json_encode($result);
+    }
+    else Flight::redirect('/');
+});
