@@ -35,6 +35,21 @@
                             {/foreach}
                         </select>
                     </div>
+                    <div class="my-3 mx-5">
+                        <legend>Voir par :</legend>
+                        <div>
+                            <input type="checkbox" name="viewBy" value="dept">
+                            <label for="dept">Départements</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="viewBy" value="style">
+                            <label for="style">Styles</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="viewBy" value="scene">
+                            <label for="scene">Scènes</label>
+                        </div>
+                    </div>
                     <div class="text-center">
                         <input type="submit" id="submit" value="Envoyer" class="btn btn-success btn-lg">
                     </div>
