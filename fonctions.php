@@ -912,27 +912,32 @@ Flight::route("/c_edit/@nom_groupe",function($nom_groupe){
     Flight::redirect('/c_edit');
 });
 
-Flight::route("GET /stats",function(){
-    //vérif admin
-    $db=Flight::db();
+/**
+ * Name = "stats-général"
+ */
+Flight::route("/stats/@param", function($param){
+    $db = Flight::db();
 
-    $depts=$db->query("SELECT departement,num_dept FROM departement;");
-    $depts=$depts->fetchAll(PDO::FETCH_ASSOC);
+    if($param == "nombre-candidatures"){
+        $result = $db->query("SELECT COUNT(*) FROM candidature");
+        $result = $result->fetch();
+        $array = array('totalCandidatures' => $result[0]);
 
-    $styles=$db->query("SELECT nom_style FROM style;");
-    $styles=$styles->fetchAll(PDO::FETCH_COLUMN);
-
-    $scenes=$db->query("SELECT nom_type FROM scene;");
-    $scenes=$scenes->fetchAll(PDO::FETCH_COLUMN);
-    
-    Flight::render('templates/stats.tpl', array(
-        'depts'=>$depts,
-        'styles'=>$styles,
-        'scenes'=>$scenes,
-    ));
-
-});
-
-Flight::route("POST /stats",function(){
-
+        echo json_encode($array);
+    }else if($param == "candidatures-par-departement"){
+        $departement = $db->query("SELECT num_dept FROM departement");
+        $departement = $departement->fetchAll(PDO::FETCH_ASSOC);
+        $result = array();
+        for($index = 0; $index < count($departement); $index++){
+            $candidatureByDept = $db->prepare("SELECT COUNT(*) FROM candidature WHERE id_departement = :id_departement");
+            $candidatureByDept->bindParam(':id_departement', $departement[$index]['num_dept']);
+            $candidatureByDept->execute();
+            $total = $candidatureByDept->fetch();
+            if($total[0] != 0){
+                $result += [ $departement[$index]['num_dept'] => $total[0]];
+            }
+            $candidatureByDept->closeCursor();
+        }
+        echo json_encode($result);
+    }
 });
