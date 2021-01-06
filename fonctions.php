@@ -396,8 +396,6 @@ Flight::route("POST /candidature", function(){
                 $insertFileName->execute(array(':format'=>$extensions[6], ':nomFichier'=>'sacem', ':nomGroupe'=>$nomGroupe));
                 move_uploaded_file($_FILES['sacem']['tmp_name'], "data/$nomGroupe/sacem.$extensions[6]");
             }
-            
-            $_SESSION['candidature'] = $nomGroupe;
             $user=$_SESSION['nom'];
             $db->query("UPDATE utilisateur SET have_candidature=1 WHERE nom_user='$user';");
             Flight::render('templates/success.tpl',array(null));
