@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.36, created on 2021-01-06 11:09:05
+/* Smarty version 3.1.36, created on 2021-01-06 11:44:38
   from 'C:\laragon\www\projet-festival\templates\stats.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.36',
-  'unifunc' => 'content_5ff59a5145c6c5_67040292',
+  'unifunc' => 'content_5ff5a2a64077b7_40740852',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b5494a6889f272f6fc7f27e9a7a3068186ed061e' => 
     array (
       0 => 'C:\\laragon\\www\\projet-festival\\templates\\stats.tpl',
-      1 => 1609931344,
+      1 => 1609933477,
       2 => 'file',
     ),
   ),
@@ -20,26 +20,26 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ff59a5145c6c5_67040292 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ff5a2a64077b7_40740852 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_9700195235ff59a5144ccc7_82327271', "title");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_8677666655ff5a2a63f81c7_47032949', "title");
 ?>
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_11435669985ff59a5144d906_80534451', "content");
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_6301954825ff5a2a63f8e59_06925036', "content");
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "base.tpl");
 }
 /* {block "title"} */
-class Block_9700195235ff59a5144ccc7_82327271 extends Smarty_Internal_Block
+class Block_8677666655ff5a2a63f81c7_47032949 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'title' => 
   array (
-    0 => 'Block_9700195235ff59a5144ccc7_82327271',
+    0 => 'Block_8677666655ff5a2a63f81c7_47032949',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -51,12 +51,12 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block "title"} */
 /* {block "content"} */
-class Block_11435669985ff59a5144d906_80534451 extends Smarty_Internal_Block
+class Block_6301954825ff5a2a63f8e59_06925036 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_11435669985ff59a5144d906_80534451',
+    0 => 'Block_6301954825ff5a2a63f8e59_06925036',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -75,7 +75,8 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
                         <div id="depts_div" class="my-3 mx-5">
                             <label for="departement-input">Département : </label>
                             <select class="custom-select" name="departement" id="departement-input" required>
-                                <option value="0" selected>Tous</option>
+                                <option value="-1" selected>--</option>
+                                <option value="0">Tous</option>
                                 <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['depts']->value, 'dept');
 $_smarty_tpl->tpl_vars['dept']->do_else = true;
@@ -97,6 +98,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <div id="styles_div" class="my-3 mx-5" style="display:none;">
                             <label for="style-input">Style du groupe : </label>
                             <select class="custom-select" name="style" id="style-input" required>
+                                <option value="-1" selected>--</option>
+                                <option value="0">Tous</option>
                                 <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['styles']->value, 'nom', false, 'num');
 $_smarty_tpl->tpl_vars['nom']->do_else = true;
@@ -118,6 +121,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
                         <div id="scenes_div" class="my-3 mx-5" style="display:none;">
                             <label for="scene-input">Scène du groupe : </label>
                             <select class="custom-select" name="scene" id="scene-input" required>
+                                <option value="-1" selected>--</option>
+                                <option value="0">Tous</option>
                                 <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['scenes']->value, 'nom', false, 'num');
 $_smarty_tpl->tpl_vars['nom']->do_else = true;
