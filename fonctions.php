@@ -1067,7 +1067,12 @@ Flight::route("/stats/candidatures-par-departement/@dept",function($dept){
             //vérif validité dept au cas où
             //si url entré en brut
             //pas obligatoire ? => juste : pas de résultat !
-                $departements = $db->query("SELECT num_dept FROM departement WHERE num_dept=$dept");
+                if($dept=="-1")
+                {   
+                    $departements = $db->query("SELECT num_dept FROM departement WHERE num_dept in (2,59,60,62,80)"); 
+                }
+                else $departements = $db->query("SELECT num_dept FROM departement WHERE num_dept=$dept");
+                
                 $departements = $departements->fetchAll(PDO::FETCH_ASSOC);
                 $result = array();
                 for($index = 0; $index < count($departements); $index++){
