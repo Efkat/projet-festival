@@ -21,6 +21,14 @@ addButton.addEventListener("click", function (event) {
         if(inputs[0].value=="" || inputs[1].value=="" || inputs[2].value=="")
             atLeastOneIsEmpty=true;
 
+        //VERIF / et \
+        inputs[0].value = inputs[0].value.replaceAll('/',' ');
+        inputs[0].value = inputs[0].value.replaceAll('\\',' ');
+        inputs[1].value = inputs[1].value.replaceAll('/',' ');
+        inputs[1].value = inputs[1].value.replaceAll('\\',' ');
+        inputs[2].value = inputs[2].value.replaceAll('/',' ');
+        inputs[2].value = inputs[2].value.replaceAll('\\',' ');
+
         if(!atLeastOneIsEmpty)
         {
             for (let j = 0; j < inputs.length; j++) {

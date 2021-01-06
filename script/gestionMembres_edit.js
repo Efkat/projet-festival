@@ -22,5 +22,13 @@ function getCardInformation(member) {
     let nom = member.querySelector(".nom-input").value
     let prenom = member.querySelector(".prenom-input").value
     let instrument = member.querySelector(".instrument-input").value
+
+    //VERIF / et \
+    nom = nom.replaceAll('/',' ');
+    nom = nom.replaceAll('\\',' ');
+    prenom = prenom.replaceAll('/',' ');
+    prenom = prenom.replaceAll('\\',' ');
+    instrument = instrument.replaceAll('/',' ');
+    instrument = instrument.replaceAll('\\',' ');
     return nom + '/' + prenom + '/' + instrument
 }
