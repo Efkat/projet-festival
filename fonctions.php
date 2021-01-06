@@ -343,9 +343,15 @@ Flight::route("POST /candidature", function(){
                 $_FILES['technique']['name'] = $nomGroupe."_technique";
             }else{ $erreur = "La fiche technique du groupe doit être au format PDF !";}
 
-            if((isset($_POST['is_sacem']) && ($_FILES['sacem']['type'] == "application/pdf"))){
-                $_FILES['sacem']['name'] = $nomGroupe . "_sacem";
-            }else{ $erreur = "Le document de la SACEM doit être fourni (case cochée) (Format PDF) !";}
+            if(isset($_POST['is_sacem'])) // si elle est cochée
+            {
+                if(($_FILES['sacem']['type'] == "application/pdf")){
+                    $_FILES['sacem']['name'] = $nomGroupe . "_sacem";
+                }
+                else $erreur = 'Le document SACEM doit être au format PDF (case cochée)';
+            }
+            
+        
         }else{ $erreur = "Tous les champs nécessaires ne sont pas renseignés !"; }
         if($erreur == ""){
             //candidature
@@ -954,18 +960,31 @@ Flight::route("POST /stats",function(){
     {
         if($_SESSION['nom']=="admin")
         {
-            if($_POST['viewBy']=="dept")
+            if(isset($_POST['viewBy']))
             {
-                Flight::redirect('stats/candidatures-par-departement');
+                if($_POST['viewBy']=="dept")
+                {
+                    $dept=$_POST['departement'];
+                    if($dept==0){
+                        Flight::redirect('stats/candidatures-par-departement');}
+                    else Flight::redirect("stats/candidatures-par-departement/$dept");
+                }
+                if($_POST['viewBy']=="style")
+                {
+                    $style=$_POST['style'];
+                    if($style==0){
+                        Flight::redirect('stats/candidatures-par-style');}
+                    else Flight::redirect("stats/candidatures-par-style/$style");
+                }
+                if($_POST['viewBy']=="scene")
+                {
+                    $scene=$_POST['scene'];
+                    if($scene==0){
+                        Flight::redirect('stats/candidatures-par-scene');}
+                    else Flight::redirect("stats/candidatures-par-scene/$scene");
+                }
             }
-            if($_POST['viewBy']=="style")
-            {
-                Flight::redirect('stats/candidatures-par-style');
-            }
-            if($_POST['viewBy']=="scene")
-            {
-                Flight::redirect('stats/candidatures-par-scene');
-            }
+            else Flight::redirect('stats');
         }
         else Flight::redirect('/');
     }
@@ -1017,6 +1036,22 @@ Flight::route("/stats/@param",function($param)
                 }
                 echo json_encode($result);
             }
+            else if($param == "candidatures-par-style"){
+                $styles = $db->query("SELECT * FROM style");
+                $styles = $styles->fetchAll(PDO::FETCH_ASSOC);
+                $result = array();
+                for($index = 0; $index < count($styles); $index++){
+                    $candidatureByStyle = $db->prepare("SELECT COUNT(*) FROM candidature WHERE id_style = :id_style");
+                    $candidatureByStyle->bindParam(':id_style', $styles[$index]['id_style']);
+                    $candidatureByStyle->execute();
+                    $total = $candidatureByStyle->fetch();
+                    if($total[0] != 0){
+                        $result += [ $styles[$index]['nom_style'] => $total[0]];
+                    }
+                    $candidatureByStyle->closeCursor();
+                }
+                echo json_encode($result);
+            } 
         }
         else Flight::redirect('/');
     }
@@ -1059,7 +1094,7 @@ Flight::route("/stats/candidatures-par-scene/@scene",function($scene){
         if($_SESSION['nom']=="admin")
         {
             //même idée de vérif ? à voir
-                $scenes = $db->query("SELECT * FROM scene WHERE nom_type='$scene'"); //attention NOM et pas NOMBRE
+                $scenes = $db->query("SELECT * FROM scene WHERE num_type='$scene'"); //attention NOM et pas NOMBRE
                 $scenes = $scenes->fetchAll(PDO::FETCH_ASSOC);
                 $result = array();
                 for($index = 0; $index < count($scenes); $index++){
@@ -1073,6 +1108,33 @@ Flight::route("/stats/candidatures-par-scene/@scene",function($scene){
                     $candidatureByScene->closeCursor();
                 }
                 echo json_encode($result);
+        }
+        else Flight::redirect('/');
+    }
+    else Flight::redirect('login');
+});
+
+Flight::route("/stats/candidatures-par-style/@style",function($style){
+    if(isset($_SESSION['nom']))
+    {
+        $db=Flight::db();
+        if($_SESSION['nom']=="admin")
+        {
+            //même idée de vérif ? à voir
+            $styles = $db->query("SELECT * FROM style WHERE id_style='$style'");
+            $styles = $styles->fetchAll(PDO::FETCH_ASSOC);
+            $result = array();
+            for($index = 0; $index < count($styles); $index++){
+                $candidatureByStyle = $db->prepare("SELECT COUNT(*) FROM candidature WHERE id_style = :id_style");
+                $candidatureByStyle->bindParam(':id_style', $styles[$index]['id_style']);
+                $candidatureByStyle->execute();
+                $total = $candidatureByStyle->fetch();
+                if($total[0] != 0){
+                    $result += [ $styles[$index]['nom_style'] => $total[0]];
+                }
+                $candidatureByStyle->closeCursor();
+            }
+            echo json_encode($result);
         }
         else Flight::redirect('/');
     }
