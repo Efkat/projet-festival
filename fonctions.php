@@ -985,6 +985,10 @@ Flight::route("POST /stats",function(){
                         Flight::redirect('stats/candidatures-par-scene');}
                     else Flight::redirect("stats/candidatures-par-scene/$scene");
                 }
+                if($_POST['viewBy']=="nb")
+                {
+                    Flight::redirect('stats/nombre-candidatures');
+                }
             }
             else Flight::redirect('stats');
         }

@@ -37,6 +37,10 @@
                     </div> *}
                     <div class="my-3 mx-5">
                         <legend>Voir par :</legend>
+                        <div>
+                            <input type="radio" name="viewBy" value="nb">
+                            <label for="nb">Nombre de candidatures</label>
+                        </div>
                         <div id="depts">
                             <input type="radio" name="viewBy" value="dept">
                             <label for="dept">Départements</label>
