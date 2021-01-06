@@ -1,7 +1,1 @@
--traiter erreur fichier (avec code erreur != 0, cf cours prof)
--dept un peu faux... (+1 pose pb apparement avec 18-19-21-22)
-
--verif si groupe pas existant (//dossier "/data/$nomGp" = va ecraser)
-  (ou changer la façon de faire le dossier mais mieux vaut gerer existance groupe)
-
-
+-code erreur == 0?
