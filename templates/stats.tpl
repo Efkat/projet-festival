@@ -38,10 +38,10 @@
                     <div class="my-3 mx-5">
                         <legend>Voir par :</legend>
                         <div id="depts">
-                            <input type="radio" name="viewBy" value="dept" checked>
+                            <input type="radio" name="viewBy" value="dept">
                             <label for="dept">Départements</label>
                         </div>
-                        <div id="depts_div" class="my-3 mx-5">
+                        <div id="depts_div" class="my-3 mx-5" style="display:none;">
                             <label for="departement-input">Département : </label>
                             <select class="custom-select" name="departement" id="departement-input" required>
                                 <option value="0" selected>Tous</option>
@@ -60,7 +60,7 @@
                             <select class="custom-select" name="style" id="style-input" required>
                                 <option value="0" selected>Tous</option>
                                 {foreach from=$styles key=num item=nom}
-                                    <option value="{$num}">{$nom}</option>
+                                    <option value="{$num+1}">{$nom}</option>
                                 {/foreach}
                             </select>
                         </div>
@@ -73,7 +73,7 @@
                             <select class="custom-select" name="scene" id="scene-input" required>
                                 <option value="0" selected>Tous</option>
                                 {foreach from=$scenes key=num item=nom}
-                                    <option value="{$num}">{$nom}</option>
+                                    <option value="{$num+1}">{$nom}</option>
                                 {/foreach}
                             </select>
                         </div>  
