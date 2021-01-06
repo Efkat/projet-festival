@@ -44,8 +44,9 @@
                         <div id="depts_div" class="my-3 mx-5" style="display:none;">
                             <label for="departement-input">Département : </label>
                             <select class="custom-select" name="departement" id="departement-input" required>
-                                <option value="0" selected>Tous</option>
-                                <option value="-1">Hauts-de-France</option>
+                                <option value="*" selected>Tous</option>
+                                <option value="hdf">Hauts-de-France</option>
+                                <option value="hors-hdf">Hors Hauts-de-France</option>
                                 {foreach from=$depts item=dept}
                                     <option value="{$dept['num_dept']}">{$dept['departement']}</option>
                                 {/foreach}
@@ -58,7 +59,7 @@
                         <div id="styles_div" class="my-3 mx-5" style="display:none;">
                             <label for="style-input">Style du groupe : </label>
                             <select class="custom-select" name="style" id="style-input" required>
-                                <option value="0" selected>Tous</option>
+                                <option value="*" selected>Tous</option>
                                 {foreach from=$styles key=num item=nom}
                                     <option value="{$num+1}">{$nom}</option>
                                 {/foreach}
@@ -71,7 +72,7 @@
                         <div id="scenes_div" class="my-3 mx-5" style="display:none;">
                             <label for="scene-input">Scène du groupe : </label>
                             <select class="custom-select" name="scene" id="scene-input" required>
-                                <option value="0" selected>Tous</option>
+                                <option value="*" selected>Tous</option>
                                 {foreach from=$scenes key=num item=nom}
                                     <option value="{$num+1}">{$nom}</option>
                                 {/foreach}

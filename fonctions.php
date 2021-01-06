@@ -965,21 +965,23 @@ Flight::route("POST /stats",function(){
                 if($_POST['viewBy']=="dept")
                 {
                     $dept=$_POST['departement'];
-                    if($dept==0){
+                    echo $dept;
+                    if($dept=="*"){
                         Flight::redirect('stats/candidatures-par-departement');}
                     else Flight::redirect("stats/candidatures-par-departement/$dept");
+                    
                 }
                 if($_POST['viewBy']=="style")
                 {
                     $style=$_POST['style'];
-                    if($style==0){
+                    if($style=="*"){
                         Flight::redirect('stats/candidatures-par-style');}
                     else Flight::redirect("stats/candidatures-par-style/$style");
                 }
                 if($_POST['viewBy']=="scene")
                 {
                     $scene=$_POST['scene'];
-                    if($scene==0){
+                    if($scene=="*"){
                         Flight::redirect('stats/candidatures-par-scene');}
                     else Flight::redirect("stats/candidatures-par-scene/$scene");
                 }
@@ -1067,11 +1069,18 @@ Flight::route("/stats/candidatures-par-departement/@dept",function($dept){
             //vérif validité dept au cas où
             //si url entré en brut
             //pas obligatoire ? => juste : pas de résultat !
-                if($dept=="-1")
-                {   
-                    $departements = $db->query("SELECT num_dept FROM departement WHERE num_dept in (2,59,60,62,80)"); 
+                if($dept=="hdf")
+                {
+                    $departements = $db->query("SELECT num_dept FROM departement WHERE num_dept IN (2,59,60,62,80)"); 
                 }
-                else $departements = $db->query("SELECT num_dept FROM departement WHERE num_dept=$dept");
+                else 
+                {
+                    if($dept=="hors-hdf")
+                    {
+                        $departements = $db->query("SELECT num_dept FROM departement WHERE num_dept NOT IN (2,59,60,62,80)");
+                    }
+                    else $departements = $db->query("SELECT num_dept FROM departement WHERE num_dept=$dept");
+                }
                 
                 $departements = $departements->fetchAll(PDO::FETCH_ASSOC);
                 $result = array();
