@@ -38,10 +38,10 @@
                     <div class="my-3 mx-5">
                         <legend>Voir par :</legend>
                         <div id="depts">
-                            <input type="radio" name="viewBy" value="dept">
+                            <input type="radio" name="viewBy" value="dept" checked>
                             <label for="dept">Départements</label>
                         </div>
-                        <div id="depts_div" class="my-3 mx-5" style="display:none;">
+                        <div id="depts_div" class="my-3 mx-5">
                             <label for="departement-input">Département : </label>
                             <select class="custom-select" name="departement" id="departement-input" required>
                                 <option value="0" selected>Tous</option>
